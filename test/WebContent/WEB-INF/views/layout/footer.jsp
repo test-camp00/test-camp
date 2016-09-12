@@ -9,7 +9,7 @@
 
 <div class="container" style="height: 150px;">
   <ol class="breadcrumb" style="border-top: 3px solid #82D580;">
-    <li><a href="#">camping소개</a></li>
+    <li><a href="#">ARTCAMPING소개</a></li>
     <li><a href="#">이용약관</a></li>
     <li><a href="#">개인정보취급방침</a></li>
   </ol>
