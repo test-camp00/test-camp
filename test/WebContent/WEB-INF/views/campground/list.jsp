@@ -27,9 +27,21 @@
 </div>
 
 <div class="container" role="main">
+	<h2>캠핑장 정보</h2>
 	<div>
-		1st map
-		
+		<h3>캠핑장 정보 검색</h3>
+			<div>
+				<label style="width: 120px; font-size: 15px;">지역</label>
+				<select name="citySel" style="width: 174px; height: 26px; padding-left: 30px;">
+				<option>지역선택</option>
+				<option value="">서울</option>
+				<option value="">경기</option>
+				<option value="">인천</option>
+				</select><br>
+				<label style="width: 120px; font-size: 15px;">지점명/주소검색</label>
+				<input type="text" name="citySch">
+			</div>
+			<img src="/test/res/images/map.jpg" alt="">
 	</div>
 	
 	<div>

@@ -6,6 +6,7 @@
    String cp = request.getContextPath();
 %>
 <br>
+
 <div style="border-top:2px solid black; height: 100px; background-color: black; border-bottom: 4px solid #82D580;">
 <a href="<%=cp%>/" style="text-decoration: none;">
       <span style="width: 200px; height: 70; position: relative; left: 400px; top:20px; color: #82D580; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: arial black; font-size: 30px; font-weight: bold;">ARTCAMPING</span>
