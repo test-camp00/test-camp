@@ -17,12 +17,13 @@
 <link rel="stylesheet" href="<%=cp%>/bootstrap/css/bootstrap.min.css" type="text/css"/>
 <link rel="stylesheet" href="<%=cp%>/bootstrap/css/bootstrap-theme.min.css" type="text/css"/>
 <link rel="stylesheet" href="<%=cp%>/css/layout/layout.css" type="text/css">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 
 
 </head>
 <body>
 
+<div>
 <div>
     <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
 </div>
@@ -30,20 +31,22 @@
 
 <div class="container" role="main">
 <div>
-   
+  
     <jsp:include page="/WEB-INF/views/layout/imgSlide.jsp"></jsp:include>
 </div>
 
-<div>
+<%-- <div>
 <jsp:include page="/WEB-INF/views/layout/board.jsp"></jsp:include> 
-</div>
+</div> --%>
 </div>
 
 
 <div>
     <jsp:include page="/WEB-INF/views/layout/footer.jsp"></jsp:include>
 </div>
+</div>
 
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>
 
 

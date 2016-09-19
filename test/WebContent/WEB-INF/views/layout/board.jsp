@@ -51,7 +51,7 @@
 				</h2>
 					<ul>
 							<li><span class="num">1</span>[<a href=""><span class="campName2"></span></a>]&nbsp;<span class="click">주간 140 회</span></li>
-							<li><span class="num">2</span>[<a href=""><span class="campName2">두밀리낚시터&...</span></a>]&nbsp;경기 가평군<span class="click">주간 126 회</span></li>
+							<li><span class="num">2</span>[<a href=""><span class="campName2">두밀리낚시터...</span></a>]&nbsp;경기 가평군<span class="click">주간 126 회</span></li>
 							<li><span class="num">3</span>[<a href=""><span class="campName2">임해야영장수련원</span></a>]&nbsp;전남 고흥군<span class="click">주간 95 회</span></li>
 							<li><span class="num">4</span>[<a href=""><span class="campName2">분지울작은캠핑장</span></a>]&nbsp;경기 양평군<span class="click">주간 71 회</span></li>
 							<li><span class="num">5</span>[<a href=""><span class="campName2">주천강강변자...</span></a>]&nbsp;강원 횡성군<span class="click">주간 70 회</span></li>

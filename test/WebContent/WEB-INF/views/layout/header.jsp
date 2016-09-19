@@ -17,15 +17,15 @@
  	<br>
  	<div class="login header-login" style="float: right;">
             <c:if test="${empty sessionScope.member}">
-                <a href="<%=cp%>/"><span class="glyphicon glyphicon-log-in"></span> 로그인</a> <i></i>
-                <a href="<%=cp%>/"><span class="glyphicon glyphicon-user"></span> 회원가입</a>
+                <a href="<%=cp%>/member/login.do"><span class="glyphicon glyphicon-log-in"></span> 로그인</a> <i></i>
+                <a href="<%=cp%>/member/member.do"><span class="glyphicon glyphicon-user"></span> 회원가입</a>
             </c:if>
             <c:if test="${not empty sessionScope.member}">
                 <span style="color:blue;">${sessionScope.member.userName}</span>님 <i></i>
                 <c:if test="${sessionScope.member.userId=='admin'}">
                     <a href="<%=cp%>/admin/main.do">관리자</a> <i></i>
                 </c:if>
-                <a href="<%=cp%>/"><span class="glyphicon glyphicon-log-out"></span> 로그아웃</a>
+                <a href="<%=cp%>/member/logout.do"><span class="glyphicon glyphicon-log-out"></span> 로그아웃</a>
             </c:if>
               <a href="<%=cp%>/"><span class="glyphicon glyphicon-question-sign"></span> 고객센터</a>
     </div>
@@ -55,7 +55,7 @@
 	      <li> <a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true" style="float: right">Home</span></a></li>
 		<li><a href="<%=cp%>/campground/list.do"><span class="glyphicon glyphicon-tent" aria-hidden="true" style="float: right">캠핑장</span></a></li>
 		<li><a href="#"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="float: right">캠핑요리</span></a></li>
-		<li><a href="#"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="float: right">캠핑용품</span></a></li>
+		<li><a href="<%=cp%>/tools/tool.do"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="float: right">캠핑용품</span></a></li>
 		<li><a href="#"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="float: right">캠핑방법</span></a></li>
 		<li><a href="#"><span class="glyphicon glyphicon-send" aria-hidden="true" style="float: right">자유게시판</span></a></li>
 		<li><a href="#"><span class="glyphicon glyphicon-transfer" aria-hidden="true" style="float: right">거래게시판</span></a></li>

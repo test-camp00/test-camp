@@ -9,16 +9,16 @@
 	height: 500px;
 }
 
-
-/*  ul{
-	margin:10px;
-	padding:10px;
-	box-sizing:border-box;
-	-moz-box-sizing:border-box;
-	-webkit-box-sizeing:border-box;
-}  */
+.table th {
+	text-align: center;
+}
 
 
+.table>tbody>tr>td {
+	text-align: center;
+	height: 80px;
+	line-height: 80px;
+}
 
 
 
