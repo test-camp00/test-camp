@@ -45,7 +45,7 @@
 </div>
 
 <div class="container" role="main">
-	<!-- <form > -->
+	<form name="boardForm" method="post" onsubmit="" enctype="multipart/form-data">
 		<div style="border-bottom: 1px solid #ccc; margin-bottom: 30px;">
 			<h3>캠핑장 정보 입력</h3>
 		</div>
@@ -60,7 +60,7 @@
 	                    <tr>
 	                        <th class="text-center">지점명</th>
 	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">
-								<input type="text" style="width: 100%;">
+								<input type="text" name="" style="width: 100%;">
 							</td> 
 	                    </tr>
 	                    <tr>
@@ -92,14 +92,14 @@
 		        		    &nbsp;&nbsp;&nbsp;
 		        		    <button type="reset" class="btn btn-default">다시 입력</button>
 		        		    &nbsp;&nbsp;&nbsp;
-		        		    <button class="btn btn-default" onclick="javascript:location.href='<%=cp%>/campground/list.do';">취소</button>
+		        		    <a class="btn btn-default" href="javascript:location.href='<%=cp%>/campground/list.do';">취소</a>
 						</td>
 						</tr>
 				  </tfoot>
 	            </table>
 	        </div>
 		</div>
-	<!-- </form> -->
+	</form>
 </div>
 <div>
     <jsp:include page="/WEB-INF/views/layout/footer.jsp"></jsp:include>

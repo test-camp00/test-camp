@@ -51,7 +51,7 @@
 	<div style="width:1000px; height: 500px; margin:0px auto;">
 		<div>
 			<div style="width: 1000px; height: 487px; border: 1px solid #ccc; ">
-			 지도 들어올 공간
+				지도 자리
 			</div>
 		</div>
 	</div>

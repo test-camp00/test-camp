@@ -46,6 +46,9 @@
 
 <div class="container" role="main">
 	<div style="border-bottom: 1px solid #ccc; margin-bottom: 30px;">
+		<button type="button" class="btn btn-success" style="float: right;"
+		onclick="javascript:location.href='<%=cp%>/campground/created.do';"
+		>등록하기</button>
 		<h3>캠핑장 정보</h3>
 	</div>
 	<div style="width:1000px; height: 500px; margin:0px auto;">
@@ -129,6 +132,7 @@
 	                        <td><a href='${articleUrl}&num=${dto.num}'>${dto.areaName}</a></td>
 	                        <td class="text-center">${dto.addr}</td>
 	                        <td class="text-center">${dto.tel}</td>
+	                        <td class="text-center">${dto.memo1}</td>
 	                    </tr>
 	                   </c:forEach> 
 	                </tbody>
@@ -146,9 +150,6 @@
 			               ${paging}
 			         </c:if>
 	        </div>
-	        <div align="right">
-		      	<button class="btn btn-default" onclick="javascript:location.href='<%=cp%>/campground/created.do';">글쓰기</button>
-	      	</div>
 		</div>
 	</div>
 <div>
