@@ -46,7 +46,7 @@
 
 <div class="container" role="main">
 	<div style="border-bottom: 1px solid #ccc; margin-bottom: 30px;">
-		<h3>캠핑장 정보</h3>
+		<h3>캠핑장 상세 정보</h3>
 	</div>
 	<div style="width:1000px; height: 500px; margin:0px auto;">
 		<div>
@@ -74,14 +74,17 @@
 	                </thead>
 	                <tbody>
 						<tr>
-							<td colspan="2" style="width: 950px">
-							<div style="width: 970px">
+							<td colspan="2">
+							<div>
 								<div style="float: left;">
 									<img src="/test/res/images/hati.png">
 								</div>
 								<div style="float: right; border: 1px solid #ccc;
-								width: 550px; height: 300px;">
+								width: 570px; height: 300px;">
+									<h4>
+									${dto.memo}
 									memo 들어갈 공간
+									</h4>
 								</div>
 							</div>
 							</td>

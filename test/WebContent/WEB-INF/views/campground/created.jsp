@@ -45,17 +45,11 @@
 </div>
 
 <div class="container" role="main">
-	<div style="border-bottom: 1px solid #ccc; margin-bottom: 30px;">
-		<h3>캠핑장 정보</h3>
-	</div>
-	<div style="width:1000px; height: 500px; margin:0px auto;">
-		<div>
-			<div style="width: 1000px; height: 487px; border: 1px solid #ccc; ">
-			 지도 들어올 공간
-			</div>
+	<!-- <form > -->
+		<div style="border-bottom: 1px solid #ccc; margin-bottom: 30px;">
+			<h3>캠핑장 정보 입력</h3>
 		</div>
-	</div>
-	<div style="width:1000px; height: 500px; margin:0px auto;">
+		<div style="width:1000px; height: 500px; margin:0px auto;">
 			<div class="table-responsive" style="clear: both;"> <!-- 테이블 반응형 -->
 	            <table class="table table-hover">
 				<colgroup>
@@ -66,42 +60,47 @@
 	                    <tr>
 	                        <th class="text-center">지점명</th>
 	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">
-								<input type="text" style="width: 884px;">
+								<input type="text" style="width: 100%;">
 							</td> 
 	                    </tr>
 	                    <tr>
-	                        <th class="text-center">주소</th>
+	                        <th class="text-center">주&nbsp;&nbsp;&nbsp;&nbsp;소</th>
 	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">
-								<input type="text" style="width: 884px;">
+								<input type="text" style="width: 100%;">
 							</td> 
 	                    </tr>
 	                </thead>
 	                <tbody>
 						<tr>
-							<td colspan="2" style="width: 950px">
-								<div style="width: 970px">
-									<div style="float: left;">
-										<input type="file" name="upload" class="boxTF" size="61" style="height: 20px;">
+							<th class="text-center">상세 정보</th>
+							<td colspan="2">
+								<div>
+									<div>
+										<textarea style="width: 100%; height: 300px;"></textarea>
 									</div>
-									<div style="float: right; width: 550px; height: 300px;">
-										<textarea rows="1" cols="1" style="width: 550px; height: 300px;"></textarea>
+									<div style="float: left;">
+										<input type="file" name="upload" class="boxTF">
 									</div>
 								</div>
 							</td>
 						</tr>
 	                </tbody>
-	                <tfoot style="clear: both; align: center; width: 1000px;">
+	                <tfoot>
 						<tr height="45"> 
-						<td>
-						    <input type="button" value="작성">
-		        		    <input type="button" value="취소">
+						<td colspan="2" align="center">
+							<input type="submit" class="btn btn-default" value="작성 완료">
+		        		    &nbsp;&nbsp;&nbsp;
+		        		    <button type="reset" class="btn btn-default">다시 입력</button>
+		        		    &nbsp;&nbsp;&nbsp;
+		        		    <button class="btn btn-default" onclick="javascript:location.href='<%=cp%>/campground/list.do';">취소</button>
 						</td>
 						</tr>
 				  </tfoot>
 	            </table>
 	        </div>
 		</div>
-	</div>
+	<!-- </form> -->
+</div>
 <div>
     <jsp:include page="/WEB-INF/views/layout/footer.jsp"></jsp:include>
 </div>

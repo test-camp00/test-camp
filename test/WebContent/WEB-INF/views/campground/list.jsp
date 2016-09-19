@@ -33,7 +33,7 @@
 		padding-left:60px;
 	}
 	
-	.map_list{/
+	.map_list{
 		border : 1px solid #000;
 	}
 </style>
@@ -126,10 +126,9 @@
 					  <c:forEach var="dto" items="${list}">
 	                    <tr>
 	                        <td class="text-center">${dto.listNum}</td>
-	                        <td><a href='${articleUrl}&num=${dto.num}'>${dto.subject}</a></td>
-	                        <td class="text-center">${dto.userName}</td>
-	                        <td class="text-center">${dto.created}</td>
-	                        <td class="text-center">${dto.hitCount}</td> 
+	                        <td><a href='${articleUrl}&num=${dto.num}'>${dto.areaName}</a></td>
+	                        <td class="text-center">${dto.addr}</td>
+	                        <td class="text-center">${dto.tel}</td>
 	                    </tr>
 	                   </c:forEach> 
 	                </tbody>
@@ -148,7 +147,7 @@
 			         </c:if>
 	        </div>
 	        <div align="right">
-		      	<input type="button" value="글쓰기" onclick="javascript:location.href='/test/campground/created.do';">
+		      	<button class="btn btn-default" onclick="javascript:location.href='<%=cp%>/campground/created.do';">글쓰기</button>
 	      	</div>
 		</div>
 	</div>
