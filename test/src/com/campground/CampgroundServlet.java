@@ -26,6 +26,10 @@ public class CampgroundServlet extends MyServlet{
 		
 		if(uri.indexOf("list.do")!=-1){
 			forward(req, resp, "/WEB-INF/views/campground/list.jsp");
+		} else if(uri.indexOf("created.do")!=-1){
+			forward(req, resp, "/WEB-INF/views/campground/created.jsp");
+		} else if(uri.indexOf("article.do")!=-1){
+			forward(req, resp, "/WEB-INF/views/campground/article.jsp");
 		}
 		
 	}

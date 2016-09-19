@@ -29,11 +29,11 @@
 		width: 500px;
 		height: 220px;
 		border:1px solid #666666;
-		padding-top: 60px;
+		padding-top: 60px; 
 		padding-left:60px;
 	}
 	
-	.map_list{
+	.map_list{/
 		border : 1px solid #000;
 	}
 </style>
@@ -85,94 +85,78 @@
 						</div>
 				</div>
 			</div>
-			<div>	
-				<img src="/test/res/images/map2.jpg">
+			<!-- 여기 -->
+			<div style="text-align: center; position: relative; margin: 0; padding: 0;">	
+				<img src="/test/res/images/korea_map.png"  width="296.4px" height="487.2px">
+				<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+				<span style="top: 160px; left: 50px;"><a href="#">인천</a></span>
+				<span style="top: 61px; left: 185px;"><a href="#">강원</a></span>
+				</div>
 			</div>
 		</div>
 	</div>
 	<div style="width:1000px; height: 500px; margin:0px auto;">
-		<div style="clear: both">
-			<div>
-			
-<table class="map_list">
-			<caption class="hidden">리스트</caption>
-			<colgroup>
-				<col style="width:6%;">
-								<col>
-								<col>
-				<col style="width:33%">
-				<col style="width:14%">
-				<col style="width:20%">
-			</colgroup>
-			<thead>
-				<tr>
-					<th scope="col" style="">지역</th>
-										<th scope="col">구분</th>
-										<th scope="col">지점명</th>
-					<th scope="col">주소</th>
-					<th scope="col">전화번호</th>
-					<th scope="col">비고</th>
-				</tr>
-			</thead>
-			<tbody>
-							<tr>
-					<td style=""><a href="http://www.artcamping.co.kr/%ec%ba%a0%ed%95%91%ec%a7%80%eb%8f%84/?&amp;sido=전북">전북</a></td>
-										<td><a href="http://www.artcamping.co.kr/%ec%ba%a0%ed%95%91%ec%a7%80%eb%8f%84/?&amp;sido=전북&amp;category=국립자연휴양림">국립자연휴양림</a></td>
-										<td>
-						<a href="http://www.artcamping.co.kr/%ec%ba%a0%ed%95%91%ec%a7%80%eb%8f%84/?&amp;sido=전북&amp;uid=39" title="회문산 자연휴양림">회문산 자연휴양림</a>
-												<a href="tel:063-653-4779" class="mobile_tel">063-653-4779</a></td>
-											<td><a href="http://www.artcamping.co.kr/%ec%ba%a0%ed%95%91%ec%a7%80%eb%8f%84/?&amp;sido=전북&amp;uid=39">
-					<span class="address">전북 순창군 구림면 안심길 214</span>&nbsp;<span class="address">회문산 자연휴양림</span></a>					</td>
-					<td>063-653-4779</td>
-					<td></td>
-				</tr>
-							<tr>
-					<td style=""><a href="http://www.artcamping.co.kr/%ec%ba%a0%ed%95%91%ec%a7%80%eb%8f%84/?&amp;sido=전북">전북</a></td>
-										<td><a href="http://www.artcamping.co.kr/%ec%ba%a0%ed%95%91%ec%a7%80%eb%8f%84/?&amp;sido=전북&amp;category=국립자연휴양림">국립자연휴양림</a></td>
-										<td>
-						<a href="http://www.artcamping.co.kr/%ec%ba%a0%ed%95%91%ec%a7%80%eb%8f%84/?&amp;sido=전북&amp;uid=29" title="운장산 자연휴양림">운장산 자연휴양림</a>
-												<a href="tel:063-432-1193" class="mobile_tel">063-432-1193</a></td>
-											<td><a href="http://www.artcamping.co.kr/%ec%ba%a0%ed%95%91%ec%a7%80%eb%8f%84/?&amp;sido=전북&amp;uid=29">
-					<span class="address">전북 진안군 정천면 휴양림길 77</span>&nbsp;<span class="address">매표소</span></a>					</td>
-					<td>063-432-1193</td>
-					<td></td>
-				</tr>
-							<tr>
-					<td style=""><a href="http://www.artcamping.co.kr/%ec%ba%a0%ed%95%91%ec%a7%80%eb%8f%84/?&amp;sido=전북">전북</a></td>
-										<td><a href="http://www.artcamping.co.kr/%ec%ba%a0%ed%95%91%ec%a7%80%eb%8f%84/?&amp;sido=전북&amp;category=국립자연휴양림">국립자연휴양림</a></td>
-										<td>
-						<a href="http://www.artcamping.co.kr/%ec%ba%a0%ed%95%91%ec%a7%80%eb%8f%84/?&amp;sido=전북&amp;uid=15" title="변산 자연휴양림">변산 자연휴양림</a>
-												<a href="tel:063-581-9977" class="mobile_tel">063-581-9977</a></td>
-											<td><a href="http://www.artcamping.co.kr/%ec%ba%a0%ed%95%91%ec%a7%80%eb%8f%84/?&amp;sido=전북&amp;uid=15">
-					<span class="address">전북 부안군 변산면 변산로 3768</span>&nbsp;<span class="address">변산 자연휴양림</span></a>					</td>
-					<td>063-581-9977</td>
-					<td></td>
-				</tr>
-							<tr>
-					<td style=""><a href="http://www.artcamping.co.kr/%ec%ba%a0%ed%95%91%ec%a7%80%eb%8f%84/?&amp;sido=전북">전북</a></td>
-										<td><a href="http://www.artcamping.co.kr/%ec%ba%a0%ed%95%91%ec%a7%80%eb%8f%84/?&amp;sido=전북&amp;category=국립자연휴양림">국립자연휴양림</a></td>
-										<td>
-						<a href="http://www.artcamping.co.kr/%ec%ba%a0%ed%95%91%ec%a7%80%eb%8f%84/?&amp;sido=전북&amp;uid=9" title="덕유산 자연휴양림">덕유산 자연휴양림</a>
-												<a href="tel:063-322-1097" class="mobile_tel">063-322-1097</a></td>
-											<td><a href="http://www.artcamping.co.kr/%ec%ba%a0%ed%95%91%ec%a7%80%eb%8f%84/?&amp;sido=전북&amp;uid=9">
-					<span class="address">전북 무주군 무풍면 구천동로 530-62</span>&nbsp;<span class="address">덕유산 자연휴양림</span></a>					</td>
-					<td>063-322-1097</td>
-					<td></td>
-				</tr>
-						</tbody>
-		</table>
-
-			</div>
+			<div class="table-responsive" style="clear: both;"> <!-- 테이블 반응형 -->
+	            <table class="table table-hover">
+	                <thead>
+	                    <tr>
+	                        <th class="text-center" style="width: 70px;">번호</th>
+	                        <th class="text-center" style="width: 200px;">지점명</th>
+	                        <th class="text-center">주소</th>
+	                        <th class="text-center" style="width: 200px;">연락처</th>
+	                        <th class="text-center" style="width: 150px;">비고</th> 
+	                    </tr>
+	                </thead>
+	                <tbody>
+					  <tr>
+	                        <td class="text-center">1</td>
+	                        <!-- <td class="text-center"><a href='${articleUrl}&num=${dto.num}'>하티게스트하우스</a></td>-->
+	                        <td class="text-center"><a href='<%=cp%>/campground/article.do'>하티게스트하우스</a></td>
+	                        <td class="text-center">제주도 한림읍 협재1길 39-5</td>
+	                        <td class="text-center">010-6364-6006</td>
+	                        <td class="text-center">전망/분위기 좋음</td> 
+						</tr>
+					  <tr>
+	                        <td class="text-center">2</td>
+	                        <td class="text-center"><a href='${articleUrl}&num=${dto.num}'>한라산게스트하우스</a></td>
+	                        <td class="text-center">제주조천읍교래리464-1</td>
+	                        <td class="text-center">064-784-8488</td>
+	                        <td class="text-center">등산 픽업 서비스</td> 
+						</tr>
+					  <c:forEach var="dto" items="${list}">
+	                    <tr>
+	                        <td class="text-center">${dto.listNum}</td>
+	                        <td><a href='${articleUrl}&num=${dto.num}'>${dto.subject}</a></td>
+	                        <td class="text-center">${dto.userName}</td>
+	                        <td class="text-center">${dto.created}</td>
+	                        <td class="text-center">${dto.hitCount}</td> 
+	                    </tr>
+	                   </c:forEach> 
+	                </tbody>
+	                <tfoot>
+	                
+	                </tfoot>
+	            </table>
+	        </div>
+	
+	        <div class="paging" style="text-align: center; min-height: 50px; line-height: 50px;">
+			        <c:if test="${dataCount==0 }">
+			                   등록된 게시물이 없습니다.
+			         </c:if>
+			        <c:if test="${dataCount!=0 }">
+			               ${paging}
+			         </c:if>
+	        </div>
+	        <div align="right">
+		      	<input type="button" value="글쓰기" onclick="javascript:location.href='/test/campground/created.do';">
+	      	</div>
 		</div>
 	</div>
-</div>
-
 <div>
     <jsp:include page="/WEB-INF/views/layout/footer.jsp"></jsp:include>
 </div>
 
 <script type="text/javascript" src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>
-
 
 </body>
 </html>
