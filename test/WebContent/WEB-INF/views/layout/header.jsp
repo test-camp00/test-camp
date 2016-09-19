@@ -59,12 +59,21 @@
 		<li class="dropdown">
 		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">게시판 <span class="caret"></span></a>
 		  <ul class="dropdown-menu" role="menu">
-		    <li><a href="#">자유게시판</a></li>
-		    <li><a href="#">거래</a></li>
+		    <li><a href="<%=cp%>/board/board_free.do">자유게시판</a></li>
+		    <li><a href="<%=cp%>/board/board_trade.do">거래</a></li>
 		  </ul>
 		</li>
 		
-		<li><a href="#">갤러리</a></li>
+		<li><a href="<%=cp%>/gallery/gallery_list.do">갤러리</a></li>
+		
+		<li class="dropdown">
+		  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">고객센터 <span class="caret"></span></a>
+		  <ul class="dropdown-menu" role="menu">
+		    <li><a href="#">FAQ</a></li>
+		    <li><a href="#">Q&A</a></li>
+		    <li><a href="#">NOTICE</a></li>
+		  </ul>
+		</li>
 		
 	      </ul>
 	      <form class="navbar-form navbar-right" role="search">
