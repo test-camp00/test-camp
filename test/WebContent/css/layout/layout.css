@@ -1,0 +1,58 @@
+@CHARSET "UTF-8";
+
+/**  body **/
+.bodyFrame {
+
+	min-height: 500px;
+	clear:both;
+	width : 1500px;
+	height: 500px;
+}
+
+.table th {
+	text-align: center;
+}
+
+
+.table>tbody>tr>td {
+	text-align: center;
+	height: 80px;
+	line-height: 80px;
+}
+
+
+
+.adminBodyFrame {
+	min-height: 600px;
+	padding-top: 80px;
+}
+
+@media ( min-width : 768px) {
+	.bodyFrame {
+		padding-left: 35px;
+		padding-right: 35px;
+	}
+}
+
+.body-title {
+	color: #424951;
+	padding-bottom: 5px;
+	margin: 10px 0 20px 0;
+	border-bottom: 1px solid #dddddd;
+}
+
+.body-title h3 {
+	min-width: 300px;
+	font-family: "Malgun Gothic", "Nanum Gothic", "Dotum";
+	font-weight: bold;
+	margin: 0 0 -5px 0;
+	padding-bottom: 5px;
+	display: inline-block;
+	border-bottom: 3px solid #424951;
+}
+
+.img {
+    max-width: 100%;
+    height: auto;
+    border: 3px;
+}
