@@ -92,6 +92,8 @@ function searchList() {
     <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
 </div>
 
+
+
 	
 <div class="container" >
 	<div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;" >
@@ -115,12 +117,6 @@ function searchList() {
 					alt="..."></div></div>			
 					
 	</div>
-	
-	    
-	
-	
-	
-
 <table style="width: 100%; margin: 0px auto; margin-top: 30px; border-spacing: 0px; padding-bottom: 30px;">
    <tr height="35">
 	  <td align="left" width="80%">
@@ -131,14 +127,7 @@ function searchList() {
 			</select>
 			<input type="text" name="searchValue" class="boxTF">
 			<input type="button" value=" 검 색 " class="btn" onclick="searchList()">
-			<div align="right">
-			<div style="float: left; width: 20%; min-width: 85px; text-align: right;">
-	        		    <c:if test="${sessionScope.member.userId=='admin'}">
-	        		        <button type="button" class="btn btn-primary btn-sm bbtn" onclick="javascript:location.href='<%=cp%>/notice/created.do';"><span class="glyphicon glyphicon glyphicon-pencil"></span> 글쓰기</button>
-	        		    </c:if>
-	        		</div>
 			
-			</div>
 		</form>
 	  </td>	  
    </tr>
@@ -172,6 +161,12 @@ function searchList() {
 		   1 2 3
 		</td>
 	</tr>
+	<div align="right">
+			<c:if test="${sessionScope.member.userId=='admin'}">
+	         <button type="button" class="btn btn-success btn-sm" onclick="javascript:location.href='<%=cp%>/cook/created.do';"><span class="glyphicon glyphicon glyphicon-pencil"></span> 글쓰기</button>
+	         <button type="button" class="btn btn-success btn-sm"><span class="glyphicon glyphicon"></span> 삭제</button>
+	        </c:if>
+			</div>
 </table>
 	
 	

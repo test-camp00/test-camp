@@ -91,8 +91,16 @@
                    </tfoot>
                </table>
            </div>
-     <div style="width: 100%;">    
+     <div style="width: 100%;">  
+     <c:if test="${sessionScope.member.userId!='admin'}"> 
 	<button type="button" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-thumbs-up"></span> 좋아요</button>
+	</c:if> 
+	<c:if test="${sessionScope.member.userId=='admin'}"> 
+	<button type="button" class="btn btn-success btn-sm"><span class="glyphicon glyphicon"></span> 수정</button>
+	</c:if> 
+	<c:if test="${sessionScope.member.userId=='admin'}"> 
+	<button type="button" class="btn btn-success btn-sm"><span class="glyphicon glyphicon"></span> 삭제</button>
+	</c:if>
 	</div> 
 	
 	</div> 
