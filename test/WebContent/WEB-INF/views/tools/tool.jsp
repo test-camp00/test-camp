@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="<%=cp%>/css/layout/layout.css"
 	type="text/css">
 
+
 <div>
 	<jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
 </div>
