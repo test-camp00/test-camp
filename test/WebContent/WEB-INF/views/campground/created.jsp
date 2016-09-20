@@ -21,21 +21,48 @@
 <script type="text/javascript">
     function check() {
         var f = document.boardForm;
-
-    	var str = f.subject.value;
+ 
+    	var str=f.areaname.value;
+    	if(str=="지역선택"){
+    		alert("지역명을 선택하세요.")
+    		return false;
+    	}
+    	
+        str = f.placename.value;
         if(!str) {
-            alert("제목을 입력하세요. ");
-            f.subject.focus();
+            alert("캠핑장명을 입력하세요.");
+            f.placename.focus();
             return false;
         }
 
-    	str = f.content.value;
+    	str = f.addr.value;
         if(!str) {
-            alert("내용을 입력하세요. ");
-            f.content.focus();
+            alert("주소를 입력하세요.");
+            f.addr.focus();
             return false;
         }
-
+        
+        str = f.tel.value;
+        if(!str) {
+            alert("연락처를 입력하세요.");
+            f.tel.focus();
+            return false;
+        }
+        
+        str = f.memo1.value;
+        if(!str) {
+            alert("간단정보를 입력하세요.");
+            f.memo1.focus();
+            return false;
+        }
+        
+        str = f.memo2.value;
+        if(!str) {
+            alert("상세정보를 입력하세요.");
+            f.memo2.focus();
+            return false;
+        }
+        
     	var mode="${mode}";
     	mode="created";
     	if(mode=="created")
@@ -90,7 +117,7 @@
 	                        <th class="text-center">지 역 명</th>
 	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">
 								<select class="form-control" style="width: 180px;" name="areaname">
-									<option>지역선택</option>
+									<option value="지역선택">지역선택</option>
 									<option value="서울">서울</option>
 									<option value="인천">인천</option>
 									<option value="경기도">경기도</option>

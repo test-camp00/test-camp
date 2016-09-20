@@ -45,7 +45,7 @@ public class CampgroundServlet extends MyServlet{
 			forward(req, resp, "/WEB-INF/views/campground/created.jsp");
 		} else if(uri.indexOf("created_ok.do")!=-1){
 			if(info==null||!info.getUserId().equals("admin")){
-				resp.sendRedirect(cp+"/notice/list.do");
+				resp.sendRedirect(cp+"/campground/list.do");
 				return;
 			}
 			
@@ -66,6 +66,8 @@ public class CampgroundServlet extends MyServlet{
 			dto.setMemo2(mreq.getParameter("memo2"));
 			
 			dao.insertCampground(dto);
+			
+			resp.sendRedirect(cp+"/campground/list.do");
 		} else if(uri.indexOf("article.do")!=-1){
 			forward(req, resp, "/WEB-INF/views/campground/article.jsp");
 		}

@@ -105,37 +105,22 @@
 	                <thead>
 	                    <tr>
 	                        <th class="text-center" style="width: 70px;">번호</th>
-	                        <th class="text-center" style="width: 200px;">지점명</th>
+	                        <th class="text-center" style="width: 200px;">캠핑장명</th>
 	                        <th class="text-center">주소</th>
 	                        <th class="text-center" style="width: 200px;">연락처</th>
-	                        <th class="text-center" style="width: 150px;">비고</th> 
+	                        <th class="text-center" style="width: 150px;">간단정보</th> 
 	                    </tr>
 	                </thead>
 	                <tbody>
-					  <tr>
-	                        <td class="text-center">1</td>
-	                        <!-- <td class="text-center"><a href='${articleUrl}&num=${dto.num}'>하티게스트하우스</a></td>-->
-	                        <td class="text-center"><a href='<%=cp%>/campground/article.do'>하티게스트하우스</a></td>
-	                        <td class="text-center">제주도 한림읍 협재1길 39-5</td>
-	                        <td class="text-center">010-6364-6006</td>
-	                        <td class="text-center">전망/분위기 좋음</td> 
-						</tr>
-					  <tr>
-	                        <td class="text-center">2</td>
-	                        <td class="text-center"><a href='${articleUrl}&num=${dto.num}'>한라산게스트하우스</a></td>
-	                        <td class="text-center">제주조천읍교래리464-1</td>
-	                        <td class="text-center">064-784-8488</td>
-	                        <td class="text-center">등산 픽업 서비스</td> 
-						</tr>
-					  <c:forEach var="dto" items="${list}">
-	                    <tr>
-	                        <td class="text-center">${dto.listNum}</td>
-	                        <td><a href='${articleUrl}&num=${dto.num}'>${dto.areaName}</a></td>
-	                        <td class="text-center">${dto.addr}</td>
-	                        <td class="text-center">${dto.tel}</td>
-	                        <td class="text-center">${dto.memo1}</td>
-	                    </tr>
-	                   </c:forEach> 
+						<c:forEach var="dto" items="${list}">
+	                    	<tr>
+		                        <td class="text-center">${dto.num}</td>
+		                        <td><a href='${articleUrl}&num=${dto.num}'>${dto.areaName}</a></td>
+		                        <td class="text-center">${dto.addr}</td>
+		                        <td class="text-center">${dto.tel}</td>
+		                        <td class="text-center">${dto.memo1}</td>
+	                    	</tr>
+                   		</c:forEach> 
 	                </tbody>
 	                <tfoot>
 	                
