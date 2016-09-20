@@ -2,18 +2,18 @@ package com.campground;
 
 public class CampgroundDTO {
 	private int num;
-	private String placeCode, areaName, addr, tel, memo1, memo2, filename;
+	private String placeName, areaName, addr, tel, memo1, memo2, filename;
 	public int getNum() {
 		return num;
 	}
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public String getPlaceCode() {
-		return placeCode;
+	public String getPlaceName() {
+		return placeName;
 	}
-	public void setPlaceCode(String placeCode) {
-		this.placeCode = placeCode;
+	public void setPlaceName(String placeName) {
+		this.placeName = placeName;
 	}
 	public String getAreaName() {
 		return areaName;

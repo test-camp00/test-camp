@@ -13,9 +13,22 @@ public class CampgroundDAO {
 		PreparedStatement pstmt=null;
 		StringBuffer sb=new StringBuffer();
 		
-		sb.append("");
 		try {
+			sb.append("INSERT INTO placedetail");
+			sb.append(" (num, areaname, placename, addr, tel, filename, memo1, memo2)");
+			sb.append(" VALUES (placeDetail_seq.NEXTVAL,?,?,?,?,'',?,?)");
 			
+			pstmt=conn.prepareStatement(sb.toString());
+			pstmt.setString(1, dto.getAreaName());
+			pstmt.setString(2, dto.getPlaceName());
+			pstmt.setString(3, dto.getAddr());
+			pstmt.setString(4, dto.getTel());
+			pstmt.setString(5, dto.getMemo1());
+			pstmt.setString(6, dto.getMemo2());
+			result=pstmt.executeUpdate();
+			
+			pstmt.close();
+			pstmt=null;
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

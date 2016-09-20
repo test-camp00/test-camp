@@ -46,9 +46,11 @@
 
 <div class="container" role="main">
 	<div style="border-bottom: 1px solid #ccc; margin-bottom: 30px;">
-		<button type="button" class="btn btn-success" style="float: right;"
-		onclick="javascript:location.href='<%=cp%>/campground/created.do';"
-		>등록하기</button>
+		<c:if test="${sessionScope.member.userId=='admin'}">
+			<button type="button" class="btn btn-success" style="float: right;"
+			onclick="javascript:location.href='<%=cp%>/campground/created.do';"
+			>등록하기</button>
+		</c:if>
 		<h3>캠핑장 정보</h3>
 	</div>
 	<div style="width:1000px; height: 500px; margin:0px auto;">
@@ -60,23 +62,23 @@
 							<label class="schlbl">지역</label>
 							<select class="form-control" style="width: 180px;" name="citySel">
 							<option>지역선택</option>
-							<option value="">서울</option>
-							<option value="">인천</option>
-							<option value="">경기도</option>
-							<option value="">강원도</option>
-							<option value="">충청북도</option>
-							<option value="">세종</option>
-							<option value="">대전</option>
-							<option value="">충청남도</option>
-							<option value="">전라북도</option>
-							<option value="">광주</option>
-							<option value="">전라남도</option>
-							<option value="">경상북도</option>
-							<option value="">대구</option>
-							<option value="">울산</option>
-							<option value="">경상남도</option>
-							<option value="">부산</option>
-							<option value="">제주도</option>
+							<option value="서울">서울</option>
+							<option value="인천">인천</option>
+							<option value="경기도">경기도</option>
+							<option value="강원도">강원도</option>
+							<option value="충청북도">충청북도</option>
+							<option value="세종">세종</option>
+							<option value="대전">대전</option>
+							<option value="충청남도">충청남도</option>
+							<option value="전라북도">전라북도</option>
+							<option value="광주">광주</option>
+							<option value="전라남도">전라남도</option>
+							<option value="경상북도">경상북도</option>
+							<option value="대구">대구</option>
+							<option value="울산">울산</option>
+							<option value="경상남도">경상남도</option>
+							<option value="부산">부산</option>
+							<option value="제주도">제주도</option>
 							</select><br>
 						</div>
 						<div>
@@ -88,10 +90,9 @@
 						</div>
 				</div>
 			</div>
-			<!-- 여기 -->
-			<div style="text-align: center; position: relative; margin: 0; padding: 0;">	
+			<div style="text-align: center; margin: 0; padding: 0;">	
 				<img src="/test/res/images/korea_map.png"  width="296.4px" height="487.2px">
-				<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+				<div style="top: 0; left: 0; width: 100%; height: 100%;">
 				<span style="top: 160px; left: 50px;"><a href="#">인천</a></span>
 				<span style="top: 61px; left: 185px;"><a href="#">강원</a></span>
 				</div>
