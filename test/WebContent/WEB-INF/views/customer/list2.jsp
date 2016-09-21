@@ -10,7 +10,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>Insert title here</title>
+
 <style type="text/css">
 
 
@@ -79,10 +81,10 @@ function searchList() {
 	  <ul id="myTab2" class="nav nav-tabs tabs-left" role="tablist" >
 	    <li role="presentation" class="active"><a href="#home2" id="home-tab2" role="tab" data-toggle="tab" style="width: 200px">
 	     
-	     자주하는 질문</a></li>
+	     질문과 답변</a></li>
 	    <li role="presentation" class=""><a href="#profile2" role="tab" id="profile-tab2" data-toggle="tab" style="width: 200px">
 	   
-	    질문과 답변
+	    자주하는 질문
 	    </a></li>
 	      <li role="presentation" class=""><a href="#profile3" role="tab" id="profile-tab3" data-toggle="tab"style="width: 200px" >
 
@@ -98,7 +100,7 @@ function searchList() {
  <!-- ---------------------------------------------------------------------------------------------------------------------------------------------------------------- -->  
 	<div class="col-sm-9" >
 	  <div id="myTabContent2" class="tab-content">
-	    <div role="tabpanel" class="tab-pane fade active in" id="home2" aria-labelledby="home-tab2">
+	    <div role="tabpanel" class="tab-pane fade" id="profile2" aria-labelledby="home-tab2">
 				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				  <div class="panel panel-default">
 				    <div class="panel-heading" role="tab" id="headingOne">
@@ -186,77 +188,106 @@ function searchList() {
  <!-- ---------------------------------------------------------------------------------------------------------------------------------------------------------------- -->  
 	    
 	    
-	    <div role="tabpanel" class="tab-pane fade" id="profile2" aria-labelledby="profile-tab2" align="left">
+	    <div role="tabpanel" class="tab-pane fade  active in" id="home2" aria-labelledby="profile-tab2" align="left">
 											    
-										<table style="width: 700px; margin: 0px auto 0px; border-spacing: 0px;">
-										<tr height="40">
-											<td align="left" class="title">
-												
-												<h2><img src="./images/q&a.JPG" style="height: 40px; width:50px;">
-											질문과 답변</h2>
-											</td>
-										</tr>
-										</table>
-										
-										<table style="width: 700px; margin: 20px auto 0px; border-spacing: 0px;">
-										   <tr height="35">
-										      <td align="left" width="50%">
-										          <form name="searchForm" action="" method="post">
-										              <select name="searchKey" class="selectField">
-										                  <option value="subject">제목</option>
-										                  <option value="name">작성자</option>
-										                  <option value="content">내용</option>
-										                  <option value="created">등록일</option>
-										            </select>
-										            <input type="text" name="searchValue" class="boxTF">
-										            <input type="button" value=" 검 색 " class="btn" onclick="searchList()">
-										        </form>
-										      </td>
-										      <td align="right">
-										          <input type="button" value=" 글올리기 " class="btn" onclick="javascript:location.href='<%=cp%>/';">
-										      </td>
-										   </tr>
-										</table>
-										
-										<table style="width: 700px; margin: 0px auto; border-spacing: 0px;">
-										  <tr align="center" bgcolor="gray" height="30"> 
-										      <td width="60" style="color: #ffffff;">번호</td>
-										      <td width="400" style="color: #ffffff;">제목</td>
-										      <td width="100" style="color: #ffffff;">작성자</td>
-										      <td width="80" style="color: #ffffff;">작성일</td>
-										      <td width="60" style="color: #ffffff;">조회수</td>
-										  </tr>
-										 
-										  <tr align="center" bgcolor="#ffffff" height="30"> 
-										      <td align="center">1</td>
-										      <td align="left" style="padding-left: 10px;">
-										           <a href="">테스트 제목...</a>
-										      </td>
-										      <td align="center">홍길동</td>
-										      <td align="center">2000-10-10</td>
-										      <td align="center">1</td>
-										  </tr>
-										  <tr><td height="1" colspan="5" bgcolor="#e4e4e4"></td></tr> 
-										    <tr align="center" bgcolor="#ffffff" height="30"> 
-										      <td align="center">1</td>
-										      <td align="left" style="padding-left: 10px;">
-										           <a href="">테스트 제목...</a>
-										      </td>
-										      <td align="center">홍길동</td>
-										      <td align="center">2000-10-10</td>
-										      <td align="center">1</td>
-										  </tr>
-										  <tr><td height="1" colspan="5" bgcolor="#e4e4e4"></td></tr> 
-										
-										</table>
-										 
-										<table style="width: 700px; margin: 0px auto; border-spacing: 0px;">
-										   <tr height="35">
-											<td align="center">
-										        1 2 3
-											</td>
-										   </tr>
-										</table> 
+									<div class="layoutBody">
+
+      <div style="min-height: 450px;">
+            <div style="width:100%;   height: 40px; line-height:40px;clear: both; border-top: 1px solid #DAD9FF;border-bottom: 1px solid #DAD9FF;">
+                <div style="width:700px; height:30px; line-height:30px; margin:5px auto;">
+                    <img src="<%=cp%>/res/images/arrow.gif" alt="" style="padding-left: 5px; padding-right: 5px;">
+                    <span style="font-weight: bold;font-size:13pt;font-family: 나눔고딕, 맑은 고딕, 굴림;">질문과 답변</span>
+                </div>
+            </div>
+         
+            <div style="margin: 10px auto; margin-top: 20px; width:700px; min-height: 400px;">
+      
+               <table style="width: 700px; margin: 0px auto; border-spacing: 0px;">
+                  <tr height="35">
+                     <td align="left" width="50%">
+                         <form name="searchForm" action="" method="post">
+                             <select name="searchKey" class="selectField">
+                           <option value="subject">제목</option>
+                           <option value="userName">작성자</option>
+                           <option value="content">내용</option>
+                           <option value="created">등록일</option>
+                           </select>
+                           <input type="text" name="searchValue" class="boxTF">
+                           <input type="button" value=" 검 색 " class="btn" onclick="searchList()">
+                       </form>
+                     </td>
+                     <td align="right">
+               
+                         <input type="image" src="<%=cp%>/res/images/btn_write.gif" onclick="javascript:location.href='<%=cp%>/customer/created.do';">
+              
+                     </td>
+                  </tr>
+               </table>
+               
+               <table style="width: 700px; margin: 0px auto; border-spacing: 0px;">
+                 <tr align="center" bgcolor="#507CD1" height="30"> 
+                     <td width="60" style="color: #ffffff;">번호</td>
+                     <td width="350" style="color: #ffffff;">제목</td>
+                     <td width="100" style="color: #ffffff;">작성자</td>
+                     <td width="80" style="color: #ffffff;">작성일</td>
+                     <td width="60" style="color: #ffffff;">조회수</td>
+                     <td width="50" style="color: #ffffff;">첨부</td>
+                 </tr>
+                <c:forEach var="dto" items="${listNotice}">
+                 <tr align="center" bgcolor="#ffffff" height="30"> 
+                     <td><span style="display: inline-block; width: 28px; height: 18px; line-height: 18px; background: tomato; color: #FFFFFF">공지</span></td>
+                     <td align="left" style="padding-left: 10px;">
+                         <a href='${articleUrl}&num=${dto.num}'>${dto.subject}</a>
+                     </td>
+                     <td align="center">${dto.userName}</td>
+                     <td align="center">${dto.created}</td>
+                     <td align="center">${dto.hitCount}</td>
+                     <td align="center">
+                     <c:if test="${not empty dto.saveFilename}">
+                        <a href="<%=cp%>/customer/download.do?num=${dto.num}">down</a>
+                     </c:if>
+                     </td>
+                 </tr>
+                 <tr><td height="1" colspan="6" bgcolor="#e4e4e4"></td></tr> 
+                </c:forEach>
+                
+                <c:forEach var="dto" items="${list}">
+                 <tr align="center" bgcolor="#ffffff" height="30"> 
+                     <td align="center">${dto.listNum}</td>
+                     <td align="left" style="padding-left: 10px;">
+                         <a href='${articleUrl}&num=${dto.num}'>${dto.subject}</a>
+                     </td>
+                     <td align="center">${dto.userName}</td>
+                     <td align="center">${dto.created}</td>
+                     <td align="center">${dto.hitCount}</td>
+                     <td align="center">
+                     <c:if test="${not empty dto.saveFilename}">
+                        <a href="<%=cp%>/customer/download.do?num=${dto.num}"><img src="<%=cp%>/res/images/disk.gif" border="0"
+                                    style="margin-top: 1px;"></a>
+                     </c:if>
+                     </td>
+                 </tr>
+                 <tr><td height="1" colspan="6" bgcolor="#e4e4e4"></td></tr> 
+                </c:forEach>
+               </table>
+                
+               <table style="width: 700px; margin: 0px auto; border-spacing: 0px;">
+                  <tr height="35">
+                  <td align="center">
+                      <c:if test="${dataCount==0 }">
+                                    등록된 게시물이 없습니다.
+                         </c:if>
+                         <c:if test="${dataCount!=0 }">
+                             ${paging}
+                         </c:if>
+                  </td>
+                  </tr>
+               </table>
+            </div>
+      </div>
+
+    </div>
+	
 	    </div>
 	     <!-- ---------------------------------------------------------------------------------------------------------------------------------------------------------------- -->  
 	     <div role="tabpanel" class="tab-pane fade" id="profile3" aria-labelledby="profile-tab3">
