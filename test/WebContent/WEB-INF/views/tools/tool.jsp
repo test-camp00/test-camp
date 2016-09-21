@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="<%=cp%>/css/layout/layout.css"
 	type="text/css">
 
+<<<<<<< HEAD
 <script type="text/javascript">
 	function searchList() {
 		var f=document.searchForm;
@@ -29,6 +30,8 @@
 	}
 </script>
 	
+=======
+>>>>>>> branch 'master' of https://github.com/test-camp00/test-camp.git
 
 <div>
 	<jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
