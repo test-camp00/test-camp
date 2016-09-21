@@ -4,6 +4,8 @@
 <%
 	String cp=request.getContextPath();
 	request.setCharacterEncoding("utf-8");
+	
+	
 %>
 
 <!DOCTYPE html>
@@ -20,7 +22,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style type="text/css">
 	 .schlbl {
-	 	width: 150px;
+	 	width: 180px;
 	 	line-height : 30px;
 	 	font-size: 20px;
 	 	float: left;
@@ -60,8 +62,8 @@
 				<div class="schcase">
 						<div style="margin-bottom: 10px;">
 							<label class="schlbl">지역</label>
-							<select class="form-control" style="width: 180px;" name="citySel">
-							<option>지역선택</option>
+							<select class="form-control" style="width: 180px;" name="searchArea">
+							<option value="지역선택">지역선택</option>
 							<option value="서울">서울</option>
 							<option value="인천">인천</option>
 							<option value="경기도">경기도</option>
@@ -83,8 +85,8 @@
 						</div>
 						<div>
 						   <div>
-							  <label class="schlbl">지점명/주소검색</label>
-							  <input type="text" class="form-control" style="width: 130px; display: inline-block;" name="citySch">
+							  <label class="schlbl">캠핑장명/주소검색</label>
+							  <input type="text" class="form-control" style="width: 130px; display: inline-block;" name="searchValue">
 							  <button type="button" class="btn btn-default" name="schbtn" >검색</button>
 						</div>
 						</div>
@@ -92,10 +94,6 @@
 			</div>
 			<div style="text-align: center; margin: 0; padding: 0;">	
 				<img src="/test/res/images/korea_map.png"  width="296.4px" height="487.2px">
-				<div style="top: 0; left: 0; width: 100%; height: 100%;">
-				<span style="top: 160px; left: 50px;"><a href="#">인천</a></span>
-				<span style="top: 61px; left: 185px;"><a href="#">강원</a></span>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -104,7 +102,7 @@
 	            <table class="table table-hover">
 	                <thead>
 	                    <tr>
-	                        <th class="text-center" style="width: 70px;">번호</th>
+	                        <th class="text-center" style="width: 80px;">지역</th>
 	                        <th class="text-center" style="width: 200px;">캠핑장명</th>
 	                        <th class="text-center">주소</th>
 	                        <th class="text-center" style="width: 200px;">연락처</th>
@@ -114,9 +112,9 @@
 	                <tbody>
 						<c:forEach var="dto" items="${list}">
 	                    	<tr>
-		                        <td class="text-center">${dto.num}</td>
-		                        <td><a href='${articleUrl}&num=${dto.num}'>${dto.areaName}</a></td>
-		                        <td class="text-center">${dto.addr}</td>
+		                        <td class="text-center">${dto.areaName}</td>
+		                        <td><a href='${articleUrl}&num=${dto.num}'>${dto.placeName}</a></td>
+		                        <td class="text-center"><a href='${articleUrl}&num=${dto.num}'>${dto.addr}</a></td>
 		                        <td class="text-center">${dto.tel}</td>
 		                        <td class="text-center">${dto.memo1}</td>
 	                    	</tr>

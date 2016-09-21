@@ -59,37 +59,65 @@
 			<div class="table-responsive" style="clear: both;"> <!-- 테이블 반응형 -->
 	            <table class="table table-hover">
 				<colgroup>
+					<col style="width:15%">
+					<col style="width:30%">
+					<col style="width:15%">
 					<col style="width:20%">
-					<col>
 				</colgroup>
 	                <thead>
-	                    <tr>
-	                        <th class="text-center">지점명</th>
-	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">하티게스트하우스</td> 
+	                	<tr>
+	                        <th class="text-center">캠핑장명</th>
+	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">
+								${dto.placeName}
+							</td> 
+							<th class="text-center">지 역 명</th>
+	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">
+								${dto.areaName}
+							</td> 
 	                    </tr>
 	                    <tr>
-	                        <th class="text-center">주소</th>
-	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">제주도 한림읍 협재1길 39-5</td> 
+	                        <th class="text-center">주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소</th>
+	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">
+								${dto.addr}
+							</td>
+							<th class="text-center">연 락 처</th>
+	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">
+								${dto.tel}
+							</td>  
 	                    </tr>
 	                </thead>
 	                <tbody>
 						<tr>
+							<th class="text-center">상세 정보</th>
+							<th>
+	                			<img src="<%=cp%>/uploads/campground/${dto.filename}" width="375px" height="207px">
+	                		</th>
 							<td colspan="2">
-							<div>
-								<div style="float: left;">
-									<img src="/test/res/images/hati.png">
+								<div style="height: 190px;">
+									${dto.memo2}
 								</div>
-								<div style="float: right; border: 1px solid #ccc;
-								width: 570px; height: 300px;">
-									<h4>
-									${dto.memo}
-									memo 들어갈 공간
-									</h4>
-								</div>
-							</div>
 							</td>
 						</tr>
 	                </tbody>
+	                <tfoot>
+	                	<tr height="45"> 
+						<td colspan="5" align="center">
+						<a class="btn btn-default"
+						href="javascript:location.href='<%=cp%>/campground/list.do';"
+						style="float: right;">목록</a>
+							<c:if test="${sessionScope.member.userId=='admin'}">
+								<input type="hidden" name="num" value="${dto.num}">
+								<button type="button" class="btn btn-success"
+								onclick="javascript:location.href='<%=cp%>/campground/update.do';">
+								수정하기</button>
+								&nbsp;
+								<button type="button" class="btn btn-success"
+								onclick="javascript:location.href='<%=cp%>/campground/delete.do';">
+								삭제하기</button>	
+		        		    </c:if>
+						</td>
+						</tr>
+				  </tfoot>
 	            </table>
 	        </div>
 		</div>
