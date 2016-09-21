@@ -13,13 +13,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div>
-    <jsp:include page="/WEB-INF/views/layout/imgSlide.jsp"></jsp:include>
-</div>
+
 
 <div class="boardContainer3" >
 				<div class="newCamp3" style="float:left; margin-right: 100px">
-					 <h2><img src="http://www.campingjang.com/images/main2/h2_newcamp.gif" alt="New 최근등록 신규캠핑장" />&nbsp;&nbsp;
+					 <h2><img src="" alt="New 최근등록 신규캠핑장" />&nbsp;&nbsp;
 	                	
 	                	<a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true" style="float: right"><font size="5">더보기</font></span></a>
 	              		
@@ -33,7 +31,7 @@
 	                    <li><span class="num">6</span>[<a href=""><span class="campName2">꿈엔들캠프</span></a>]&nbsp;특징 1.아이들이 마음...<span class="date">2016-03-31</span></li>
 	                   </ul>
 
-					<h2><img src="http://www.campingjang.com/images/main2/h2_newafter.gif" alt="New 최근등록 후기" />
+					<h2><img src="" alt="New 최근등록 후기" />
        <a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true" style="float: right"><font size="5">더보기</font></span></a>
                 	</h2>
 						<ul>
@@ -48,12 +46,12 @@
 			</div>
 			
 			<div class="boardNew3" style="float:left; ">
-				<h2 ><img src="http://www.campingjang.com/images/main2/h2_board_click.gif" alt="베스트 Click 캠핑장" />&nbsp;
+				<h2 ><img src="" alt="베스트 Click 캠핑장" />&nbsp;
 						<a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true" style="float: right"><font size="5">더보기</font></span></a>
 				</h2>
 					<ul>
 							<li><span class="num">1</span>[<a href=""><span class="campName2"></span></a>]&nbsp;<span class="click">주간 140 회</span></li>
-							<li><span class="num">2</span>[<a href=""><span class="campName2">두밀리낚시터&...</span></a>]&nbsp;경기 가평군<span class="click">주간 126 회</span></li>
+							<li><span class="num">2</span>[<a href=""><span class="campName2">두밀리낚시터...</span></a>]&nbsp;경기 가평군<span class="click">주간 126 회</span></li>
 							<li><span class="num">3</span>[<a href=""><span class="campName2">임해야영장수련원</span></a>]&nbsp;전남 고흥군<span class="click">주간 95 회</span></li>
 							<li><span class="num">4</span>[<a href=""><span class="campName2">분지울작은캠핑장</span></a>]&nbsp;경기 양평군<span class="click">주간 71 회</span></li>
 							<li><span class="num">5</span>[<a href=""><span class="campName2">주천강강변자...</span></a>]&nbsp;강원 횡성군<span class="click">주간 70 회</span></li>
@@ -62,7 +60,7 @@
 			
 			
 			
-				<h2><img src="http://www.campingjang.com/images/main2/h2_board_qna.gif" alt="캠핑장 게시판" />
+				<h2><img src="" alt="캠핑장 게시판" />
 						<a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true" style="float: right"><font size="5">더보기</font></span></a>
 				</h2>
 					<ul class="none">

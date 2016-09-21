@@ -44,6 +44,7 @@
 }
 
 
+
 /** jumbotron **/
 .jumbotron {
   margin-bottom: 20px;
@@ -64,6 +65,9 @@
 }
 .jumbotron .container {
   position: relative;
+
+.table th {
+	text-align: center;
 }
 
 @media (min-width: 768px) {
@@ -81,11 +85,17 @@
   }
 }
 
+
 @media (min-width: 992px) {
   .jumbotron h1,
   .jumbotron p {
     margin-right: 100px;
   }
+
+.table>tbody>tr>td {
+	text-align: center;
+	height: 80px;
+	line-height: 80px;
 }
 
 /**  body **/

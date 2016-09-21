@@ -40,6 +40,13 @@
     color: #000;
 }
 </style>
+<script type="text/javascript">
+	function searchList() {
+		var f=document.searchForm;
+		f.action="<%=cp%>/free_board/board_free.do";
+		f.submit();
+	}
+</script>
 </head>
 <body>
 
@@ -52,23 +59,14 @@
         
 	    <div class="body-title">
 	    	  
-	    	  <c:if test="${mode=='free'}">
-	          <h3><span class="glyphicon glyphicon-question-sign"></span> 자유게시판 </h3>
-	          </c:if>
-	          <c:if test="${mode=='trade'}">
-	          <h3><span class="glyphicon glyphicon-question-sign"></span> 거래게시판 </h3>
-	          </c:if>
+	    
+	    <h3><span class="glyphicon glyphicon-question-sign"></span> 자유게시판 </h3>
+	        
 	    </div>
-	    <c:if test="${mode=='free'}">
 	    <div class="alert alert-info">
 	        <i class="glyphicon glyphicon-info-sign"></i> 유저분들께서 마음껏 소통하세요 ^^
 	    </div>
-	    </c:if>
-	    <c:if test="${mode=='trade'}">
-	    <div class="alert alert-info">
-	        <i class="glyphicon glyphicon-info-sign"></i> 거래하는 게시판입니다.
-	    </div>
-	    </c:if>
+	    
 	
 	    <div>
 	        <div style="clear: both; height: 30px; line-height: 30px;">
@@ -85,27 +83,34 @@
 	                        <th class="text-center" style="width: 100px;">글쓴이</th>
 	                        <th class="text-center" style="width: 100px;">날짜</th>
 	                        <th class="text-center" style="width: 70px;">조회수</th> 
+	                   		<td class="text-center" style="width: 70px;">첨부</td>
 	                    </tr>
 	                </thead>
+	                
 	                <tbody>
-					  <c:forEach var="dto" items="${list}">
+					 <c:forEach var="dto" items="${list}">
 	                    <tr>
-	                        <td class="text-center">${dto.listNum}</td>
-	                        <td>
-	                            <c:forEach var="n" begin="1" end="${dto.depth}">
-	                                &nbsp;&nbsp;
-	                            </c:forEach>
-	                            <c:if test="${dto.depth!=0}">
-	                                <img src='<%=cp%>/res/images/re.gif'>
-	                            </c:if>
-	                            <a href='${articleUrl}&boardNum=${dto.boardNum}'>${dto.subject}</a>
-	                        </td>
-	                        <td class="text-center">${dto.userName}</td>
-	                        <td class="text-center">${dto.created}</td>
-	                        <td class="text-center">${dto.hitCount}</td> 
+	                    	<th class="text-center" style="width: 70px;">${dto.listNum}</th>
+	                        <th ><a href='${articleUrl}&num=${dto.num}'>${dto.subject}</a></th>
+	                        <th class="text-center" style="width: 100px;">${dto.userName}</th>
+	                        <th class="text-center" style="width: 100px;">${dto.created}</th>
+	                        <th class="text-center" style="width: 70px;">${dto.hitCount}</th> 
+	                   		<td class="text-center" style="width: 70px;">
+	                   			<c:if test="${not empty dto.saveFilename}">
+					      			<a href="<%=cp%>/free_board/download.do?num=${dto.num}"><img  src="<%=cp%>/images/disk.gif"></a>
+					      		</c:if>
+	                   		</td>
 	                    </tr>
-	                   </c:forEach>
+	                  </c:forEach>
+	                     <tr>
+	                  		<th class="text-center" style="width: 70px;"></th>
+	                        <th ></th>
+	                        <th class="text-center" style="width: 100px;"></th>
+	                        <th class="text-center" style="width: 100px;"></th>
+	                        <th class="text-center" style="width: 70px;"></th>
+	                     </tr>
 	                </tbody>
+	                
 	            </table>
 	        </div>
 	
@@ -120,7 +125,7 @@
 	        
 	        <div style="clear: both;">
 	        		<div style="float: left; width: 20%; min-width: 85px;">
-	        		    <button type="button" class="btn btn-default btn-sm wbtn" onclick="javascript:location.href='<%=cp%>/board/list.do';">새로고침</button>
+	        		    <button type="button" class="btn btn-default btn-sm wbtn" onclick="javascript:location.href='<%=cp%>/free_board/board_free.do';">새로고침</button>
 	        		</div>
 	        		<div style="float: left; width: 60%; text-align: center;">
 	        		     <form name="searchForm" method="post" class="form-inline">
@@ -131,11 +136,11 @@
 							      <option value="created">등록일</option>
 							  </select>
 							  <input type="text" class="form-control input-sm input-search" name="searchValue">
-							  <button type="button" class="btn btn-info btn-sm btn-search" onclick="searchList();"><span class="glyphicon glyphicon-search"></span> 검색</button>
+							  <button type="button" class="btn btn-info btn-sm btn-search" onclick="searchList()"><span class="glyphicon glyphicon-search"></span> 검색</button>
 	        		     </form>
 	        		</div>
 	        		<div style="float: left; width: 20%; min-width: 85px; text-align: right;">
-	        		    <button type="button" class="btn btn-primary btn-sm bbtn" onclick="javascript:location.href='<%=cp%>/board/created.do';"><span class="glyphicon glyphicon glyphicon-pencil"></span> 글쓰기</button>
+	        		    <button type="button" class="btn btn-primary btn-sm bbtn" onclick="javascript:location.href='<%=cp%>/free_board/board_free_create.do';"><span class="glyphicon glyphicon glyphicon-pencil"></span> 글쓰기</button>
 	        		</div>
 	        </div>
 	    </div>
