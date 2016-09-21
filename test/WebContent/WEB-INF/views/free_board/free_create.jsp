@@ -60,11 +60,18 @@
     	if(mode=="created")
     		f.action="<%=cp%>/free_board/board_free_created_ok.do";
     	else if(mode=="update")
-    		f.action="<%=cp%>/free_board/board_free_update_ok.do";
+    		f.action="<%=cp%>/free_board/update_ok.do";
 
     	// <input type='submit' ..>,  <input type='image' ..>, <button>은 submit() 메소드 호출하면 두번전송
         return true;
  }
+  
+  <c:if test="${mode=='update'}">
+  function deleteFile(num) {
+	  var url="<%=cp%>/free_board/deleteFile.do?num="+num+"&page=${page}";
+	  location.href=url;
+  }
+  </c:if>
 </script>
 </head>
 <body>
@@ -73,10 +80,16 @@
     <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
 </div>
 <div class="container" role="main">
+   	 
+   	 <div class="bodyFrame col-sm-10"  style="float:none;margin:0px; padding:0px;width:1140px">
    
     
-	          <h3><span class="glyphicon glyphicon-question-sign"></span> 자유게시판 </h3>
+	    <h3><span class="glyphicon glyphicon-question-sign"></span> 자유게시판 </h3>
 	        
+	    </div>
+	    <div class="alert alert-info">
+	        <i class="glyphicon glyphicon-info-sign"></i> 유저분들께서 마음껏 소통하세요 ^^
+	    </div>
 	    
 	    <div>
 	        <form name="boardForm" method="post" onsubmit="return check();" enctype="multipart/form-data">
@@ -116,21 +129,30 @@
 	                    </tbody>
 	                    <tfoot>
 	                        <tr>
+	                            <c:if test="${mode=='update'}">
+				                    	<tr> 
+					                        <td class="td1">첨부된파일</td>
+					                        <td colspan="3" class="td3"> 
+					                            <c:if test="${not empty dto.saveFilename}">
+					                                ${dto.originalFilename}
+					                                | <a href="javascript:deleteFile('${dto.num}');">삭제</a>
+					                            </c:if>	        
+					                        </td>
+				                    	</tr>
+		          				</c:if>
 	                            <td colspan="4" style="text-align: center; padding-top: 15px;">
 	                                  <button type="submit" class="btn btn-primary"> 확인 <span class="glyphicon glyphicon-ok"></span></button>
 	                                  <button type="button" class="btn btn-danger" onclick="javascript:location.href='<%=cp%>/free_board/board_free.do';"> 취소 </button>
 	                                  
-	                                  <c:if test="${mode=='reply'}">
-	                                      <input type="hidden" name="page" value="${page}">
-	                                      <input type="hidden" name="groupNum" value="${dto.groupNum}">
-	                                      <input type="hidden" name="orderNo" value="${dto.orderNo}">
-	                                      <input type="hidden" name="depth" value="${dto.depth}">
-	                                      <input type="hidden" name="parent" value="${dto.boardNum}">
-	                                  </c:if>
+	                                 
 	                                  <c:if test="${mode=='update'}">
+	                                      <input type="hidden" name="num" value="${dto.num}">
+	                                      <input type="hidden" name="fileSize" value="${dto.filesize}">
+	                                      <input type="hidden" name="saveFilename" value="${dto.saveFilename}">
+	                                      <input type="hidden" name="originalFilename" value="${dto.originalFilename}">
 	                                      <input type="hidden" name="page" value="${page}">
-	                                      <input type="hidden" name="boardNum" value="${dto.boardNum}">
 	                                  </c:if>
+	                                  
 	                            </td>
 	                        </tr>
 	                    </tfoot>

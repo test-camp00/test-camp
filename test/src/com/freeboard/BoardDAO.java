@@ -3,6 +3,7 @@ package com.freeboard;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -148,7 +149,7 @@ public class BoardDAO {
 			sb.append("SELECT * FROM (");
 			sb.append("    SELECT ROWNUM rnum, tb.* FROM (");
 			sb.append("         SELECT num, f.userId, userName,");
-			sb.append("               subject, created,hitCount,");
+			sb.append("               subject, TO_CHAR(created,'yyyy-mm-dd') created,hitCount,");
 			sb.append("               saveFilename");
 			sb.append("               FROM FREEBOARD f");
 			sb.append("               JOIN MEMBER m ON f.userId=m.userId");
@@ -192,5 +193,238 @@ public class BoardDAO {
 		}
 		
 		return list;
+	}
+	public BoardDTO readBoard(int num) {
+		BoardDTO dto=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		StringBuffer sb=new StringBuffer();
+		
+		try {
+			sb.append("SELECT num, f.userId, userName, subject, ");
+			sb.append("    content, created, hitCount,saveFilename,originalFilename,filesize ");
+			sb.append("    FROM freeboard f");
+			sb.append("    JOIN member m ON f.userId=m.userId");
+			sb.append("    WHERE num=?");
+			
+			pstmt=conn.prepareStatement(sb.toString());
+			pstmt.setInt(1, num);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto=new BoardDTO();
+				dto.setNum(rs.getInt("num"));
+				dto.setUserId(rs.getString("userId"));
+				dto.setUserName(rs.getString("userName"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setContent(rs.getString("content"));
+				dto.setHitCount(rs.getInt("hitCount"));
+				dto.setCreated(rs.getString("created"));
+				dto.setSaveFilename(rs.getString("saveFilename"));
+				dto.setOriginalFilename(rs.getString("originalFilename"));
+				dto.setFilesize(rs.getLong("filesize"));
+			}
+			rs.close();
+			pstmt.close();
+					
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return dto;
+	}
+	
+    // 이전글
+    public BoardDTO preReadBoard(int num,String searchKey, String searchValue) {
+        BoardDTO dto=null;
+
+        PreparedStatement pstmt=null;
+        ResultSet rs=null;
+        StringBuffer sb = new StringBuffer();
+
+        try {
+            if(searchValue!=null && searchValue.length() != 0) {
+                sb.append("SELECT ROWNUM, tb.* FROM ( ");
+                sb.append("  SELECT num, subject  ");
+    			sb.append("               FROM freeboard f");
+    			sb.append("               JOIN member m ON f.userId=m.userId");
+    			if(searchKey.equals("created"))
+    				sb.append("           WHERE (TO_CHAR(created, 'YYYY-MM-DD') = ? ) AND ");
+    			else if(searchKey.equals("userName"))
+    				sb.append("           WHERE (INSTR(userName, ?) = 1 ) AND ");
+    			else
+    				sb.append("           WHERE (INSTR(" + searchKey + ", ?) >= 1 ) ");
+    			 sb.append("         AND (num > ? ) ");
+                 sb.append("         ORDER BY num ASC ");
+                 sb.append("      ) tb WHERE ROWNUM=1 ");
+
+                pstmt=conn.prepareStatement(sb.toString());
+                
+                pstmt.setString(1, searchValue);
+                pstmt.setInt(2, num);
+			} else {
+				
+				sb.append("SELECT ROWNUM, tb.* FROM ( ");
+                sb.append("     SELECT num, subject FROM freeboard f JOIN member m ON f.userId=m.userId ");                
+                sb.append("     WHERE num > ? ");
+                sb.append("         ORDER BY num ASC ");
+                sb.append("      ) tb WHERE ROWNUM=1 ");            
+
+                pstmt=conn.prepareStatement(sb.toString());
+                pstmt.setInt(1, num);
+			}
+
+            rs=pstmt.executeQuery();
+
+            if(rs.next()) {
+                dto=new BoardDTO();
+                dto.setNum(rs.getInt("num"));
+                dto.setSubject(rs.getString("subject"));
+            }
+            rs.close();
+            pstmt.close();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    
+        return dto;
+    }
+
+    // 다음글
+    public BoardDTO nextReadBoard(int num,String searchKey, String searchValue) {
+        BoardDTO dto=null;
+
+        PreparedStatement pstmt=null;
+        ResultSet rs=null;
+        StringBuffer sb = new StringBuffer();
+
+        try {
+            if(searchValue!=null && searchValue.length() != 0) {
+                sb.append("SELECT ROWNUM, tb.* FROM ( ");
+                sb.append("  SELECT num, subject  ");
+    			sb.append("               FROM freeboard f");
+    			sb.append("               JOIN member m ON f.userId=m.userId");
+    			if(searchKey.equals("created"))
+    				sb.append("           WHERE (TO_CHAR(created, 'YYYY-MM-DD') = ? ) AND ");
+    			else if(searchKey.equals("userName"))
+    				sb.append("           WHERE (INSTR(userName, ?) = 1 ) AND ");
+    			else
+    				sb.append("           WHERE (INSTR(" + searchKey + ", ?) >= 1 ) ");
+    			 sb.append("         AND (num < ? ) ");
+                 sb.append("         ORDER BY num DESC ");
+                 sb.append("      ) tb WHERE ROWNUM=1 ");
+
+                pstmt=conn.prepareStatement(sb.toString());
+                
+                pstmt.setString(1, searchValue);
+                pstmt.setInt(2, num);
+                
+                
+			} else {
+				
+				sb.append("SELECT ROWNUM, tb.* FROM ( ");
+                sb.append("     SELECT num, subject FROM freeboard f JOIN member m ON f.userId=m.userId ");                
+                sb.append("     WHERE num < ? ");
+                sb.append("         ORDER BY num DESC ");
+                sb.append("      ) tb WHERE ROWNUM=1 ");            
+
+                pstmt=conn.prepareStatement(sb.toString());
+                
+                pstmt.setInt(1, num);
+            
+			}
+
+            rs=pstmt.executeQuery();
+
+            if(rs.next()) {
+                dto=new BoardDTO();
+                dto.setNum(rs.getInt("num"));
+                dto.setSubject(rs.getString("subject"));
+            }
+            rs.close();
+            pstmt.close();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+
+        return dto;
+    }
+    
+	public int updateHitCount(int num) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql;
+		
+		sql = "UPDATE freeboard SET hitCount=hitCount+1 WHERE num=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			result = pstmt.executeUpdate();
+			
+			pstmt.close();
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return result;
+	}
+	
+	public int deleteBoard(int num) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql;
+		
+		sql="DELETE FROM freeboard WHERE num=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		} finally {
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+				}
+			}
+		}		
+		return result;
+	}
+	
+	public int updateBoard(BoardDTO dto) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql;
+		
+		try {
+			sql="UPDATE freeboard SET subject=?, content=?, saveFilename=?, originalFilename=?, filesize=? ";
+			sql+= " WHERE num=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, dto.getSubject());
+			pstmt.setString(2, dto.getContent());
+			pstmt.setString(3, dto.getSaveFilename());
+			pstmt.setString(4, dto.getOriginalFilename());
+			pstmt.setLong(5, dto.getFilesize());
+			pstmt.setInt(6, dto.getNum());
+			result = pstmt.executeUpdate();
+			
+			pstmt.close();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		} finally {
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+				}
+			}
+		}		
+		return result;
 	}
 }
