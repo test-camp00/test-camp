@@ -67,7 +67,7 @@ public class CampgroundServlet extends MyServlet{
 				dataCount=dao.dataCount(searchArea, searchValue);
 			
 			// 전체 페이지 수
-			int numPerPage=2;
+			int numPerPage=10;
 			int total_page=util.pageCount(numPerPage, dataCount);
 			
 			if(current_page>total_page)
@@ -111,15 +111,15 @@ public class CampgroundServlet extends MyServlet{
 			
 		} else if(uri.indexOf("created.do")!=-1){
 			// 글 쓰기
-			forward(req, resp, "/WEB-INF/views/campground/created.jsp");
-			
-		} else if(uri.indexOf("created_ok.do")!=-1){
-			// 글 쓰기 완료
 			if(info==null||!info.getUserId().equals("admin")){
 				resp.sendRedirect(cp+"/campground/list.do");
 				return;
 			}
 			
+			forward(req, resp, "/WEB-INF/views/campground/created.jsp");
+			
+		} else if(uri.indexOf("created_ok.do")!=-1){
+			// 글 쓰기 완료
 			CampgroundDTO dto=new CampgroundDTO();
 			String encType="UTF-8";
 			int maxFilesize=5*1024*1024;
@@ -199,7 +199,37 @@ public class CampgroundServlet extends MyServlet{
 			req.setAttribute("dto", dto);
 			req.setAttribute("page", page);
 			
-			forward(req,resp,"/WEB-INF/views/bbs/update.jsp");
+			forward(req,resp,"/WEB-INF/views/campground/update.jsp");
+		} else if(uri.indexOf("update_ok.do")!=-1){
+			// 글 수정완료
+			CampgroundDTO dto=new CampgroundDTO();
+			int num=Integer.parseInt(req.getParameter("num"));
+			dto.setNum(num);
+			dto.setAreaName(req.getParameter("areaname"));
+			dto.setPlaceName(req.getParameter("placename"));
+			dto.setAddr(req.getParameter("addr"));
+			dto.setTel(req.getParameter("tel"));
+			dto.setMemo1(req.getParameter("memo1"));
+			dto.setMemo2(req.getParameter("memo2"));
+			/*
+			MultipartRequest mreq=null;
+			mreq=new MultipartRequest(
+					req, pathname, maxFilesize, encType, 
+					new DefaultFileRenamePolicy());
+			
+			File file=mreq.getFile("upload");
+			if (file != null) {
+	            String saveFilename = mreq.getFilesystemName("upload");
+	            saveFilename = FileManager.doFilerename(pathname, saveFilename);
+	            dto.setFilename(saveFilename);
+	         }
+			*/
+			String page=req.getParameter("page");
+			
+			dao.updateCampground(dto);
+			
+			//resp.sendRedirect(cp+"/bbs/list.do?page="+page);
+			resp.sendRedirect(cp+"/campground/article.do?num="+num+"&page="+page);
 		}
 	}
 }

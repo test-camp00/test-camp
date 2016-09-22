@@ -63,12 +63,7 @@
             return false;
         }
         
-    	var mode="${mode}";
-    	mode="created";
-    	if(mode=="created")
-    		f.action="<%=cp%>/campground/created_ok.do";
-    	else if(mode=="update")
-    		f.action="<%=cp%>/campground/update_ok.do";
+    	f.action="<%=cp%>/campground/update_ok.do?num=${dto.num}";
     		
         return true;
     }
@@ -108,56 +103,83 @@
 			<div class="table-responsive" style="clear: both;"> <!-- 테이블 반응형 -->
 	            <table class="table table-hover">
 				<colgroup>
-					<col style="width:15%">
-					<col style="width:30%">
-					<col style="width:15%">
 					<col style="width:20%">
+					<col>
 				</colgroup>
 	                <thead>
 	                	<tr>
+	                        <th class="text-center">지 역 명</th>
+	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">
+								<select class="form-control"  style="width: 180px;" name="areaname">
+									<option value="">지역선택</option>
+									<option value="서울">서울</option>
+									<option value="인천">인천</option>
+									<option value="경기도">경기도</option>
+									<option value="강원도">강원도</option>
+									<option value="충청북도">충청북도</option>
+									<option value="세종">세종</option>
+									<option value="대전">대전</option>
+									<option value="충청남도">충청남도</option>
+									<option value="전라북도">전라북도</option>
+									<option value="광주">광주</option>
+									<option value="전라남도">전라남도</option>
+									<option value="경상북도">경상북도</option>
+									<option value="대구">대구</option>
+									<option value="울산">울산</option>
+									<option value="경상남도">경상남도</option>
+									<option value="부산">부산</option>
+									<option value="제주도">제주도</option>
+								</select>
+							</td> 
+	                    </tr>
+	                    <tr>
 	                        <th class="text-center">캠핑장명</th>
 	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">
-								${dto.placeName}
-							</td> 
-							<th class="text-center">지 역 명</th>
-	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">
-								${dto.areaName}
+								<input type="text" name="placename"  value="${dto.placeName}" style="width: 100%;">
 							</td> 
 	                    </tr>
 	                    <tr>
 	                        <th class="text-center">주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소</th>
 	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">
-								${dto.addr}
-							</td>
-							<th class="text-center">연 락 처</th>
+								<input type="text" name="addr" value="${dto.addr}" style="width: 100%;">
+							</td> 
+	                    </tr>
+	                    <tr>
+	                        <th class="text-center">연 락 처</th>
 	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">
-								${dto.tel}
-							</td>  
+								<input type="text" name="tel" value="${dto.tel}" style="width: 100%;">
+							</td> 
+	                    </tr>
+	                    <tr>
+	                        <th class="text-center">간단 정보</th>
+	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">
+								<input type="text" name="memo1" value="${dto.memo1}" style="width: 100%;">
+							</td> 
 	                    </tr>
 	                </thead>
 	                <tbody>
 						<tr>
 							<th class="text-center">상세 정보</th>
-							<th>
-	                			<img src="<%=cp%>/uploads/campground/${dto.filename}" width="375px" height="207px">
-	                		</th>
 							<td colspan="2">
-								<div style="height: 190px;">
-									${dto.memo2}
+								<div>
+									<div style="height: 190px;">
+										<textarea style="width: 100%; height: 100%;" name="memo2" >${dto.memo2}</textarea>
+									</div>
+									<div style="float: left;">
+										<input type="file" name="upload" class="boxTF" style="line-height: 30px;">
+									</div>
 								</div>
 							</td>
 						</tr>
 	                </tbody>
 	                <tfoot>
-	                	<tr height="45"> 
-						<td colspan="5" align="center">
-							<td colspan="2" align="center">
+						<tr height="45"> 
+						<td colspan="2" align="center">
 							<input type="submit" class="btn btn-default" value="수정 완료">
 		        		    &nbsp;&nbsp;&nbsp;
 		        		    <button type="reset" class="btn btn-default">다시 입력</button>
 		        		    &nbsp;&nbsp;&nbsp;
 		        		    <a class="btn btn-default" href="javascript:location.href='<%=cp%>/campground/list.do';">취소</a>
-						</td>
 						</td>
 						</tr>
 				  </tfoot>

@@ -106,12 +106,11 @@
 						href="javascript:location.href='<%=cp%>/campground/list.do';"
 						style="float: right;">목록</a>
 							<c:if test="${sessionScope.member.userId=='admin'}">
-								<input type="hidden" name="num" value="${dto.num}">
-								<button type="button" class="btn btn-success"
-								onclick="javascript:location.href='<%=cp%>/campground/update.do';">
+								<button class="btn btn-success"
+								onclick="javascript:location.href='<%=cp%>/campground/update.do?num=${dto.num}';">
 								수정하기</button>
 								&nbsp;
-								<button type="button" class="btn btn-success"
+								<button class="btn btn-success"
 								onclick="javascript:location.href='<%=cp%>/campground/delete.do';">
 								삭제하기</button>	
 		        		    </c:if>

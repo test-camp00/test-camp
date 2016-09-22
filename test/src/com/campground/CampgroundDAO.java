@@ -155,7 +155,7 @@ public class CampgroundDAO {
     	
     	try {
     		sb.append("SELECT num, areaname, placename, ");
-    		sb.append(" addr, tel, filename, memo2 ");
+    		sb.append(" addr, tel, filename, memo1, memo2 ");
     		sb.append(" FROM placedetail WHERE num= ?");
     		
     		pstmt=conn.prepareStatement(sb.toString());
@@ -170,6 +170,7 @@ public class CampgroundDAO {
     			dto.setAddr(rs.getString("addr"));
     			dto.setTel(rs.getString("tel"));
     			dto.setFilename(rs.getString("filename"));
+    			dto.setMemo1(rs.getString("memo1"));
     			dto.setMemo2(rs.getString("memo2"));
     			
     		}
@@ -183,4 +184,37 @@ public class CampgroundDAO {
 		}
     	return dto;
     }
+  	
+  	// 수정하기
+  	public int updateCampground(CampgroundDTO dto){
+		int result=0; 
+		PreparedStatement pstmt=null;
+		StringBuffer sb=new StringBuffer();
+		
+		try {
+			sb.append("UPDATE placedetail SET ");
+			sb.append(" areaname=?, placename=?, addr=?, tel=?,");
+			sb.append(" filename='', memo1=?, memo2=? ");
+			sb.append(" WHERE num=?");
+
+			pstmt=conn.prepareStatement(sb.toString());
+			pstmt.setString(1, dto.getAreaName());
+			pstmt.setString(2, dto.getPlaceName());
+			pstmt.setString(3, dto.getAddr());
+			pstmt.setString(4, dto.getTel());
+			//pstmt.setString(5, dto.getFilename());
+			pstmt.setString(5, dto.getMemo1());
+			pstmt.setString(6, dto.getMemo2());
+			pstmt.setInt(7, dto.getNum());
+			
+			result=pstmt.executeUpdate(sb.toString());
+			
+			pstmt.close();
+			pstmt=null;
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
 }

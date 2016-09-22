@@ -63,12 +63,7 @@
             return false;
         }
         
-    	var mode="${mode}";
-    	mode="created";
-    	if(mode=="created")
-    		f.action="<%=cp%>/campground/created_ok.do";
-    	else if(mode=="update")
-    		f.action="<%=cp%>/campground/update_ok.do";
+    	f.action="<%=cp%>/campground/created_ok.do";
     		
         return true;
     }
