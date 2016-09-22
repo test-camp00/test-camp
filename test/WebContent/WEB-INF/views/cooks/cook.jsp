@@ -6,25 +6,16 @@
 	request.setCharacterEncoding("utf-8");
 %>
 
-<!DOCTYPE html>
-<Html>
-<head>
-<meta charset='utf-8'>
-<title>요리 리스트</title>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="<%=cp%>/bootstrap/css/bootstrap.min.css" type="text/css"/>
-<link rel="stylesheet" href="<%=cp%>/bootstrap/css/bootstrap-theme.min.css" type="text/css"/>
-<link rel="stylesheet" href="<%=cp%>/css/layout/layout.css" type="text/css">
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<link rel="stylesheet" href="<%=cp%>/bootstrap/css/bootstrap.min.css"
+	type="text/css" />
+<link rel="stylesheet"
+	href="<%=cp%>/bootstrap/css/bootstrap-theme.min.css" type="text/css" />
+<link rel="stylesheet" href="<%=cp%>/css/layout/layout.css"
+	type="text/css">
 
 <style type="text/css">
-*{
-	margin: 0px; padding: 0px;
-}
-body {
-	font-size: 9pt; font-family: 돋움;
-}
+
 a{
 	color: #000000;
 	text-decoration: none;
@@ -53,7 +44,7 @@ a:active, a:hover {
 	 padding:4px 8px;
 	 border-radius:4px;
 	 margin-bottom: 3px;
-}
+} 
 .btn:active, .btn:focus, .btn:hover {
 	 background-color:#e6e6e6;
 	 border-color: #adadad;
@@ -91,15 +82,11 @@ function searchList() {
 <div>
     <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
 </div>
-
-
-
 	
 <div class="container" >
 	<div style="border-bottom: 1px solid #ccc; margin-bottom: 30px;" >
       <h3>캠핑요리</h3>
 	</div>	  	 
-	    
 	 <div>
 	<div class="row">
 		<div class="col-md-12 col-md-4"><input type="image" src="<%=cp%>/images/food1.jpg" onMouseOver="this.style.opacity='.6'; this.style.filter='alpha(opacity=60)'" onMouseOut="this.style.opacity='1.0'; this.style.filter='alpha(opacity=100)'" style="width: 100%; height: 200px;"
@@ -117,6 +104,7 @@ function searchList() {
 					alt="..."></div></div>			
 					
 	</div>
+	
 <table style="width: 100%; margin: 0px auto; margin-top: 30px; border-spacing: 0px; padding-bottom: 30px;">
    <tr height="35">
 	  <td align="left" width="80%">
@@ -161,65 +149,14 @@ function searchList() {
 		   1 2 3
 		</td>
 	</tr>
-	<div align="right">
+	       <tr align="right">
 			<c:if test="${sessionScope.member.userId=='admin'}">
 	         <button type="button" class="btn btn-success btn-sm" onclick="javascript:location.href='<%=cp%>/cook/created.do';"><span class="glyphicon glyphicon glyphicon-pencil"></span> 글쓰기</button>
 	         <button type="button" class="btn btn-success btn-sm"><span class="glyphicon glyphicon"></span> 삭제</button>
 	        </c:if>
-			</div>
-</table>
+			</tr>
+</table>	
 	
-	
-	
-	
-	
-	
-	
-	
-	<%-- <div class="container" role="main" style="padding-bottom: 30px; padding-top: 30px;">         
-	     <div class="table-responsive" style="clear: both;"> <!-- 테이블 반응형 -->
-               <table class="table table-hover">
-                   <thead>
-                       <tr>
-                           <th class="text-center" style="width: 70px;">번호</th>
-                           <th class="text-center" style="width: 200px;">주재료</th>
-                           <th class="text-center" style="width: 200px;">요리명</th>
-                           <th class="text-center">recipe</th>                           
-                           <th class="text-center" style="width: 150px;">좋아요</th> 
-                       </tr>
-                   </thead>
-                   <tbody>
-                 <tr>
-                           <td class="text-center">1</td>                           
-                           <td class="text-center"><a href='<%=cp%>/campground/article.do'>어류</a></td>
-                           <td class="text-center">도미구이</td>
-                           <td class="text-center">도미를 이용한 소금구이</td>
-                           <td class="text-center">14</td> 
-                  </tr>
-                 <tr>
-                           <td class="text-center">2</td>
-                           <td class="text-center"><a href='${articleUrl}&num=${dto.num}'>채소</a></td>
-                           <td class="text-center">모둠채소구이</td>
-                           <td class="text-center">여러가지 신선한 채소들의 모둠 구이</td>
-                           <td class="text-center">6</td> 
-                  </tr>
-                 <c:forEach var="dto" items="${list}">
-                       <tr>
-                           <td class="text-center">${dto.listNum}</td>
-                           <td><a href='${articleUrl}&num=${dto.num}'>${dto.areaName}</a></td>
-                           <td class="text-center">${dto.addr}</td>
-                           <td class="text-center">${dto.tel}</td>
-                       </tr>
-                      </c:forEach> 
-                   </tbody>
-                   <tfoot>
-                   
-                   </tfoot>
-               </table>
-           </div>
-	
-	
-	</div> --%>
 	
 </div>
 	
@@ -229,9 +166,7 @@ function searchList() {
     <jsp:include page="/WEB-INF/views/layout/footer.jsp"></jsp:include>
 </div>
 
-<script type="text/javascript" src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript"
+	src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>
 
-
-</div>
-</body>
-</html>

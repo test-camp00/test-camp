@@ -9,19 +9,6 @@
 	height: 500px;
 }
 
-.table th {
-	text-align: center;
-}
-
-
-.table>tbody>tr>td {
-	text-align: center;
-	height: 80px;
-	line-height: 80px;
-}
-
-
-
 .adminBodyFrame {
 	min-height: 600px;
 	padding-top: 80px;
