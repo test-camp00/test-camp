@@ -28,8 +28,7 @@ function deleteCustomer() {
 
 	    if(confirm("위 자료를 삭제 하시 겠습니까 ? "))
 	    	location.href=url;
-	</c:if>   
-	
+	</c:if>    
 	<c:if test="${sessionScope.member.userId!='admin' && sessionScope.member.userId!=dto.userId}">
 	    alert("게시물을 삭제할 수 없습니다.");
 	</c:if>

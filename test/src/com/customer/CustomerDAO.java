@@ -161,7 +161,7 @@ public class CustomerDAO {
 		try {
 			sb.append("SELECT * FROM (");
 			sb.append("    SELECT ROWNUM rnum, tb.* FROM (");
-			sb.append("         SELECT boardNum, b.userId, b.userName,");
+			sb.append("         SELECT boardNum, b.userId, userName,");
 			sb.append("               subject, groupNum, orderNo, depth, hitCount,");
 			sb.append("               created");
 			sb.append("               FROM customer b");
@@ -264,7 +264,7 @@ public class CustomerDAO {
 		StringBuffer sb = new StringBuffer();
 
 		try {
-			sb.append("SELECT boardNum, b.userId, b.userName, subject, ");
+			sb.append("SELECT boardNum, b.userId, userName, subject, ");
 			sb.append("    content, created, hitCount, groupNum, depth, orderNo, parent ");
 			sb.append("    FROM customer b");
 			sb.append("    JOIN member m ON b.userId=m.userId");
@@ -438,47 +438,5 @@ public class CustomerDAO {
     return result;
     }
 
-    public int updateCustomer(CustomerDTO  dto){
-    	int result=0;
-    	PreparedStatement pstmt= null;
-    	String sql;
-    	
-    	sql="UPDATE customer SET subject=?, content=?";
-    	sql+="WHERE boardNum=?";
-    	
-    	try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getSubject());
-			pstmt.setString(2, dto.getContent());
-			pstmt.setInt(3, dto.getBoardNum());
-			result=pstmt.executeUpdate();
-			
-			pstmt.close();
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		}
-    	
-    	return result;
-    }
 	
-    public int deleteCustomer(int boardNum){
-    	int result=0;
-    	PreparedStatement pstmt=null;
-    	String sql;
-    	
-    	sql="DELETE FROM customer WHERE boardNum IN (SELECT boardNum FROM customer  START WITH boardNum=? CONNECT BY PRIOR boardNum=parent)";
-    	
-    	try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, boardNum);
-			result=pstmt.executeUpdate();
-			
-			pstmt.close();
-			
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		}
-    	
-    	return result;
-    }
 }

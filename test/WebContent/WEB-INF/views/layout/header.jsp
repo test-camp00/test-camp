@@ -70,8 +70,8 @@
 	     
 	    </div>
 
-	    <!-- Collect the nav links, forms, and other content for toggling -->
-	    <div class="navbar-collapse collapse" id="navbar-collapse-1" ">
+	 
+	    <div class="navbar-collapse collapse" id="navbar-collapse-1">
 	      <ul class="nav navbar-nav" >
 	      <li > <a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true" style="float: right;">Home</span></a></li>
 		<li><a href="#"><span class="glyphicon glyphicon-tent" aria-hidden="true" style="float: right">캠핑장</span></a></li>

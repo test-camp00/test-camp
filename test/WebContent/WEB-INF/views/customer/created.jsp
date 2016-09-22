@@ -102,7 +102,7 @@
 					     <tr height="45"> 
 					      <td align="center" >
 						    <input type="image" src="<%=cp%>/res/images/btn_submit.gif" >
-		        		    <a href="javascript:location.href='<%=cp%>/customer/list.do';"><img src="<%=cp%>/res/images/btn_cancel.gif" border="0"></a>
+		        		    <a href="javascript:location.href='<%=cp%>/board/list.do';"><img src="<%=cp%>/res/images/btn_cancel.gif" border="0"></a>
 							<c:if test="${mode=='update'}">
 								<input type="hidden" name="boardNum" value="${dto.boardNum}">
 								<input type="hidden" name="page" value="${page}">

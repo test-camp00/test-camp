@@ -217,7 +217,7 @@ function searchList() {
 					        </form>
 					      </td>
 					      <td align="right">
-					          <input type="image" src="<%=cp%>/res/images/btn_write.gif" onclick="javascript:location.href='<%=cp%>/customer/created.do';">
+					          <input type="image" src="<%=cp%>/res/images/btn_write.gif" onclick="javascript:location.href='<%=cp%>/board/created.do';">
 					      </td>
 					   </tr>
 					</table>

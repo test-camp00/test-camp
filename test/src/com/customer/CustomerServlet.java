@@ -230,68 +230,15 @@ public class CustomerServlet extends MyServlet {
 				
 				dao.insertCustomer(dto, "reply");
 				
-				resp.sendRedirect(cp+"/customer/list.do?page="+page);
+				resp.sendRedirect(cp+"customer/list.do?page="+page);
 				
 			}else if(uri.indexOf("update.do")!=-1){
-				
-				String page=req.getParameter("page");
-				int boardNum=Integer.parseInt(req.getParameter("boardNum"));
-				
-				CustomerDTO dto=dao.readCustomer(boardNum);
-				if(dto==null){
-					resp.sendRedirect(cp+"/customer/list.do?page="+page);
-					return;
-				}
-				
-				if(!info.getUserId().equals(dto.getUserId())){
-					resp.sendRedirect(cp+"/customer/list.do?page="+page);
-					return;
-				}
-				
-				req.setAttribute("dto", dto);
-				req.setAttribute("page", page);	
-				
 				req.setAttribute("mode", "update");
 				forward(req, resp, "/WEB-INF/views/customer/created.jsp");
-				
-			
-			
-			
-		}else if(uri.indexOf("update_ok.do")!=-1){
-			String page=req.getParameter("page");
-			
-			if(req.getMethod().equalsIgnoreCase("GET")){
-				resp.sendRedirect(cp+"/customer/list.do?page="+page);
-			}
-			
-			CustomerDTO dto= new CustomerDTO();
-			dto.setBoardNum(Integer.parseInt(req.getParameter("boardNum")));
-			dto.setSubject(req.getParameter("subject"));
-			dto.setContent(req.getParameter("content"));
-			
-			dao.updateCustomer(dto);
-			resp.sendRedirect(cp+"/customer/list.do?page="+page);
-			
-			
-		}else if(uri.indexOf("delete.do")!=-1){
-			
-			String page=req.getParameter("page");
-			int boardNum = Integer.parseInt(req.getParameter("boardNum"));
-			CustomerDTO dto=dao.readCustomer(boardNum);
-			
-			if(dto==null){
-				resp.sendRedirect(cp+"/customer/list.do?page="+page);
-				return;
-			}
-			
-			if(!dto.getUserId().equals(info.getUserId())&&info.getUserId().equals("admin")){
-		
 				req.setAttribute("mode", "delete");
 				forward(req, resp, "/WEB-INF/views/customer/list.jsp");
-			}
 			
-			dao.deleteCustomer(boardNum);
-			resp.sendRedirect(cp+"/customer/list.do?page="+page);
+			
 			
 		}
 
