@@ -19,19 +19,49 @@
 <script type="text/javascript" src="<%=cp%>/res/js/util.js"></script>
 
 <script type="text/javascript">
+function deleteCustomer() {
+	<c:if test="${sessionScope.member.userId=='admin' || sessionScope.member.userId==dto.userId}">
+	    var boardNum = "${dto.boardNum}";
+	    var page = "${page}";
+	    var params = "boardNum="+boardNum+"&page="+page;
+	    var url = "<%=cp%>/customer/delete.do?" + params;
 
+	    if(confirm("위 자료를 삭제 하시 겠습니까 ? "))
+	    	location.href=url;
+	</c:if>   
+	
+	<c:if test="${sessionScope.member.userId!='admin' && sessionScope.member.userId!=dto.userId}">
+	    alert("게시물을 삭제할 수 없습니다.");
+	</c:if>
+	}
+
+	function updateCustomer() {
+	<c:if test="${sessionScope.member.userId==dto.userId}">
+	    var boardNum = "${dto.boardNum}";
+	    var page = "${page}";
+	    var params = "boardNum="+boardNum+"&page="+page;
+	    var url = "<%=cp%>/customer/update.do?" + params;
+
+	    location.href=url;
+	</c:if>
+
+	<c:if test="${sessionScope.member.userId!=dto.userId}">
+	   alert("게시물을 수정할 수  없습니다.");
+	</c:if>
+	}
 </script>
 
 </head>
 <body>
 
-
+<div class="layoutMain">
+	<div class="layoutHeader">
 		<div style="height: 205px">
 <div style=" height: 10px;  border-bottom: 50px solid #3cb371; margin-top: 0px">
   <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
 </div>
 </div>
-
+	</div>
 	
 	<div class="layoutBody">
 	
@@ -39,7 +69,7 @@
 				<div style="width:100%;	height: 40px; line-height:40px;clear: both; border-top: 1px solid #DAD9FF;border-bottom: 1px solid #DAD9FF;">
 				    <div style="width:600px; height:30px; line-height:30px; margin:5px auto;">
 				        <img src="<%=cp%>/res/images/arrow.gif" alt="" style="padding-left: 5px; padding-right: 5px;">
-				        <span style="font-weight: bold;font-size:13pt;font-family: 나눔고딕, 맑은 고딕, 굴림;">공지사항ㄴ</span>
+				        <span style="font-weight: bold;font-size:13pt;font-family: 나눔고딕, 맑은 고딕, 굴림;">게시판</span>
 				    </div>
 				</div>
 				
@@ -49,7 +79,7 @@
 					
 					<tr height="35">
 					    <td colspan="4" align="center">
-						    ${dto.subject}
+						   ${dto.subject}
 					    </td>
 					</tr>
 					<tr><td colspan="4" height="1" bgcolor="#507CD1" ></td></tr>
@@ -57,11 +87,11 @@
 					<tr height="30">
 					    <td width="80" bgcolor="#EEEEEE" align="center">작성자</td>
 					    <td width="220" align="left" style="padding-left:10px;">
-					         ${dto.userName}
+					  ${dto.userName}
 					    </td>
 					    <td width="80" height="30" bgcolor="#EEEEEE" align="center">줄&nbsp;&nbsp;수</td>
 					    <td width="220" align="left" style="padding-left:10px;">
-					         10
+					       ${linesu}
 					     </td>
 					</tr>
 					<tr><td colspan="4" height="1" bgcolor="#DBDBDB"></td></tr>
@@ -73,40 +103,37 @@
 					    </td>
 					    <td width="80" bgcolor="#EEEEEE" align="center">조회수</td>
 					    <td width="220" align="left" style="padding-left:10px;">
-					       ${dto.hitCount}
+					        ${dto.hitCount}
 					    </td>
 					</tr>
 					<tr><td colspan="4" height="1" bgcolor="#507CD1"></td></tr>
 					
 					<tr>
 					  <td colspan="4" align="left" style="padding: 15px 30px 15px 30px;" valign="top" height="150">
-					        테스트 내용 ...
+					   ${dto.content }
 					   </td>
 					</tr>
 					<tr><td colspan="4" height="1" bgcolor="#507CD1"></td></tr>
 					
 					<tr height="30">
-					     <td width="80" bgcolor="#EEEEEE" align="center">첨 부</td>
-					     <td width="520" align="left" style="padding-left:10px;" colspan="3">
-                             파일
-					     </td>
-					</tr>
-					<tr><td colspan="4" height="1" bgcolor="#DBDBDB"></td></tr>
-
-					<tr height="30">
-					    <td width="80" bgcolor="#EEEEEE" align="center">이전글</td>
+					    <td width="80" bgcolor="#EEEEEE" align="center">이전글:</td>
 					    <td width="520" align="left" style="padding-left:10px;" colspan="3">
-							<c:if test="${not empty preReadDTO}">
+						<c:if test="${not empty preReadDTO}">
 						   <a href="<%=cp %>/customer/article.do?boardNum=${preReadDTO.boardNum}&${params}">${preReadDTO.subject}</a>
-						</c:if>.			
+						</c:if>
+						
 						</td>
+						
 					</tr>
 					<tr><td colspan="4" height="1" bgcolor="#DBDBDB"></td></tr>
 					
 					<tr height="30">
 					    <td width="80" bgcolor="#EEEEEE" align="center">다음글</td>
 					    <td width="520" align="left" style="padding-left:10px;" colspan="3">
-							다음글 테스트 ...	
+						<c:if test="${not empty nextReadDTO}">
+						   <a href="<%=cp %>/customer/article.do?boardNum=${nextReadDTO.boardNum}&${params}">${nextReadDTO.subject}</a>
+						</c:if>
+	
 					    </td>
 					</tr>
 					<tr><td colspan="4" height="3" bgcolor="#507CD1" align="center"></td></tr>
@@ -116,13 +143,18 @@
 					<tr height="35">
 					    <td width="50%" align="left">
 		          
-					          <input type="image" src="<%=cp%>/res/images/btn_modify.gif" onclick="">
-     
-					          <input type="image" src="<%=cp%>/res/images/btn_delete.gif" onclick="">
+					          <input type="image" src="<%=cp%>/res/images/btn_reply.gif" onclick="javascript:location.href='<%=cp%>/customer/reply.do?boardNum=${dto.boardNum}&page=${page}';">
+					          
+					          <c:if test="${sessionScope.member.userId==dto.userId}">
+					              <input type="image" src="<%=cp%>/res/images/btn_modify.gif" onclick="updateCustomer();">
+					          </c:if>
+					          <c:if test="${sessionScope.member.userId==dto.userId || sessionScope.member.userId=='admin'}">
+					              <input type="image" src="<%=cp%>/res/images/btn_delete.gif" onclick="deleteCustomer();">
+					          </c:if>
 					    </td>
 					
 					    <td align="right">
-					           <input type="image" src="<%=cp%>/res/images/btn_list.gif" onclick="javascript:location.href='<%=cp%>/notice/list.do';">
+					           <input type="image" src="<%=cp%>/res/images/btn_list.gif" onclick="javascript:location.href='<%=cp%>/customer/list.do';">
 					    </td>
 					</tr>
 					</table>
@@ -132,10 +164,10 @@
 		
     </div>
 	
-	
+	<div class="layoutFooter">
 		<jsp:include page="/WEB-INF/views/layout/footer.jsp"></jsp:include>
-
-
+	</div>
+</div>
 
 </body>
 </html>

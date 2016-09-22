@@ -23,9 +23,9 @@
                 <a href="<%=cp%>/member/member.do"><font style="color: white; font-weight:bold; font-size: 11pt; " >회원가입&nbsp;&nbsp;</font></a>
             </c:if>
             <c:if test="${not empty sessionScope.member}">
-                <span style="color:blue;">${sessionScope.member.userName}</span>님 <i></i>
+                <span style="color:white;">${sessionScope.member.userName}</span>님 <i></i>
                 <c:if test="${sessionScope.member.userId=='admin'}">
-                    <a href="<%=cp%>/admin/main.do">관리자</a> <i></i>
+                    <a href="<%=cp%>/admin/main.do"><font style="color: orange; font-weight:bold; font-size: 12pt; " >관리자</font></a> <i></i>
                 </c:if>
                 <a href="<%=cp%>/member/logout.do"><font style="color: white; font-weight:bold; font-size: 11pt; " >로그아웃&nbsp;&nbsp;</font></a>
             </c:if>
