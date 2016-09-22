@@ -20,7 +20,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
     function check() {
-        var f = document.boardForm;
+        var f = document.updateForm;
  
     	var str=f.areaname.value;
     	if(str==""){
@@ -63,7 +63,7 @@
             return false;
         }
         
-    	f.action="<%=cp%>/campground/update_ok.do?num=${dto.num}";
+    	f.action="<%=cp%>/campground/update_ok.do";
     		
         return true;
     }
@@ -90,12 +90,14 @@
 </head>
 <body>
 
-<div>
-    <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
+<div style="height: 205px">
+<div style=" height: 10px;  border-bottom: 50px solid #3cb371; margin-top: 0px">
+  <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
+</div>
 </div>
 
 <div class="container">
-	<form name="boardForm" method="post" onsubmit="return check();" enctype="multipart/form-data">
+	<form name="updateForm" method="post" onsubmit="return check();" enctype="multipart/form-data">
 		<div style="border-bottom: 1px solid #ccc; margin-bottom: 30px;">
 			<h3>캠핑장 정보 입력</h3>
 		</div>
@@ -112,23 +114,23 @@
 	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">
 								<select class="form-control"  style="width: 180px;" name="areaname">
 									<option value="">지역선택</option>
-									<option value="서울">서울</option>
-									<option value="인천">인천</option>
-									<option value="경기도">경기도</option>
-									<option value="강원도">강원도</option>
-									<option value="충청북도">충청북도</option>
-									<option value="세종">세종</option>
-									<option value="대전">대전</option>
-									<option value="충청남도">충청남도</option>
-									<option value="전라북도">전라북도</option>
-									<option value="광주">광주</option>
-									<option value="전라남도">전라남도</option>
-									<option value="경상북도">경상북도</option>
-									<option value="대구">대구</option>
-									<option value="울산">울산</option>
-									<option value="경상남도">경상남도</option>
-									<option value="부산">부산</option>
-									<option value="제주도">제주도</option>
+									<option value="서울" ${dto.areaName=="서울" ? "selected='selected'" : ""}>서울</option>
+									<option value="인천" ${dto.areaName=="인천" ? "selected='selected'" : ""}>인천</option>
+									<option value="경기도" ${dto.areaName=="경기도" ? "selected='selected'" : ""}>경기도</option>
+									<option value="강원도" ${dto.areaName=="강원도" ? "selected='selected'" : ""}>강원도</option>
+									<option value="충청북도" ${dto.areaName=="충청북도" ? "selected='selected'" : ""}>충청북도</option>
+									<option value="세종" ${dto.areaName=="세종" ? "selected='selected'" : ""}>세종</option>
+									<option value="대전" ${dto.areaName=="대전" ? "selected='selected'" : ""}>대전</option>
+									<option value="충청남도" ${dto.areaName=="충청남도" ? "selected='selected'" : ""}>충청남도</option>
+									<option value="전라북도" ${dto.areaName=="전라북도" ? "selected='selected'" : ""}>전라북도</option>
+									<option value="광주" ${dto.areaName=="광주" ? "selected='selected'" : ""}>광주</option>
+									<option value="전라남도" ${dto.areaName=="전라남도" ? "selected='selected'" : ""}>전라남도</option>
+									<option value="경상북도" ${dto.areaName=="경상북도" ? "selected='selected'" : ""}>경상북도</option>
+									<option value="대구" ${dto.areaName=="대구" ? "selected='selected'" : ""}>대구</option>
+									<option value="울산" ${dto.areaName=="울산" ? "selected='selected'" : ""}>울산</option>
+									<option value="경상남도" ${dto.areaName=="경상남도" ? "selected='selected'" : ""}>경상남도</option>
+									<option value="부산" ${dto.areaName=="부산" ? "selected='selected'" : ""}>부산</option>
+									<option value="제주도" ${dto.areaName=="제주도" ? "selected='selected'" : ""}>제주도</option>
 								</select>
 							</td> 
 	                    </tr>
@@ -175,6 +177,7 @@
 	                <tfoot>
 						<tr height="45"> 
 						<td colspan="2" align="center">
+							<input type="hidden" name="num" value="${dto.num}">
 							<input type="submit" class="btn btn-default" value="수정 완료">
 		        		    &nbsp;&nbsp;&nbsp;
 		        		    <button type="reset" class="btn btn-default">다시 입력</button>

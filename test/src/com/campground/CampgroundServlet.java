@@ -67,7 +67,7 @@ public class CampgroundServlet extends MyServlet{
 				dataCount=dao.dataCount(searchArea, searchValue);
 			
 			// 전체 페이지 수
-			int numPerPage=10;
+			int numPerPage=3;
 			int total_page=util.pageCount(numPerPage, dataCount);
 			
 			if(current_page>total_page)
@@ -202,31 +202,29 @@ public class CampgroundServlet extends MyServlet{
 			forward(req,resp,"/WEB-INF/views/campground/update.jsp");
 		} else if(uri.indexOf("update_ok.do")!=-1){
 			// 글 수정완료
-			CampgroundDTO dto=new CampgroundDTO();
-			int num=Integer.parseInt(req.getParameter("num"));
-			dto.setNum(num);
-			dto.setAreaName(req.getParameter("areaname"));
-			dto.setPlaceName(req.getParameter("placename"));
-			dto.setAddr(req.getParameter("addr"));
-			dto.setTel(req.getParameter("tel"));
-			dto.setMemo1(req.getParameter("memo1"));
-			dto.setMemo2(req.getParameter("memo2"));
-			/*
+			String encType="UTF-8";
+			int maxFilesize=5*1024*1024;
+			
 			MultipartRequest mreq=null;
 			mreq=new MultipartRequest(
 					req, pathname, maxFilesize, encType, 
 					new DefaultFileRenamePolicy());
 			
-			File file=mreq.getFile("upload");
-			if (file != null) {
-	            String saveFilename = mreq.getFilesystemName("upload");
-	            saveFilename = FileManager.doFilerename(pathname, saveFilename);
-	            dto.setFilename(saveFilename);
-	         }
-			*/
+			CampgroundDTO dto=new CampgroundDTO();
+			int num=Integer.parseInt(mreq.getParameter("num"));
+			dto.setNum(num);
+			dto.setAreaName(mreq.getParameter("areaname"));
+			dto.setPlaceName(mreq.getParameter("placename"));
+			dto.setAddr(mreq.getParameter("addr"));
+			dto.setTel(mreq.getParameter("tel"));
+			dto.setMemo1(mreq.getParameter("memo1"));
+			dto.setMemo2(mreq.getParameter("memo2"));
+			dto.setFilename(mreq.getParameter("filename"));
+			
+			
 			String page=req.getParameter("page");
 			
-			dao.updateCampground(dto);
+			dao.updateCampground(dto, num);
 			
 			//resp.sendRedirect(cp+"/bbs/list.do?page="+page);
 			resp.sendRedirect(cp+"/campground/article.do?num="+num+"&page="+page);

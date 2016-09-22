@@ -20,7 +20,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
     function check() {
-        var f = document.boardForm;
+        var f = document.createdForm;
  
     	var str=f.areaname.value;
     	if(str==""){
@@ -90,12 +90,14 @@
 </head>
 <body>
 
-<div>
-    <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
+<div style="height: 205px">
+<div style=" height: 10px;  border-bottom: 50px solid #3cb371; margin-top: 0px">
+  <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
+</div>
 </div>
 
 <div class="container">
-	<form name="boardForm" method="post" onsubmit="return check();" enctype="multipart/form-data">
+	<form name="createdForm" method="post" onsubmit="return check();" enctype="multipart/form-data">
 		<div style="border-bottom: 1px solid #ccc; margin-bottom: 30px;">
 			<h3>캠핑장 정보 입력</h3>
 		</div>

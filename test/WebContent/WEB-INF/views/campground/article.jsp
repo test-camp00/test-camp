@@ -40,12 +40,22 @@
 </head>
 <body>
 
-<div>
-    <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
+<div style="height: 205px">
+<div style=" height: 10px;  border-bottom: 50px solid #3cb371; margin-top: 0px">
+  <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
+</div>
 </div>
 
 <div class="container" role="main">
 	<div style="border-bottom: 1px solid #ccc; margin-bottom: 30px;">
+		<c:if test="${sessionScope.member.userId=='admin'}">
+			<button class="btn btn-success" style="float: right;"
+			onclick="javascript:location.href='<%=cp%>/campground/delete.do';">
+			삭제하기</button>	
+			<button class="btn btn-success" style="float: right; margin-right:10px"
+			onclick="javascript:location.href='<%=cp%>/campground/update.do?num=${dto.num}';">
+			수정하기</button>
+	    </c:if>
 		<h3>캠핑장 상세 정보</h3>
 	</div>
 	<div style="width:1000px; height: 500px; margin:0px auto;">
@@ -105,15 +115,7 @@
 						<a class="btn btn-default"
 						href="javascript:location.href='<%=cp%>/campground/list.do';"
 						style="float: right;">목록</a>
-							<c:if test="${sessionScope.member.userId=='admin'}">
-								<button class="btn btn-success"
-								onclick="javascript:location.href='<%=cp%>/campground/update.do?num=${dto.num}';">
-								수정하기</button>
-								&nbsp;
-								<button class="btn btn-success"
-								onclick="javascript:location.href='<%=cp%>/campground/delete.do';">
-								삭제하기</button>	
-		        		    </c:if>
+							
 						</td>
 						</tr>
 				  </tfoot>

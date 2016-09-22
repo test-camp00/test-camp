@@ -186,7 +186,7 @@ public class CampgroundDAO {
     }
   	
   	// 수정하기
-  	public int updateCampground(CampgroundDTO dto){
+  	public int updateCampground(CampgroundDTO dto, int num){
 		int result=0; 
 		PreparedStatement pstmt=null;
 		StringBuffer sb=new StringBuffer();
@@ -194,18 +194,18 @@ public class CampgroundDAO {
 		try {
 			sb.append("UPDATE placedetail SET ");
 			sb.append(" areaname=?, placename=?, addr=?, tel=?,");
-			sb.append(" filename='', memo1=?, memo2=? ");
+			sb.append(" filename=?, memo1=?, memo2=? ");
 			sb.append(" WHERE num=?");
-
+			
 			pstmt=conn.prepareStatement(sb.toString());
 			pstmt.setString(1, dto.getAreaName());
 			pstmt.setString(2, dto.getPlaceName());
 			pstmt.setString(3, dto.getAddr());
 			pstmt.setString(4, dto.getTel());
-			//pstmt.setString(5, dto.getFilename());
-			pstmt.setString(5, dto.getMemo1());
-			pstmt.setString(6, dto.getMemo2());
-			pstmt.setInt(7, dto.getNum());
+			pstmt.setString(5, dto.getFilename());
+			pstmt.setString(6, dto.getMemo1());
+			pstmt.setString(7, dto.getMemo2());
+			pstmt.setInt(8, num);
 			
 			result=pstmt.executeUpdate(sb.toString());
 			

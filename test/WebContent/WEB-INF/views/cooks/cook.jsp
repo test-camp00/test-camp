@@ -79,14 +79,25 @@ function searchList() {
 </head>
 <body>
 
-<div>
-    <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
+<div style="height: 205px">
+<div style=" height: 10px;  border-bottom: 50px solid #3cb371; margin-top: 0px">
+  <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
 </div>
+<<<<<<< HEAD
 	
 <div class="container" >
 	<div style="border-bottom: 1px solid #ccc; margin-bottom: 30px;" >
       <h3>캠핑요리</h3>
 	</div>	  	 
+=======
+</div>
+
+<div class="container" >
+
+     <div style="border-bottom: 1px solid #ccc; margin-bottom: 30px;">
+		<h3>캠핑요리</h3>
+	</div>
+>>>>>>> branch 'master' of https://github.com/test-camp00/test-camp
 	 <div>
 	<div class="row">
 		<div class="col-md-12 col-md-4"><input type="image" src="<%=cp%>/images/food1.jpg" onMouseOver="this.style.opacity='.6'; this.style.filter='alpha(opacity=60)'" onMouseOut="this.style.opacity='1.0'; this.style.filter='alpha(opacity=100)'" style="width: 100%; height: 200px;"

@@ -1,15 +1,9 @@
 package com.campground;
 
 public class CampgroundDTO {
-	private int num, listNum;
+	private int num;
 	private String placeName, areaName, addr, tel, memo1, memo2, filename;
 	
-	public int getListNum() {
-		return listNum;
-	}
-	public void setListNum(int listNum) {
-		this.listNum = listNum;
-	}
 	public int getNum() {
 		return num;
 	}
