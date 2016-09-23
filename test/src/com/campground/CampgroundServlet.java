@@ -44,6 +44,7 @@ public class CampgroundServlet extends MyServlet{
 		String cp=req.getContextPath();
 		
 		if(uri.indexOf("list.do")!=-1){
+			// searchArea와 searchValue에 따른 null과 "" 변경 조건 중요
 			// 글 리스트
 			String page=req.getParameter("page");
 			int current_page=1;
@@ -56,12 +57,14 @@ public class CampgroundServlet extends MyServlet{
 			
 			if(searchArea==null){
 				searchArea="";
+			}
+			if(searchValue==null){
 				searchValue="";
 			}
 			
 			// 전체 데이터 개수
 			int dataCount;
-			if(searchValue.length()==0)
+			if(searchArea.equals("") && searchValue.length()==0)
 				dataCount=dao.dataCount();
 			else
 				dataCount=dao.dataCount(searchArea, searchValue);
@@ -78,11 +81,10 @@ public class CampgroundServlet extends MyServlet{
 			int end=current_page*numPerPage;
 			
 			List<CampgroundDTO> list=null;
-			if(searchValue.length()==0){
+			if(searchArea.equals("") && searchValue.length()==0){
 				list=dao.listBoard(start, end);
 			} else{
-				// list=dao.listBoard(start, end, searchArea, searchValue);
-				list=dao.listBoard(start, end);
+				list=dao.listBoard(start, end, searchArea, searchValue);
 			}
 				
 			String params="";
@@ -187,6 +189,11 @@ public class CampgroundServlet extends MyServlet{
 		
 		} else if(uri.indexOf("update.do")!=-1){
 			// 수정하기
+			if(info==null||!info.getUserId().equals("admin")){
+				resp.sendRedirect(cp+"/campground/list.do");
+				return;
+			}
+			
 			int num=Integer.parseInt(req.getParameter("num"));
 			String page=req.getParameter("page");
 			
@@ -202,7 +209,6 @@ public class CampgroundServlet extends MyServlet{
 			forward(req,resp,"/WEB-INF/views/campground/update.jsp");
 		} else if(uri.indexOf("update_ok.do")!=-1){
 			// 글 수정완료
-			CampgroundDTO dto=new CampgroundDTO();
 			String encType="UTF-8";
 			int maxFilesize=5*1024*1024;
 			
@@ -210,7 +216,10 @@ public class CampgroundServlet extends MyServlet{
 			mreq=new MultipartRequest(
 					req, pathname, maxFilesize, encType, 
 					new DefaultFileRenamePolicy());
-						
+	        String fileName=mreq.getParameter("fileName");
+	        File file=mreq.getFile("upload");
+			
+	        CampgroundDTO dto=new CampgroundDTO();
 			int num=Integer.parseInt(mreq.getParameter("num"));
 			dto.setNum(num);
 			dto.setAreaName(mreq.getParameter("areaname"));
@@ -220,16 +229,30 @@ public class CampgroundServlet extends MyServlet{
 			dto.setMemo1(mreq.getParameter("memo1"));
 			dto.setMemo2(mreq.getParameter("memo2"));
 			
-			File file=mreq.getFile("upload");
 			if (file != null) {
+				FileManager.doFiledelete(pathname, fileName); // 기존 파일을 삭제해야함
 	            String saveFilename = mreq.getFilesystemName("upload");
 	            saveFilename = FileManager.doFilerename(pathname, saveFilename);
 	            dto.setFilename(saveFilename);
+	         } else {
+	             dto.setFilename(fileName);
 	         }
 						
 			dao.updateCampground(dto, num);
+			String page=req.getParameter("page");
 			
-			resp.sendRedirect(cp+"/campground/article.do?num="+num);
+			resp.sendRedirect(cp+"/campground/article.do?num="+num+"&page="+page);
+		} else if(uri.indexOf("delete.do")!=-1){
+			if(info==null||!info.getUserId().equals("admin")){
+				resp.sendRedirect(cp+"/campground/list.do");
+				return;
+			}
+			
+			int num=Integer.parseInt(req.getParameter("num"));
+			dao.deleteCampground(num);
+			String page=req.getParameter("page");
+			
+			resp.sendRedirect(cp+"/campground/list.do?page="+page);
 		}
 	}
 }

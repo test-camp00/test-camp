@@ -4,6 +4,8 @@
 <%
 	String cp=request.getContextPath();
 	request.setCharacterEncoding("utf-8");
+
+	String pageNum=request.getParameter("page");
 %>
 
 <!DOCTYPE html>
@@ -50,7 +52,7 @@
 	<div style="border-bottom: 1px solid #ccc; margin-bottom: 30px;">
 		<c:if test="${sessionScope.member.userId=='admin'}">
 			<button class="btn btn-success" style="float: right;"
-			onclick="javascript:location.href='<%=cp%>/campground/delete.do';">
+			onclick="javascript:location.href='<%=cp%>/campground/delete.do?page=${page}&num=${dto.num}';">
 			삭제하기</button>	
 			<button class="btn btn-success" style="float: right; margin-right:10px"
 			onclick="javascript:location.href='<%=cp%>/campground/update.do?num=${dto.num}';">
@@ -113,9 +115,8 @@
 	                	<tr height="45"> 
 						<td colspan="5" align="center">
 						<a class="btn btn-default"
-						href="javascript:location.href='<%=cp%>/campground/list.do';"
+						href="javascript:location.href='<%=cp%>/campground/list.do?page=${page}';"
 						style="float: right;">목록</a>
-							
 						</td>
 						</tr>
 				  </tfoot>

@@ -58,49 +58,60 @@
 		<h3>캠핑장 정보</h3>
 	</div>
 	<div style="width:1000px; height: 500px; margin:0px auto;">
-		<div>
-			<div style="float: left;">
-				<h3 style="padding-bottom: 50px;">캠핑장 정보 검색</h3>
-				<div class="schcase">
-						<div style="margin-bottom: 10px;">
-							<label class="schlbl">지역</label>
-							<select class="form-control" style="width: 180px;" name="searchArea">
-							<option value="지역선택">지역선택</option>
-							<option value="서울">서울</option>
-							<option value="인천">인천</option>
-							<option value="경기도">경기도</option>
-							<option value="강원도">강원도</option>
-							<option value="충청북도">충청북도</option>
-							<option value="세종">세종</option>
-							<option value="대전">대전</option>
-							<option value="충청남도">충청남도</option>
-							<option value="전라북도">전라북도</option>
-							<option value="광주">광주</option>
-							<option value="전라남도">전라남도</option>
-							<option value="경상북도">경상북도</option>
-							<option value="대구">대구</option>
-							<option value="울산">울산</option>
-							<option value="경상남도">경상남도</option>
-							<option value="부산">부산</option>
-							<option value="제주도">제주도</option>
-							</select><br>
-						</div>
-						<div>
-						   <div>
-							  <label class="schlbl">캠핑장명/주소검색</label>
-							  <input type="text" class="form-control" style="width: 130px; display: inline-block;" name="searchValue">
-							  <button type="button" class="btn btn-default" name="schbtn" >검색</button>
-						</div>
-						</div>
+		<div style="float: left;">
+			<h3 style="padding-bottom: 50px;">캠핑장 정보 검색</h3>
+			<form action="<%=cp%>/campground/list.do">
+			<div class="schcase">
+				<div style="margin-bottom: 10px;">
+					<label class="schlbl">지역</label>
+					<select class="form-control" style="width: 180px;" name="searchArea">
+					<option value="">지역선택</option>
+					<option value="서울">서울</option>
+					<option value="인천">인천</option>
+					<option value="경기도">경기도</option>
+					<option value="강원도">강원도</option>
+					<option value="충청북도">충청북도</option>
+					<option value="세종">세종</option>
+					<option value="대전">대전</option>
+					<option value="충청남도">충청남도</option>
+					<option value="전라북도">전라북도</option>
+					<option value="광주">광주</option>
+					<option value="전라남도">전라남도</option>
+					<option value="경상북도">경상북도</option>
+					<option value="대구">대구</option>
+					<option value="울산">울산</option>
+					<option value="경상남도">경상남도</option>
+					<option value="부산">부산</option>
+					<option value="제주도">제주도</option>
+					</select><br>
+				</div>
+				<div>
+				   <div>
+					  <label class="schlbl">캠핑장명/주소검색</label>
+					  <input type="text" class="form-control" style="width: 130px; display: inline-block;" name="searchValue">
+					  <input type="submit" class="btn btn-default" value="검색">
+				</div>
 				</div>
 			</div>
-			<div style="text-align: center; margin: 0; padding: 0;">	
-				<img src="/test/res/images/korea_map.png"  width="296.4px" height="487.2px">
+			</form>
+		</div>
+		<div style="text-align: center; margin: 0; padding: 0; float: right;">	
+			<div style="width: 296.4px; height: 487.2px;">
+				<div style="background: url('<%=cp%>/res/images/map_default.png');">
+				<a href="<%=cp%>/campground/list.do?searchArea=서울">서울</a>
+				<a href="<%=cp%>/campground/list.do?searchArea=인천">인천</a>
+				<a href="<%=cp%>/campground/list.do?searchArea=경기도">경기도</a>
+				<a href="<%=cp%>/campground/list.do?searchArea=강원도">강원도</a>
+				<a href="<%=cp%>/campground/list.do?searchArea=충청북도">충청북도</a>
+				<a href="<%=cp%>/campground/list.do?searchArea=인천">인천</a>
+				<a href="<%=cp%>/campground/list.do?searchArea=인천">인천</a>
+				<a href="<%=cp%>/campground/list.do?searchArea=인천">인천</a>
+				</div>
 			</div>
 		</div>
 	</div>
 	<div style="width:1000px; height: 500px; margin:0px auto;">
-			<div class="table-responsive" style="clear: both;"> <!-- 테이블 반응형 -->
+			<div class="table-responsive" style="clear: both;"> 
 	            <table class="table table-hover">
 	                <thead>
 	                    <tr>
@@ -114,7 +125,7 @@
 	                <tbody>
 						<c:forEach var="dto" items="${list}">
 	                    	<tr>
-		                        <td class="text-center">${dto.areaName}</td>
+		                        <td class="text-center"><a href="<%=cp%>/campground/list.do?searchArea=${dto.areaName}">${dto.areaName}</a></td>
 		                        <td><a href='${articleUrl}&num=${dto.num}'>${dto.placeName}</a></td>
 		                        <td class="text-center"><a href='${articleUrl}&num=${dto.num}'>${dto.addr}</a></td>
 		                        <td class="text-center">${dto.tel}</td>

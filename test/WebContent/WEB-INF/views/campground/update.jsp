@@ -4,6 +4,8 @@
 <%
 	String cp=request.getContextPath();
 	request.setCharacterEncoding("utf-8");
+
+	String pageNum=request.getParameter("page");
 %>
 
 <!DOCTYPE html>
@@ -178,6 +180,7 @@
 						<tr height="45"> 
 						<td colspan="2" align="center">
 							<input type="hidden" name="num" value="${dto.num}">
+        					<input type="hidden" name="page" value="${pageNum}">
 							<input type="submit" class="btn btn-default" value="수정 완료">
 		        		    &nbsp;&nbsp;&nbsp;
 		        		    <button type="reset" class="btn btn-default">다시 입력</button>

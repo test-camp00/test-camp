@@ -131,7 +131,6 @@ public class CampgroundDAO {
   				dto.setAddr(rs.getString("addr"));
   				dto.setTel(rs.getString("tel"));
   				dto.setMemo1(rs.getString("memo1"));
-  							
   				
   				list.add(dto);
   			}
@@ -145,6 +144,75 @@ public class CampgroundDAO {
   		}
   		return list;
   	}
+  	
+ // 리스트 - 검색상태
+   	public List<CampgroundDTO> listBoard(int start, int end, String searchArea, String searchValue){
+   		List<CampgroundDTO> list=new ArrayList<>();
+   		PreparedStatement pstmt=null;
+   		ResultSet rs=null;
+   		StringBuffer sb=new StringBuffer();
+   		
+   		try {
+   			// num, subject, name, hitCount, created
+   			// num 내림차순 - 최근글이 먼저 나오게 하기 위함
+   			sb.append(" SELECT * FROM ");
+   			sb.append(" 	(SELECT ROWNUM rnum, tb.* FROM ");
+   			sb.append(" 		(SELECT areaName, num, placename, addr, tel, memo1 ");
+   			sb.append(" 		FROM placedetail ");
+   			// 조건별로 인자의 개수가 모두 달라서 끝마무리까지 넣어줘야함
+   			if(!searchArea.equals("") && searchValue.equals("")){
+   				sb.append(" 	WHERE areaname=? ");
+   				sb.append(" 	ORDER BY num DESC)tb ");
+   	   			sb.append(" WHERE ROWNUM <=?) WHERE rnum>=? ");
+   				pstmt=conn.prepareStatement(sb.toString());
+                pstmt.setString(1, searchArea);
+	   			pstmt.setInt(2, end);
+	  			pstmt.setInt(3, start);
+   			} else if(searchArea.equals("") && !searchValue.equals("")){
+   				sb.append(" 	WHERE INSTR(placename,?)>=1 OR INSTR(addr,?)>=1 ");
+   				sb.append(" 	ORDER BY num DESC)tb ");
+   	   			sb.append(" WHERE ROWNUM <=?) WHERE rnum>=? ");
+   				pstmt=conn.prepareStatement(sb.toString());
+                pstmt.setString(1, searchValue);
+                pstmt.setString(2, searchValue);
+	   			pstmt.setInt(3, end);
+	  			pstmt.setInt(4, start);
+   			} else if(!searchArea.equals("") && !searchValue.equals("")){
+   				sb.append(" 	WHERE areaname=? AND INSTR(placename,?)>=1 OR INSTR(addr,?)>=1 ");
+   				sb.append(" 	ORDER BY num DESC)tb ");
+   	   			sb.append(" WHERE ROWNUM <=?) WHERE rnum>=? ");
+   				pstmt=conn.prepareStatement(sb.toString());
+                pstmt.setString(1, searchArea);
+                pstmt.setString(2, searchValue);
+                pstmt.setString(3, searchValue);
+                pstmt.setInt(4, end);
+	  			pstmt.setInt(5, start);
+   			}
+   			
+   			rs=pstmt.executeQuery();
+   			// 변수를 다 넣어준 후에 rs에서 넣을 것
+   			
+   			while(rs.next()){
+   				CampgroundDTO dto=new CampgroundDTO();
+   				dto.setAreaName(rs.getString("areaname"));
+   				dto.setNum(rs.getInt("num"));
+   				dto.setPlaceName(rs.getString("placename"));
+   				dto.setAddr(rs.getString("addr"));
+   				dto.setTel(rs.getString("tel"));
+   				dto.setMemo1(rs.getString("memo1"));
+   				
+   				list.add(dto);
+   			}
+   			
+   			pstmt.close();
+   			rs.close();
+   			pstmt=null;
+   			rs=null;
+   		} catch (Exception e) {
+   			System.out.println(e.toString());
+   		}
+   		return list;
+   	}
   	
   	// 글보기용 DB의 값 가져오기
   	public CampgroundDTO readBoard(int num){
@@ -193,7 +261,7 @@ public class CampgroundDAO {
 		
 		try {
 			sb.append("UPDATE placedetail SET ");
-			sb.append(" areaname=?, placename=?, addr=?, tel=?,");
+			sb.append(" areaname=?, placename=?, addr=?, tel=?, ");
 			sb.append(" filename=?, memo1=?, memo2=? ");
 			sb.append(" WHERE num=?");
 			
@@ -207,7 +275,7 @@ public class CampgroundDAO {
 			pstmt.setString(7, dto.getMemo2());
 			pstmt.setInt(8, num);
 			
-			result=pstmt.executeUpdate(sb.toString());
+			result=pstmt.executeUpdate();
 			
 			pstmt.close();
 			pstmt=null;
@@ -217,4 +285,28 @@ public class CampgroundDAO {
 		}
 		return result;
 	}
+  	
+  	// 삭제하기
+  	
+  	public int deleteCampground(int num){
+  		int result=0;
+  		PreparedStatement pstmt=null;
+  		StringBuffer sb=new StringBuffer();
+  		
+  		try {
+			sb.append("DELETE FROM placedetail WHERE num=?");
+  			
+  			pstmt=conn.prepareStatement(sb.toString());
+  			pstmt.setInt(1, num);
+  			result=pstmt.executeUpdate();
+  			
+  			pstmt.close();
+  			pstmt=null;
+  			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+  		
+  		return result;
+  	}
 }
