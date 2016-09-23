@@ -114,7 +114,7 @@
 							</div>
 						</td>
 					</tr>
-					<c:if test="${mode=='update'}">
+					<c:if test="${mode=='update'&& dto.fileName!=null}">
 					<tr>
 						<th class="text-center">첨부된 파일</th>
 						<td><img src="<%=cp%>/uploads/photo/${dto.fileName}"

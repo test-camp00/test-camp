@@ -2,6 +2,7 @@ package com.tools;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.Iterator;
@@ -34,10 +35,7 @@ public class ToolsServlet extends MyServlet {
 		HttpSession session = req.getSession();
 
 		SessionInfo info = (SessionInfo) session.getAttribute("member");
-		if (info == null) { // 로그인되지 않은 경우
-			resp.sendRedirect(cp + "/member/login.do");
-			return;
-		}
+		
 
 		String root = session.getServletContext().getRealPath("/");
 		String pathname = root + File.separator + "uploads" + File.separator + "photo";
@@ -171,13 +169,15 @@ public class ToolsServlet extends MyServlet {
 
 			ToolsDTO dto = dao.readTool(num);
 			if (dto == null) {
-				resp.sendRedirect(cp + "/tools/tool.do?page=" + page);
+				resp.sendRedirect(cp + "/tools/tool.do?page=" + page + "&btnKey="+btnKey);
 				return;
 			}
 
 			dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
 
-			String params = "page=" + page + "&btnKey=" + btnKey;
+			int wanted = dao.wantedCount(num);
+			
+			String params = "page=" + page + "&btnKey=" + URLEncoder.encode(btnKey, "utf-8");
 			if (searchValue.length() != 0) {
 				params += "&searchKey=" + searchKey + "&searchValue=" + URLEncoder.encode(searchValue, "utf-8");
 			}
@@ -185,6 +185,7 @@ public class ToolsServlet extends MyServlet {
 			req.setAttribute("dto", dto);
 			req.setAttribute("page", page);
 			req.setAttribute("params", params);
+			req.setAttribute("wanted", wanted);
 
 			String path = "/WEB-INF/views/tools/tool_article.jsp";
 			forward(req, resp, path);
@@ -260,6 +261,113 @@ public class ToolsServlet extends MyServlet {
 			dao.deleteTool(num);
 			resp.sendRedirect(cp+"/tools/tool.do?page="+page);		
 			
+		} else if(uri.indexOf("insertReply.do")!=-1) {
+			String state="true";
+			if (info == null) { // 로그인되지 않은 경우
+				state="loginFail";
+			} else {
+				int num = Integer.parseInt(req.getParameter("num"));
+				ReplyDTO rdto = new ReplyDTO();
+				rdto.setNum(num);
+				rdto.setUserId(info.getUserId());
+				rdto.setContent(req.getParameter("content"));
+
+				int result=dao.insertReply(rdto);
+				if(result==0)
+					state="false";
+			}
+
+			StringBuffer sb=new StringBuffer();
+			sb.append("{");
+			sb.append("\"state\":"+"\""+state+"\"");
+			sb.append("}");
+			
+			resp.setContentType("text/html;charset=utf-8");
+			PrintWriter out=resp.getWriter();
+			out.println(sb.toString());
+		} else if (uri.indexOf("listReply.do") != -1) {
+			int num = Integer.parseInt(req.getParameter("num"));
+			String pageNo = req.getParameter("pageNo");
+			int current_page = 1;
+			if (pageNo != null)
+				current_page = Integer.parseInt(pageNo);
+
+			int numPerPage = 5;
+			int total_page = 0;
+			int dataCount = 0;
+
+			dataCount = dao.dataCountReply(num);
+			total_page = util.pageCount(numPerPage, dataCount);
+			if (current_page > total_page)
+				current_page = total_page;
+
+			int start = (current_page - 1) * numPerPage + 1;
+			int end = current_page * numPerPage;
+
+			List<ReplyDTO> list = dao.listReply(num, start, end);
+
+			Iterator<ReplyDTO> it = list.iterator();
+			while (it.hasNext()) {
+				ReplyDTO dto = it.next();
+				dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
+			}
+
+			String paging = util.paging(current_page, total_page);
+
+			req.setAttribute("list", list);
+			req.setAttribute("pageNo", current_page);
+			req.setAttribute("dataCount", dataCount);
+			req.setAttribute("total_page", total_page);
+			req.setAttribute("paging", paging);
+
+			String path = "/WEB-INF/views/tools/listReply.jsp";
+			forward(req, resp, path);
+		} else if (uri.indexOf("deleteReply.do") != -1) {
+			int replyNum = Integer.parseInt(req.getParameter("replyNum"));
+			String userId=req.getParameter("userId");
+			
+			String state="false";
+			if (info == null) { // 로그인되지 않은 경우
+				state="loginFail";
+			} else if(info.getUserId().equals("admin") || info.getUserId().equals(userId)) {
+				dao.deleteReply(replyNum);
+				state="true";
+			}
+			StringBuffer sb=new StringBuffer();
+			sb.append("{");
+			sb.append("\"state\":"+"\""+state+"\"");
+			sb.append("}");
+			
+			resp.setContentType("text/html;charset=utf-8");
+			PrintWriter out=resp.getWriter();
+			out.println(sb.toString());
+		} else if (uri.indexOf("tool_wanted.do")!=-1) {
+			int num=Integer.parseInt(req.getParameter("num"));
+			String userId=info.getUserId();
+			String page = req.getParameter("page");
+			String searchKey = req.getParameter("searchKey");
+			String searchValue = req.getParameter("searchValue");
+			String btnKey = req.getParameter("btnKey");
+			
+			if (searchKey == null) {
+				searchKey = "itemcode";
+				searchValue = "";
+			}
+			searchValue = URLDecoder.decode(searchValue, "UTF-8");
+			btnKey = URLDecoder.decode(btnKey, "UTF-8");
+
+
+			String params = "page=" + page + "&btnKey=" + URLEncoder.encode(btnKey, "utf-8");
+			if (searchValue.length() != 0) {
+				params += "&searchKey=" + searchKey + "&searchValue=" + URLEncoder.encode(searchValue, "utf-8");
+			}
+			
+			WantedDTO dto=new WantedDTO();
+			dto.setNum(num);
+			dto.setUserId(userId);
+			dao.wanted(dto);
+			resp.sendRedirect(cp+"/tools/tool_article.do?"+params+"&num="+num); 
+			
 		}
-	}
+	} 
 }
