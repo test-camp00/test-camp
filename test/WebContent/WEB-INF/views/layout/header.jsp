@@ -74,7 +74,7 @@
 	    <div class="navbar-collapse collapse" id="navbar-collapse-1">
 	      <ul class="nav navbar-nav" >
 	      <li > <a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true" style="float: right;">Home</span></a></li>
-		<li><a href="#"><span class="glyphicon glyphicon-tent" aria-hidden="true" style="float: right">캠핑장</span></a></li>
+		<li><a href="<%=cp%>/campground/list.do"><span class="glyphicon glyphicon-tent" aria-hidden="true" style="float: right">캠핑장</span></a></li>
 		<li><a href="<%=cp%>/cooks/cook.do"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="float: right">캠핑요리</span></a></li>
 		<li><a href="<%=cp%>/tools/tool.do"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="float: right">캠핑용품</span></a></li>
 		<li><a href="<%=cp%>/camping/HowtoCamp.do"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="float: right">캠핑노하우</span></a></li>
