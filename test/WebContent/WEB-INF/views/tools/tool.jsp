@@ -6,14 +6,16 @@
 	String cp = request.getContextPath();
 	request.setCharacterEncoding("utf-8");
 %>
-
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="stylesheet" href="<%=cp%>/bootstrap/css/bootstrap.min.css"
 	type="text/css" />
+
 <link rel="stylesheet"
 	href="<%=cp%>/bootstrap/css/bootstrap-theme.min.css" type="text/css" />
 <link rel="stylesheet" href="<%=cp%>/css/layout/layout.css"
 	type="text/css">
-
+<script type="text/javascript"
+	src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>
 <<<<<<< HEAD
 <script type="text/javascript">
 	function searchList() {
@@ -165,6 +167,4 @@
 	<jsp:include page="/WEB-INF/views/layout/footer.jsp"></jsp:include>
 </div>
 
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript"
-	src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>
+

@@ -5,34 +5,109 @@
 <%
    String cp = request.getContextPath();
 %>
-<br>
+
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="<%=cp%>/css/dic/dic_tooltip.css" type="text/css">
-<link href="http://googledrive.com/host/0B-QKv6rUoIcGSXVoclk5aDh4RWM" rel="stylesheet"><!-- bootstrap.vertical-tabs.min.css -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
-<div class="container" >
+  
+ <style media="screen">
+   .gnb {
+    position:absolute;
+
+}
+
+.gnb>ul>li{
+    float: left;
+    width: 120px;
+    text-align: center;
+}
+
+
+ul{
+    list-style:none;
+    }
+  ul,li{margin: 0; padding: 0; }
+li{list-style: none;}
+a{text-decoration: none;}
+.sub>li {
+    width: 120px;
+}
+.sub>li{
+text-align:center;
+
+    border: 1px solid #fff;
+   width: 100%;
+    display: block;
+   
+    line-height: 40px;
+    background: #c2f41c;
+    color: #eb1a1a;
+    font-weight: bold;
+}
+.sub>li:hover{
+    background-color:#3cb371;
+    color: #ececec;
+}
+
+
+    </style>  
+<script type="text/javascript">
+$(function(){
+    $("ul.sub").hide();
+    $("ul.menu li").hover(function(){
+        $("ul:not(:animated)",this).slideDown("fast");
+    },function(){
+        $("ul",this).slideUp("fast");
+    });
+});
+
+</script>
+<br>
 	
- 		<div style="float: left; margin-top: 0px">
+	<div style="float: left; margin: 0 0">
+	<span style="color:white; font-size: 11pt; font-weight: bold">&nbsp;&nbsp;아트캠핑으로 캠핑하자!&nbsp;&nbsp;</span>
  	<span class = "glyphicon glyphicon-earphone" style="color:white; font-size: 11pt; font-weight: bold" >02-761-0003</span>
  	</div>
+ 	
+<div class="container" >
+
+
  	<div class="login header-login" style="float: right;">
+ 	<div id="gnbwrap" >
+    <div class="gnb" id="gnb"> 
+    
+ 	
             <c:if test="${empty sessionScope.member}">
                 <a href="<%=cp%>/member/login.do"><font style="color: white; font-weight:bold; font-size: 11pt; " >로그인&nbsp;&nbsp;</font></a> <i></i>
                 <a href="<%=cp%>/member/member.do"><font style="color: white; font-weight:bold; font-size: 11pt; " >회원가입&nbsp;&nbsp;</font></a>
             </c:if>
             <c:if test="${not empty sessionScope.member}">
-                <span style="color:white;">${sessionScope.member.userName}</span>님 <i></i>
-                <c:if test="${sessionScope.member.userId=='admin'}">
-                    <a href="<%=cp%>/admin/main.do"><font style="color: orange; font-weight:bold; font-size: 12pt; " >관리자</font></a> <i></i>
+            <c:if test="${sessionScope.member.userId=='admin'}">
+                    <a href="<%=cp%>/admin/main.do"><font style="color: black; font-weight:bold; font-size: 12pt; " >관리자</font></a> <i></i>
                 </c:if>
+                <span style="color:white;">${sessionScope.member.userName}</span>님&nbsp;&nbsp;&nbsp;&nbsp; 
+                
                 <a href="<%=cp%>/member/logout.do"><font style="color: white; font-weight:bold; font-size: 11pt; " >로그아웃&nbsp;&nbsp;</font></a>
             </c:if>
-              <a href="<%=cp%>/customer/list.do"><font style="color: white; font-weight:bold; font-size: 11pt; " >고객센터&nbsp;&nbsp;</font></a>
-    </div>
- 
+            
+        <ul class="menu"style="float:right" >
+           <li>
+              <a href="<%=cp%>/customer/list.do"><font style="color:white; font-weight:bold; font-size: 11pt; " >고객센터&nbsp;&nbsp;</font></a>
   
+                <ul class="sub">
+                    <li><a href="<%=cp%>/onetoone/onetoone.do">1:1게시판</a></li>
+                    <li><a href="">FAQ</a></li>
+                    <li><a href="">개인정보이용방침</a></li>
+                    <li><a href="">이용약관</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    </div>
+  
+</div>
 </div>
         <br>
       <div class="container">
@@ -74,7 +149,7 @@
 	    <div class="navbar-collapse collapse" id="navbar-collapse-1">
 	      <ul class="nav navbar-nav" >
 	      <li > <a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true" style="float: right;">Home</span></a></li>
-		<li><a href="#"><span class="glyphicon glyphicon-tent" aria-hidden="true" style="float: right">캠핑장</span></a></li>
+		<li><a href="<%=cp%>/"><span class="glyphicon glyphicon-tent" aria-hidden="true" style="float: right">캠핑장</span></a></li>
 		<li><a href="<%=cp%>/cooks/cook.do"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="float: right">캠핑요리</span></a></li>
 		<li><a href="<%=cp%>/tools/tool.do"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="float: right">캠핑용품</span></a></li>
 		<li><a href="<%=cp%>/camping/HowtoCamp.do"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="float: right">캠핑노하우</span></a></li>

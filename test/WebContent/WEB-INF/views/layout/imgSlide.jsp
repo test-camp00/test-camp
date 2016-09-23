@@ -12,6 +12,7 @@
 <meta charset="UTF-8">
 <meta name="title" content="marquee">
 <title>Insert title here</title>
+
 </head>
 <body>
 	<div id="carousel-example-generic" class="carousel slide"
@@ -129,6 +130,7 @@ F O R E S T&nbsp;&nbsp;C A M P I N G
 				>N E X T</div> <span class="sr-only">Next</span>
 		</a>
 	</div>
-	
+
+
 </body>
 </html>

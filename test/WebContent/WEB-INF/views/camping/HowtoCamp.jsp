@@ -11,13 +11,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link href=”./css/bootstrap.vertical-tabs.css” rel=”stylesheet”>
 <link href=”./css/bootstrap.vertical-tabs.min.css” rel=”stylesheet”>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="<%=cp%>/css/dic/dic_tooltip.css" type="text/css">
-<link href="http://googledrive.com/host/0B-QKv6rUoIcGSXVoclk5aDh4RWM" rel="stylesheet"><!-- bootstrap.vertical-tabs.min.css -->
+
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 <style type="text/css">
 .line_bottom {border-bottom:2px solid black; text-align: center; }
 .line_bottom2 {border-bottom:1px solid #ccc; text-align: center;}
@@ -325,6 +325,6 @@
     <jsp:include page="/WEB-INF/views/layout/footer.jsp"></jsp:include>
 
 
-          <script type="text/javascript" src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>
+          
 </body>
 </html>
