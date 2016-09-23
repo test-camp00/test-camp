@@ -16,23 +16,16 @@ public class ToolsDAO {
 		PreparedStatement pstmt=null;
 		StringBuffer sb = new StringBuffer();
 		try {
-			sb.append("INSERT INTO ITEM(itemCode, itemName) VALUES (?, ?)");
-			pstmt=conn.prepareStatement(sb.toString());
-			pstmt.setString(1, dto.getItemCode());
-			pstmt.setString(2, dto.getItemName());
-			result = pstmt.executeUpdate();
-			pstmt.close();
-			pstmt=null;
-			sb.delete(0, sb.length());
 			
-			sb.append("INSERT INTO ITEMDETAIL(num, itemCode, name, content, makesa, fileName) ");
-			sb.append(" VALUES(itemDetail_seq.NEXTVAL, ?, ?, ?, ?, ?)");
+			sb.append("INSERT INTO ITEMDETAIL(num, itemCode, name, content, makesa, fileName, itemName) ");
+			sb.append(" VALUES(itemDetail_seq.NEXTVAL, ?, ?, ?, ?, ?, ?)");
 			pstmt=conn.prepareStatement(sb.toString());
 			pstmt.setString(1, dto.getItemCode());
 			pstmt.setString(2, dto.getName());
 			pstmt.setString(3, dto.getContent());
 			pstmt.setString(4, dto.getMakesa());
 			pstmt.setString(5, dto.getFileName());
+			pstmt.setString(6, dto.getItemName());
 			result = pstmt.executeUpdate();
 			pstmt.close();
 			pstmt=null;
@@ -53,7 +46,7 @@ public class ToolsDAO {
 		String sql;
 		
 		try {
-			sql="SELECT NVL(COUNT(*), 0) FROM item WHERE itemName = ?";
+			sql="SELECT NVL(COUNT(*), 0) FROM ITEMDETAIL WHERE itemName = ?";
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, btnKey);
 			rs=pstmt.executeQuery();
@@ -77,11 +70,11 @@ public class ToolsDAO {
 
         try {
         	if(searchKey.equals("itemCode"))
-        		sql="SELECT NVL(COUNT(*), 0) FROM ITEM i1 JOIN ITEMDETAIL i2 ON i1.itemCode=i2.itemCode WHERE itemName = ? AND INSTR(i1.itemCode, ?) >= 1";
+        		sql="SELECT NVL(COUNT(*), 0) FROM ITEMDETAIL WHERE itemName = ? AND INSTR(itemCode, ?) >= 1";
         	else if(searchKey.equals("name"))
-        		sql="SELECT NVL(COUNT(*), 0) FROM ITEM i1 JOIN ITEMDETAIL i2 ON i1.itemCode=i2.itemCode WHERE itemName = ? AND INSTR(name, ?) >= 1";
+        		sql="SELECT NVL(COUNT(*), 0) FROM ITEMDETAIL WHERE itemName = ? AND INSTR(name, ?) >= 1";
         	else
-        		sql="SELECT NVL(COUNT(*), 0) FROM ITEM i1 JOIN ITEMDETAIL i2 ON i1.itemCode=i2.itemCode WHERE itemName = ? AND INSTR(makesa, ?) >= 1  ";
+        		sql="SELECT NVL(COUNT(*), 0) FROM ITEMDETAIL WHERE itemName = ? AND INSTR(makesa, ?) >= 1  ";
 
             pstmt=conn.prepareStatement(sql);
             pstmt.setString(1, btnKey);
@@ -109,10 +102,9 @@ public class ToolsDAO {
 		try {
 			sb.append("SELECT * FROM (");
 			sb.append("    SELECT ROWNUM rnum, tb.* FROM (");
-			sb.append("         SELECT num, i1.itemCode, itemName,");
+			sb.append("         SELECT num, itemCode, itemName,");
 			sb.append("               name, content, makesa, fileName ");
-			sb.append("               FROM item i1");
-			sb.append("               JOIN itemdetail i2 ON i1.itemCode=i2.itemCode ");
+			sb.append("               FROM itemdetail");
 			sb.append("               WHERE itemName = ? ");
 			sb.append("               ORDER BY num DESC   ");
 			sb.append("    ) tb WHERE ROWNUM <= ? ");
@@ -157,12 +149,11 @@ public class ToolsDAO {
         try {
 			sb.append("SELECT * FROM (");
 			sb.append("    SELECT ROWNUM rnum, tb.* FROM (");
-			sb.append("         SELECT num, i1.itemCode, itemName,");
+			sb.append("         SELECT num, itemCode, itemName,");
 			sb.append("               name, content, makesa, fileName ");
-			sb.append("               FROM item i1 ");
-			sb.append("               JOIN itemdetail i2 ON i1.itemCode=i2.itemCode ");
+			sb.append("               FROM itemdetail ");
 			if(searchKey.equals("itemCode"))
-				sb.append("           WHERE itemName = ? AND INSTR(i1.itemCode, ?) >= 1 ");
+				sb.append("           WHERE itemName = ? AND INSTR(itemCode, ?) >= 1 ");
 			else if(searchKey.equals("name"))
 				sb.append("           WHERE itemName = ? AND INSTR(name, ?) >= 1 ");
 			else
@@ -207,10 +198,9 @@ public class ToolsDAO {
 		StringBuffer sb=new StringBuffer();
 		
 		try {
-			sb.append("SELECT num, i1.itemCode, itemName,");
+			sb.append("SELECT num, itemCode, itemName,");
 			sb.append("      name, content, makesa, fileName ");
-			sb.append("		 FROM item i1");
-			sb.append("      JOIN itemdetail i2 ON i1.itemCode=i2.itemCode ");
+			sb.append("		 FROM itemdetail");
 			sb.append("      WHERE num = ? ");
 			
 			pstmt=conn.prepareStatement(sb.toString());
@@ -236,5 +226,51 @@ public class ToolsDAO {
 		
 		return dto;
 	}
+    
+    public int updateTool(ToolsDTO dto) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		StringBuffer sb=new StringBuffer();
+		
+		try {
+			sb.append("UPDATE itemdetail SET itemname=?, itemcode=?, name=?, content=?, makesa=?, fileName=? ");
+			sb.append("   WHERE num=?");
+			pstmt=conn.prepareStatement(sb.toString());
+			
+			pstmt.setString(1, dto.getItemName());
+			pstmt.setString(2, dto.getItemCode());
+			pstmt.setString(3, dto.getName());
+			pstmt.setString(4, dto.getContent());
+			pstmt.setString(5, dto.getMakesa());
+			pstmt.setString(6, dto.getFileName());
+			pstmt.setInt(7, dto.getNum());
+			
+			result=pstmt.executeUpdate();
+			pstmt.close();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return result;
+	}
+    
+    public int deleteTool(int num) {
+    	int result=0;
+    	PreparedStatement pstmt=null;
+		String sql;
+		
+		try {
+			sql="DELETE FROM itemdetail WHERE num=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			result=pstmt.executeUpdate();
+			pstmt.close();
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+    	
+    	return result;
+    }
 
 }

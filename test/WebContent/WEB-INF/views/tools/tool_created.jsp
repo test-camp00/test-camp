@@ -55,73 +55,90 @@
 		<jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
 	</div>
 	<div class="container">
-	<form name="toolForm" method="post" onsubmit="return check();" enctype="multipart/form-data">
-		<div style="border-bottom: 1px solid #ccc; margin-bottom: 30px;">
-			<h3>캠핑용품 등록</h3>
-		</div>
-		<table class="table table-hover">
-			<colgroup>
-				<col style="width: 20%">
-				<col>
-			</colgroup>
-			<thead>
-				<tr>
-					<th class="text-center">구&nbsp;&nbsp;&nbsp;&nbsp;분</th>
-					<td><select class="selectpicker remove-example"
-						name="itemName">
-							<option value="텐트" style="size: 100; font-size: 12pt;">텐트</option>
-							<option value="의자" style="size: 100; font-size: 12pt;">의자</option>
-							<option value="식기" style="size: 100; font-size: 12pt;">식기</option>
-							<option value="랜턴" style="size: 100; font-size: 12pt;">랜턴</option>
-							<option value="침낭" style="size: 100; font-size: 12pt;">침낭</option>
-							<option value="버너" style="size: 100; font-size: 12pt;">버너</option>
-					</select></td>
-				</tr>
-				<tr>
-					<th class="text-center">제품번호</th>
-					<td class="text-center"
-						style="border-bottom: 2px solid #ddd; width: 700px;"><input
-						type="text" name="itemCode" style="width: 100%;"></td>
-				</tr>
-				<tr>
-					<th class="text-center">제품명</th>
-					<td class="text-center"
-						style="border-bottom: 2px solid #ddd; width: 700px;"><input
-						type="text" name="name" style="width: 100%;"></td>
-				</tr>
-				<tr>
-					<th class="text-center">제조사</th>
-					<td class="text-center"
-						style="border-bottom: 2px solid #ddd; width: 700px;"><input
-						type="text" name="makesa" style="width: 100%;"></td>
-				</tr>
+		<form name="toolForm" method="post" onsubmit="return check();"
+			enctype="multipart/form-data">
+			<div style="border-bottom: 1px solid #ccc; margin-bottom: 30px;">
+				<h3>캠핑용품 등록</h3>
+			</div>
+			<table class="table table-hover">
+				<colgroup>
+					<col style="width: 20%">
+					<col>
+				</colgroup>
+				<thead>
+					<tr>
+						<th class="text-center">구&nbsp;&nbsp;&nbsp;&nbsp;분</th>
+						<td><select class="selectpicker remove-example"
+							name="itemName">
+								<option value="텐트" ${dto.itemName=="텐트" ? "selected='selected'" : ""} style="size: 100; font-size: 12pt;">텐트</option>
+								<option value="의자" ${dto.itemName=="의자" ? "selected='selected'" : ""} style="size: 100; font-size: 12pt;">의자</option>
+								<option value="식기" ${dto.itemName=="식기" ? "selected='selected'" : ""} style="size: 100; font-size: 12pt;">식기</option>
+								<option value="랜턴" ${dto.itemName=="랜턴" ? "selected='selected'" : ""} style="size: 100; font-size: 12pt;">랜턴</option>
+								<option value="침낭" ${dto.itemName=="침낭" ? "selected='selected'" : ""} style="size: 100; font-size: 12pt;">침낭</option>
+								<option value="버너" ${dto.itemName=="버너" ? "selected='selected'" : ""} style="size: 100; font-size: 12pt;">버너</option>
+						</select></td>
+					</tr>
+					<tr>
+						<th class="text-center">제품번호</th>
+						<td class="text-center"
+							style="border-bottom: 2px solid #ddd; width: 700px;"><input
+							type="text" name="itemCode" style="width: 100%;"
+							value="${dto.itemCode}"></td>
+					</tr>
+					<tr>
+						<th class="text-center">제품명</th>
+						<td class="text-center"
+							style="border-bottom: 2px solid #ddd; width: 700px;"><input
+							type="text" name="name" style="width: 100%;" value="${dto.name}"></td>
+					</tr>
+					<tr>
+						<th class="text-center">제조사</th>
+						<td class="text-center"
+							style="border-bottom: 2px solid #ddd; width: 700px;"><input
+							type="text" name="makesa" style="width: 100%;"
+							value="${dto.makesa}" ></td>
+					</tr>
 
-			</thead>
-			<tbody>
-				<tr>
-					<th class="text-center">상세 정보</th>
-					<td colspan="2">
-						<div>
+				</thead>
+				<tbody>
+					<tr>
+						<th class="text-center">상세 정보</th>
+						<td colspan="2">
 							<div>
-								<textarea name="content" style="width: 100%; height: 300px;"></textarea>
+								<div>
+									<textarea name="content" style="width: 100%; height: 300px;">${dto.content}</textarea>
+								</div>
+								<div style="float: left;">
+									<input type="file" name="upload" class="boxTF">
+								</div>
 							</div>
-							<div style="float: left;">
-								<input type="file" name="upload" class="boxTF">
-							</div>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-			<tfoot>
-				<tr height="45">
-					<td colspan="2" align="center"><input type="submit"
-						class="btn btn-default" value="작성 완료"> &nbsp;&nbsp;&nbsp;
-						<button type="reset" class="btn btn-default">다시 입력</button>
-						&nbsp;&nbsp;&nbsp; <a class="btn btn-default"
-						href="javascript:location.href='<%=cp%>/tools/tool.do';">취소</a></td>
-				</tr>
-			</tfoot>
-		</table>
+						</td>
+					</tr>
+					<c:if test="${mode=='update'}">
+					<tr>
+						<th class="text-center">첨부된 파일</th>
+						<td><img src="<%=cp%>/uploads/photo/${dto.fileName}"
+				                     width="100" height="100" border="0"
+				                     onclick="imageViewer('<%=cp%>/uploads/photo/${dto.fileName}');"
+				                     style="cursor: pointer;"></td>
+					</tr>
+					</c:if>
+				</tbody>
+				<tfoot>
+					<tr height="45">
+						<td colspan="2" align="center"><input type="submit"
+							class="btn btn-default" value="작성 완료"> &nbsp;&nbsp;&nbsp;
+							<button type="reset" class="btn btn-default">다시 입력</button>
+							&nbsp;&nbsp;&nbsp; <a class="btn btn-default"
+							href="javascript:location.href='<%=cp%>/tools/tool.do';">취소</a> <c:if
+								test="${mode=='update'}">
+								<input type="hidden" name="num" value="${dto.num}">
+								<input type="hidden" name="page" value="${page}">
+								<input type="hidden" name="fileName" value="${dto.fileName}">
+							</c:if></td>
+					</tr>
+				</tfoot>
+			</table>
 		</form>
 	</div>
 	<div>

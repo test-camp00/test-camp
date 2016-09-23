@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="<%=cp%>/css/layout/layout.css"
 	type="text/css">
 
-<<<<<<< HEAD
+
 <script type="text/javascript">
 	function searchList() {
 		var f=document.searchForm;
@@ -30,8 +30,6 @@
 	}
 </script>
 	
-=======
->>>>>>> branch 'master' of https://github.com/test-camp00/test-camp.git
 
 <div>
 	<jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
@@ -40,7 +38,7 @@
 <div class="container">
 	<div style="border-bottom: 1px solid #ccc; margin-bottom: 30px;">
 		<c:if test="${sessionScope.member.userId=='admin'}">
-			<a href="<%=cp%>/tools/tool_created.do"><button type="button"
+			<a href="<%=cp%>/tools/tool_created.do?"><button type="button"
 					class="btn btn-success" style="float: right;">등록하기</button></a>
 		</c:if>
 
