@@ -202,6 +202,7 @@ public class CampgroundServlet extends MyServlet{
 			forward(req,resp,"/WEB-INF/views/campground/update.jsp");
 		} else if(uri.indexOf("update_ok.do")!=-1){
 			// 글 수정완료
+			CampgroundDTO dto=new CampgroundDTO();
 			String encType="UTF-8";
 			int maxFilesize=5*1024*1024;
 			
@@ -209,8 +210,7 @@ public class CampgroundServlet extends MyServlet{
 			mreq=new MultipartRequest(
 					req, pathname, maxFilesize, encType, 
 					new DefaultFileRenamePolicy());
-			
-			CampgroundDTO dto=new CampgroundDTO();
+						
 			int num=Integer.parseInt(mreq.getParameter("num"));
 			dto.setNum(num);
 			dto.setAreaName(mreq.getParameter("areaname"));
@@ -219,15 +219,17 @@ public class CampgroundServlet extends MyServlet{
 			dto.setTel(mreq.getParameter("tel"));
 			dto.setMemo1(mreq.getParameter("memo1"));
 			dto.setMemo2(mreq.getParameter("memo2"));
-			dto.setFilename(mreq.getParameter("filename"));
 			
-			
-			String page=req.getParameter("page");
-			
+			File file=mreq.getFile("upload");
+			if (file != null) {
+	            String saveFilename = mreq.getFilesystemName("upload");
+	            saveFilename = FileManager.doFilerename(pathname, saveFilename);
+	            dto.setFilename(saveFilename);
+	         }
+						
 			dao.updateCampground(dto, num);
 			
-			//resp.sendRedirect(cp+"/bbs/list.do?page="+page);
-			resp.sendRedirect(cp+"/campground/article.do?num="+num+"&page="+page);
+			resp.sendRedirect(cp+"/campground/article.do?num="+num);
 		}
 	}
 }
