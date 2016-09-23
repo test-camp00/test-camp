@@ -76,7 +76,7 @@ function updateOnetoone(num, userId, secret, subject, content) {
 	$("#exampleModal").modal("show");
 	
 	
-	// var url="<%=cp%>/onetoone/update.do?num="+num+"&page=${page}&userID="+userId;
+	 var url="<%=cp%>/onetoone/update.do?num="+num+"&page=${page}&userID="+userId;
 	/* +"&{secret}="+secret+"&{subject}="+subject+"&{content}="+content */
 	//if(confirm("수정 하시겠습니까 ?"))
 	//	location.href=url;
