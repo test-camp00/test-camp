@@ -43,6 +43,25 @@
 		
 	}
 </style>
+<script type="text/javascript">
+	var mapset=true;
+	var mapset_sudo=false;
+	
+	console.log(mapset);
+	console.log(mapset_sudo);
+	
+	function map_sudo(){
+		if(mapset==true){
+			mapset=false;
+		}
+		mapset_sudo=true;
+		
+
+		console.log("ss");
+		console.log(mapset);
+		console.log(mapset_sudo);
+	}
+</script>
 </head>
 <body>
 
@@ -70,7 +89,7 @@
 					<label class="schlbl">지역</label>
 					<select class="form-control" style="width: 180px;" name="searchArea">
 					<option value="">지역선택</option>
-					<option value="수도권">서울 인천 경기권</option>
+					<option value="수도권">수도권</option>
 					<option value="강원도">강원도</option>
 					<option value="충청도">충청도</option>
 					<option value="전라도">전라도</option>
@@ -90,12 +109,16 @@
 		</div>
 		<div style="text-align: center; margin: 0; padding: 0; float: right;">	
 			<div style="width: 280px; height: 420px;">
-				<img src="<%=cp%>/res/images/map_default.png"
-				 style="margin: 0 auto; display: block !important;">
+				<c:if test="${mapset==true}">
+				<img src="<%=cp%>/res/images/map_default.png">
+				</c:if>
+				<c:if test="${mapset_sudo==true}">
+				<img src="<%=cp%>/res/images/map_seoul.png">
+				</c:if>
 			</div>
 			<!--  <div style="background: url('<%=cp%>/res/images/map_default.png');"> -->
 			<div>
-			<a class="area_Name" href="<%=cp%>/campground/list.do?searchArea=수도권">서울 인천 경기권</a>
+			<a class="area_Name" href="<%=cp%>/campground/list.do?searchArea=수도권" onclick="map_sudo();">수도권</a>
 			<a class="area_Name" href="<%=cp%>/campground/list.do?searchArea=강원도">강원도</a>
 			<a class="area_Name" href="<%=cp%>/campground/list.do?searchArea=충청도">충청도</a>
 			<a class="area_Name" href="<%=cp%>/campground/list.do?searchArea=전라도">전라도</a>
