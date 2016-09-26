@@ -35,33 +35,43 @@
 		padding-left:60px;
 	}
 	
-	.map_list{
-		border : 1px solid #000;
+	#sudo{
+		position:relative;
+		z-index:2;
+		top: 86px;
+	    left: 74px;
 	}
-	
-	.area_name:HOVER {
-		
+	#gangwon{
+		position:relative;
+		z-index:2;
+		top: 69px;
+   		left: 110px;
+	}
+	#chungcheong{
+		position:relative;
+		z-index:2;
+		top: 170px;
+	    left: -7px;
+	}	
+	#jeonra{
+		position:relative;
+		z-index:2;
+	    top: 270px;
+	    left: -66px;
+	}
+	#gyeongsang{
+		position:relative;
+		z-index:2;
+    	top: 215px;	
+   		left: -5px;
+	}
+	#jeju{
+		position:relative;
+		z-index:2;
+	    top: 384px;
+    	left: -146px;
 	}
 </style>
-<script type="text/javascript">
-	var mapset=true;
-	var mapset_sudo=false;
-	
-	console.log(mapset);
-	console.log(mapset_sudo);
-	
-	function map_sudo(){
-		if(mapset==true){
-			mapset=false;
-		}
-		mapset_sudo=true;
-		
-
-		console.log("ss");
-		console.log(mapset);
-		console.log(mapset_sudo);
-	}
-</script>
 </head>
 <body>
 
@@ -107,23 +117,28 @@
 			</div>
 			</form>
 		</div>
-		<div style="text-align: center; margin: 0; padding: 0; float: right;">	
-			<div style="width: 280px; height: 420px;">
-				<c:if test="${mapset==true}">
-				<img src="<%=cp%>/res/images/map_default.png">
+		<div style="text-align: center; margin: 0; padding: 0;">	
+			<div >
+				<c:if test="${empty param.map}">
+					<img id="img" src="<%=cp%>/res/images/map_default.png"
+					 style="position:absolute; fixed; z-index:1;">
 				</c:if>
-				<c:if test="${mapset_sudo==true}">
-				<img src="<%=cp%>/res/images/map_seoul.png">
+				<c:if test="${not empty param.map}">
+					<img id="img" src="<%=cp%>/res/images/map_${param.map}.png"
+					 style="position:absolute; z-index:1;">
 				</c:if>
-			</div>
-			<!--  <div style="background: url('<%=cp%>/res/images/map_default.png');"> -->
-			<div>
-			<a class="area_Name" href="<%=cp%>/campground/list.do?searchArea=수도권" onclick="map_sudo();">수도권</a>
-			<a class="area_Name" href="<%=cp%>/campground/list.do?searchArea=강원도">강원도</a>
-			<a class="area_Name" href="<%=cp%>/campground/list.do?searchArea=충청도">충청도</a>
-			<a class="area_Name" href="<%=cp%>/campground/list.do?searchArea=전라도">전라도</a>
-			<a class="area_Name" href="<%=cp%>/campground/list.do?searchArea=경상도">경상도</a>
-			<a class="area_Name" href="<%=cp%>/campground/list.do?searchArea=제주도">제주도</a>
+			<a id="sudo"
+			 href="<%=cp%>/campground/list.do?searchArea=수도권&map=sudo">수도권</a>
+			<a id="gangwon"
+			 href="<%=cp%>/campground/list.do?searchArea=강원도&map=gangwon">강원도</a>
+			<a id="chungcheong"
+			 href="<%=cp%>/campground/list.do?searchArea=충청도&map=chungcheong">충청도</a>
+			<a id="jeonra"
+			 href="<%=cp%>/campground/list.do?searchArea=전라도&map=jeonra">전라도</a>
+			<a id="gyeongsang"
+			 href="<%=cp%>/campground/list.do?searchArea=경상도&map=gyeongsang">경상도</a>
+			<a id="jeju"
+			 href="<%=cp%>/campground/list.do?searchArea=제주도&map=jeju">제주도</a>
 			</div>
 		</div>
 	</div>
