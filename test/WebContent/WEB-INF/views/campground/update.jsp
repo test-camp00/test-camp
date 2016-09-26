@@ -116,22 +116,11 @@
 	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">
 								<select class="form-control"  style="width: 180px;" name="areaname">
 									<option value="">지역선택</option>
-									<option value="서울" ${dto.areaName=="서울" ? "selected='selected'" : ""}>서울</option>
-									<option value="인천" ${dto.areaName=="인천" ? "selected='selected'" : ""}>인천</option>
-									<option value="경기도" ${dto.areaName=="경기도" ? "selected='selected'" : ""}>경기도</option>
+									<option value="수도권" ${dto.areaName=="수도권" ? "selected='selected'" : ""}>수도권</option>
 									<option value="강원도" ${dto.areaName=="강원도" ? "selected='selected'" : ""}>강원도</option>
-									<option value="충청북도" ${dto.areaName=="충청북도" ? "selected='selected'" : ""}>충청북도</option>
-									<option value="세종" ${dto.areaName=="세종" ? "selected='selected'" : ""}>세종</option>
-									<option value="대전" ${dto.areaName=="대전" ? "selected='selected'" : ""}>대전</option>
-									<option value="충청남도" ${dto.areaName=="충청남도" ? "selected='selected'" : ""}>충청남도</option>
-									<option value="전라북도" ${dto.areaName=="전라북도" ? "selected='selected'" : ""}>전라북도</option>
-									<option value="광주" ${dto.areaName=="광주" ? "selected='selected'" : ""}>광주</option>
-									<option value="전라남도" ${dto.areaName=="전라남도" ? "selected='selected'" : ""}>전라남도</option>
-									<option value="경상북도" ${dto.areaName=="경상북도" ? "selected='selected'" : ""}>경상북도</option>
-									<option value="대구" ${dto.areaName=="대구" ? "selected='selected'" : ""}>대구</option>
-									<option value="울산" ${dto.areaName=="울산" ? "selected='selected'" : ""}>울산</option>
-									<option value="경상남도" ${dto.areaName=="경상남도" ? "selected='selected'" : ""}>경상남도</option>
-									<option value="부산" ${dto.areaName=="부산" ? "selected='selected'" : ""}>부산</option>
+									<option value="충청도" ${dto.areaName=="충청도" ? "selected='selected'" : ""}>충청도</option>
+									<option value="전라도" ${dto.areaName=="전라도" ? "selected='selected'" : ""}>전라도</option>
+									<option value="경상도" ${dto.areaName=="경상도" ? "selected='selected'" : ""}>경상도</option>
 									<option value="제주도" ${dto.areaName=="제주도" ? "selected='selected'" : ""}>제주도</option>
 								</select>
 							</td> 
