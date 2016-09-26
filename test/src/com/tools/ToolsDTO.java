@@ -3,7 +3,7 @@ package com.tools;
 public class ToolsDTO {
 	private String itemCode, itemName;
 	private String name, content, makesa, fileName;
-	private int num, listNum;
+	private int num, listNum, wanted;
 	public String getItemCode() {
 		return itemCode;
 	}
@@ -52,6 +52,13 @@ public class ToolsDTO {
 	public void setListNum(int listNum) {
 		this.listNum = listNum;
 	}
+	public int getWanted() {
+		return wanted;
+	}
+	public void setWanted(int wanted) {
+		this.wanted = wanted;
+	}
+	
 	
 	
 	

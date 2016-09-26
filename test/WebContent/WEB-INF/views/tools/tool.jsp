@@ -104,7 +104,7 @@
 				<th>제품번호</th>
 				<th>제품명</th>
 				<th>제조사</th>
-				<th>이미지</th>
+				<th>추천수</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -114,6 +114,7 @@
 					<td class="text-center">${dto.itemCode}</td>
 					<td><a href='${articleUrl}&num=${dto.num}'>${dto.name}</a></td>
 					<td class="text-center">${dto.makesa}</td>
+					<td class="text-center">${dto.wanted}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

@@ -95,6 +95,7 @@ public class ToolsServlet extends MyServlet {
 				ToolsDTO dto = it.next();
 				listNum = dataCount - (start + n - 1);
 				dto.setListNum(listNum);
+				dto.setWanted(dao.wantedCount(dto.getNum()));  //추천수세팅
 				n++;
 			}
 
@@ -112,6 +113,8 @@ public class ToolsServlet extends MyServlet {
 			}
 
 			String paging = util.paging(current_page, total_page, listUrl);
+			
+			
 
 			req.setAttribute("list", list);
 			req.setAttribute("page", current_page);
