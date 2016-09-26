@@ -1,6 +1,7 @@
 package com.onetoone;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
 
@@ -138,7 +139,7 @@ public class OnetooneServlet extends MyServlet{
 			req.setAttribute("page", page);
 			req.setAttribute("mode", "update");
 
-			String path = "/WEB-INF/views/onetoone/onetoone.jsp";
+			String path = "/WEB-INF/views/onetoone/updatecreated.jsp";
 			forward(req, resp, path);
 
 		} else if (uri.indexOf("update_ok.do") != -1) {
@@ -149,22 +150,103 @@ public class OnetooneServlet extends MyServlet{
 			}
 
 			String page = req.getParameter("page");
-
+			
 			if (req.getMethod().equalsIgnoreCase("GET")) {
 				resp.sendRedirect(cp+"/onetoone/onetoone.do?page="+page);
 				return;
 			}
 
 			OnetooneDTO dto = new OnetooneDTO();
-			dto.setNum(Integer.parseInt(req.getParameter("num")));
+			int num = Integer.parseInt(req.getParameter("num"));
+			
+			dto.setNum(num);
 			dto.setSubject(req.getParameter("subject"));
 			dto.setContent(req.getParameter("content"));
-			dto.setSecret(Integer.parseInt(req.getParameter("secret")));
-
+			if(req.getParameter("secret")!=null)
+				dto.setSecret(Integer.parseInt(req.getParameter("secret")));
+				else
+					dto.setSecret(0);
+				
 			dao.updateOnetoone(dto);
 			resp.sendRedirect(cp+"/onetoone/onetoone.do?page="+page);
 
-		} 
+		}else if (uri.indexOf("reply.do") != -1) {
+			// 리플 리스트 ---------------------------------------
+			
+			if (info == null) { // 로그인되지 않은 경우
+				resp.sendRedirect(cp + "/member/login.do");
+				return;
+			}
+
+			String page = req.getParameter("page");
+			int num = Integer.parseInt(req.getParameter("num"));
+			OnetooneDTO dto = dao.readOnetoone(num);
+
+			if (dto == null) {
+				resp.sendRedirect(cp+"/onetoone/onetoone.do?page="+page);
+				return;
+			}
+
+		
+			req.setAttribute("dto", dto);
+			req.setAttribute("page", page);
+
+		
+			String path = "/WEB-INF/views/onetoone/reply.jsp";
+			forward(req, resp, path);
+		} else if (uri.indexOf("reply_ok.do") != -1) {
+			// 리플 저장하기 ---------------------------------------
+			
+			if (info == null) { // 로그인되지 않은 경우
+				resp.sendRedirect(cp + "/member/login.do");
+				return;
+			}
+
+			String page = req.getParameter("page");
+			int num = Integer.parseInt(req.getParameter("num"));
+			if (req.getMethod().equalsIgnoreCase("GET")) {
+				resp.sendRedirect(cp+"/onetoone/onetoone.do?page="+page);
+				return;
+			}
+
+			OnetooneReplyDTO dto = new OnetooneReplyDTO();
+			
+			
+			dto.setNum(num);
+	
+			dto.setContent(req.getParameter("content"));
+			
+			dao.insertReply(dto);
+			resp.sendRedirect(cp+"/onetoone/onetoone.do?page="+page);
+			
+			} else if (uri.indexOf("replycheck.do") != -1) {
+				// 리플 저장하기 ---------------------------------------
+				
+				if (info == null) { // 로그인되지 않은 경우
+					resp.sendRedirect(cp + "/member/login.do");
+					return;
+				}
+
+				String page = req.getParameter("page");
+				int num = Integer.parseInt(req.getParameter("num"));
+				
+				OnetooneReplyDTO dto=dao.readOnetooneReply(num);
+				
+				if (dto == null) {
+					resp.sendRedirect(cp+"/onetoone/onetoone.do?page="+page);
+					return;
+				}
+
+			
+				req.setAttribute("dto", dto);
+				req.setAttribute("page", page);
+
+			
+				String path = "/WEB-INF/views/onetoone/replycheck.jsp";
+				forward(req, resp, path);
+				}
+		
+		 
 	}
 
 }

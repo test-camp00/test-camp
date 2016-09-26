@@ -128,12 +128,13 @@ public class OnetooneDAO {
 	return result;
 }
 	
+	
 	public int updateOnetoone(OnetooneDTO dto) {
 
 		int result=0;
 		PreparedStatement pstmt=null;
 		String sql;
-		sql="UPDATE bbs SET subject=?, content=?, secret=? WHERE num=?";
+		sql="UPDATE Onetoone SET subject=?, content=?, secret=? WHERE num=?";
 		
 	try {
 		
@@ -203,6 +204,99 @@ public class OnetooneDAO {
 		}
 		
 		return dto;
+	}
+	
+	public OnetooneReplyDTO readOnetooneReply(int num) {
+		OnetooneReplyDTO dto=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		StringBuffer sb=new StringBuffer();
+		
+		try {
+			sb.append("SELECT  a.num, a.content  ");
+			sb.append("    FROM onetoonereply a JOIN onetoone c ON a.num=c.num  ");
+			sb.append("    WHERE a.num = ? ");
+
+			pstmt = conn.prepareStatement(sb.toString());
+			pstmt.setInt(1, num);
+
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto=new OnetooneReplyDTO();
+				dto.setNum(rs.getInt("num"));
+				dto.setContent(rs.getString("content"));
+				
+			}
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+				}
+			}
+				
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+		
+		return dto;
+	}
+	
+	public int insertReply(OnetooneReplyDTO dto){
+		int result=0;
+		PreparedStatement pstmt=null;
+		StringBuffer sb= new StringBuffer();
+		
+		try {
+			sb.append("INSERT INTO onetoonereply(num, content)");
+			sb.append(" VALUES (?, ?)");
+			
+			pstmt=conn.prepareStatement(sb.toString());
+			pstmt.setInt(1, dto.getNum());
+			pstmt.setString(2, dto.getContent());
+			
+			result=pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}finally{
+			if(pstmt!=null)
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+				}
+		}
+		return result;
+	}
+	
+	public int deletReply(int num){
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql;
+		
+		sql="DELETE FROM onetooneReply WHERE Num=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		} finally {
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+				}
+			}
+		}		
+		return result;
 	}
 	
 }

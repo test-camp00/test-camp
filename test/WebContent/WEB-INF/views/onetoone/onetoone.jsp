@@ -71,22 +71,29 @@ function deleteOnetoone(num, userId) {
 		location.href=url;
 }
 
+
 function updateOnetoone(num, userId, secret, subject, content) {
 
-	$("#exampleModal").modal("show");
-	
+
 	
 	 var url="<%=cp%>/onetoone/update.do?num="+num+"&page=${page}&userID="+userId;
-	/* +"&{secret}="+secret+"&{subject}="+subject+"&{content}="+content */
-	//if(confirm("수정 하시겠습니까 ?"))
-	//	location.href=url;
+	 if(confirm("수정하시겠습니까 ?")){
+			location.href=url;
+	}
+
+	
 } 
+function replyCheck(num){
+var url="<%=cp%>/onetoone/replycheck.do?num="+num+"&page=${page}";
+	
+	if(confirm("답변을 확인하시겠습니까 ?"))
+		location.href=url;
+}
 
 
 
-
-function replyOnetoone(num, userId) {
-	var url="<%=cp%>/onetoone/reply.do?num="+num+"&page=${page}&userID="+userId;
+function replyOnetoone(num) {
+	var url="<%=cp%>/onetoone/reply.do?num="+num+"&page=${page}";
 	
 	if(confirm("답변 하시겠습니까 ?"))
 		location.href=url;
@@ -106,23 +113,25 @@ function replyOnetoone(num, userId) {
     <div class="bodyFrame col-sm-10"  style="float:none; margin-left: auto; margin-right: auto;">
         
 	    <div class="body-title">
-	          <h3><span class="glyphicon glyphicon-pencil"></span> 1:1문의 <small>Guest Book</small></h3>
+	          <h3><span class="glyphicon glyphicon-pencil"></span> 질문과 답변<small>Guest Book</small></h3>
 	    </div>
 	    
-	    <div class="alert alert-info">
-	        <i class="glyphicon glyphicon-info-sign"></i> 질문을 남겨주세요.
+	    <div class="alert alert-info" style="background-color: #515151; border-color: #515151;">
+	         <font color="white" size="3pt"><i class="glyphicon glyphicon-info-sign" ></i> 질문을 남겨주세요.</font>
 	    </div>
 	
 	    <div class="guest">
+	    <c:if test="${sessionScope.member.userId!='admin'}">
 	            <div class="guest-write">
 	               <div style="clear: both;">
 	           	       <div style="float: left;"><span style="font-weight: bold;">질문하기</span><span> - 타인을 비방하거나 개인정보를 유출하는 글의 게시를 삼가 주세요.</span></div>
 	           	       <div style="float: right; text-align: right;"></div>
 	               </div>
+	             
 	               <div style="clear: both; height: 100px">
 	                   <form name="guestForm" method="post" action="">
-	                   <textarea name="subject" id="subject"  rows="3" required="required" style="height: 30px; width: 900px" >제목:</textarea><br>
-	                       <textarea name="content" id="content" rows="3" required="required"style="height: 70px; width: 900px" >내용:</textarea><br>
+	                   <textarea name="subject" id="subject"  rows="3" required="required" style="height: 30px; width: 900px" placeholder="제목을 입력해주세요."></textarea><br>
+	                       <textarea name="content" id="content" rows="3" required="required"style="height: 70px; width: 900px"placeholder="내용을 입력해주세요." ></textarea><br>
 	                      
 					        <input type="checkbox" name="secret" value="1" ${dto.secret==1 ? "checked='checked' ":"" }> 비밀글
 					     
@@ -134,95 +143,55 @@ function replyOnetoone(num, userId) {
 	                   <button type="button" class="btn btn-primary btn-sm" onclick="sendOnetoone();"> 등록하기 <span class="glyphicon glyphicon-ok"></span></button>
 	               </div>           
 	           </div>
-	       
+	       </c:if>
 	           <div id="listGuest">
 	               <div style='clear: both; padding-top: 20px;'>
 	                   <div style='float: left;'><span style='color: #3EA9CD; font-weight: bold;'>질문글 ${dataCount}개</span> <span>[목록, ${page}/${total_page} 페이지]</span></div>
 	                   <div style='float: right; text-align: right;'></div>
-	               </div>           
+	               </div>   
 	               <div class='table-responsive' style='clear: both; padding-top: 5px;'>
 	                   <table class='table'>
+	                   <tr>
+	                    <td style='width: 10%; background-color: #3cb371'>번호</td>
+	                     <td style='width: 20%; background-color: #3cb371'>이름</td>
+	                      <td style='width: 50%; background-color: #3cb371'>제목</td>
+	                    <td style='width: 20%; background-color: #3cb371'></td>
+	                   </tr>
 	                   <c:forEach var="dto" items="${list}">
 	                       <tr class='guest-header'>
 	                       <td style='width: 10%;'>
 	                               NO${dto.num}.
 	                           </td>
 	                           <td style='width: 20%;'>
-	                               아이디:${dto.userId}
+	                               ${dto.userId}
 	                           </td>
 	                           
 	                           <td style='width: 50%; text-align: left;'>
-	                            <c:if test="${dto.secret==1}">제목 : 비밀글입니다.
+	                            <c:if test="${dto.secret==1}"> 비밀글입니다.
 	       
 	                         </c:if>
 	                         <c:if test="${dto.secret==0}"> ${dto.subject}</c:if>
 	                          
 	                           </td>
 	                           <td style='width: 20%; text-align: right;'>
-	                              
+	                           	
 	                               <c:if test="${sessionScope.member.userId==dto.userId}">	
-	                               <c:if test="${sessionScope.member.userId!='admin'}">
-								         
-								          <button type="button" class="btn btn-primary" 
-								            onclick="updateOnetoone('${dto.num}', '${dto.userId}', '${dto.secret}', '${dto.subject}');"
-								          >수정</button>
-  											<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-    <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="exampleModalLabel">수정할 정보 입력</h4>
-      </div>
-      <div class="modal-body">
-        <form name="updateForm" method="post" onsubmit="return check();">
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">NO:</label>
-            
-            <input type="text" class="form-control" name="num" id="num" value="${dto.num}"disabled="disabled">
-          </div>
-          
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">작성자:</label>
-            <input type="text" class="form-control"id="userId" name="userId" value="${sessionScope.member.userId}" disabled="disabled">
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">제목:</label>
-            <input type="text" class="form-control" name="subject" id="subject">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="control-label" >내용:</label>
-            <textarea class="form-control" name="content" id="content"></textarea>
-          </div>
-           <div class="form-group">
-            <label for="message-text" class="control-label" >비밀글:</label>
-            <input type="checkbox" name= "secret" id="secret">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Send</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-  											
-  											<button type="button" class="btn btn-primary" data-toggle="modal"
-								           data-target="#exampleModal" data-whatever="@mdo" style="width: 10" 
-								           onclick="deleteOnetoone('${dto.num}', '${dto.userId}');">삭제</button>
-
-								          
-								         </c:if>
-								   <c:if test="${sessionScope.member.userId=='admin'}">
+	                                 
+									<c:if test="${sessionScope.member.userId!='admin'}">
+								   | <a href="javascript:updateOnetoone('${dto.num}', '${dto.userId}', '${dto.secret}', '${dto.subject}', '${dto.content}');">수정</a>
 								   | <a href="javascript:deleteOnetoone('${dto.num}', '${dto.userId}');">삭제</a>
-								          | <a href="javascript:deleteOnetoone('${dto.num}', '${dto.userId}');">답변</a>
+								   | <a href="javascript:replyCheck('${dto.num}');">답변확인</a>
+								 </c:if>
+								 </c:if>
+								  
+								<c:if test="${sessionScope.member.userId!=dto.userId}">	
+	                             
+								  <c:if test="${sessionScope.member.userId=='admin'}">
+								   | <a href="javascript:deleteOnetoone('${dto.num}', '${dto.userId}');">삭제</a>
+								          | <a href="javascript:replyOnetoone('${dto.num}');">답변</a>
 								   </c:if>
-								   </c:if>
-								   
-								   
 								
+								  </c:if>
 								  
 	                           </td>
 	                       </tr>

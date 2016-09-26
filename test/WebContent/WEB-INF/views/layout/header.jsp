@@ -13,6 +13,7 @@
 
   
  <style media="screen">
+ 
    .gnb {
     position:absolute;
 
@@ -27,30 +28,46 @@
 
 ul{
     list-style:none;
+    color: #515151;
     }
   ul,li{margin: 0; padding: 0; }
 li{list-style: none;}
-a{text-decoration: none;}
+
+
+
 .sub>li {
     width: 120px;
+    
 }
 .sub>li{
 text-align:center;
 
-    border: 1px solid #fff;
+    border: 1px solid white;
    width: 100%;
     display: block;
    
     line-height: 40px;
-    background: #c2f41c;
-    color: #eb1a1a;
+    background: #515151;
+    
     font-weight: bold;
-}
-.sub>li:hover{
-    background-color:#3cb371;
-    color: #ececec;
-}
 
+}
+.navbar-default {
+    background-image: -webkit-linear-gradient(top,#fff 0,#515151 100%);
+    background-image: -o-linear-gradient(top,#fff 0,#515151 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#515151),to(#515151));
+    background-image: linear-gradient(to bottom,#515151 0,#515151 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#515151', endColorstr='#515151', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    background-repeat: repeat-x;
+    border-radius: 8px;
+    -webkit-box-shadow: inset 0 8px 0 #515151,0 8px 8px #515151;
+    box-shadow: inset 0 8px 0 #515151,0 8px 8px #515151;
+}
+.navbar-default {
+    background-color: #515151;
+    border-color: #515151;
+}
 
     </style>  
 <script type="text/javascript">
@@ -85,22 +102,22 @@ $(function(){
             </c:if>
             <c:if test="${not empty sessionScope.member}">
             <c:if test="${sessionScope.member.userId=='admin'}">
-                    <a href="<%=cp%>/admin/main.do"><font style="color: black; font-weight:bold; font-size: 12pt; " >관리자</font></a> <i></i>
+                    <a href="<%=cp%>/admin/main.do"><font style="color: #515151; font-weight:bold; font-size: 12pt; " >관리자</font></a> <i></i>
                 </c:if>
                 <span style="color:white;">${sessionScope.member.userName}</span>님&nbsp;&nbsp;&nbsp;&nbsp; 
                 
                 <a href="<%=cp%>/member/logout.do"><font style="color: white; font-weight:bold; font-size: 11pt; " >로그아웃&nbsp;&nbsp;</font></a>
             </c:if>
-            
+        
         <ul class="menu"style="float:right" >
            <li>
-              <a href="<%=cp%>/customer/list.do"><font style="color:white; font-weight:bold; font-size: 11pt; " >고객센터&nbsp;&nbsp;</font></a>
-  
+              <a href="<%=cp%>/onetoone/onetoone.do"><font style="color:white; font-weight:bold; font-size: 11pt; " >고객센터&nbsp;&nbsp;</font></a>
+ 
                 <ul class="sub">
-                    <li><a href="<%=cp%>/onetoone/onetoone.do">1:1게시판</a></li>
-                    <li><a href="">FAQ</a></li>
-                    <li><a href="">개인정보이용방침</a></li>
-                    <li><a href="">이용약관</a></li>
+                    <li><a href="<%=cp%>/onetoone/onetoone.do"><font style="color: white">질문과 답변</font></a></li>
+                    <li><a href=""><font style="color: white">FAQ</font></a></li>
+                    <li><a href=""><font style="color: white">개인정보이용방침</font></a></li>
+                    <li><a href=""><font style="color: white">이용약관</font></a></li>
                 </ul>
             </li>
         </ul>
@@ -123,14 +140,8 @@ $(function(){
 		</div>
 	      </form>  
 	      </div>
-<div style=" height: 10px;  border-bottom: 4px solid #3cb371;">
 
-
-  
-
-    </div>
-
-
+<div style="background-color:#515151; height: 50px ">
 <div class="container">
 	<nav class="navbar navbar-default" role="navigation">
 	  <div class="container-fluid">
@@ -145,17 +156,17 @@ $(function(){
 	     
 	    </div>
 
-	 
-	    <div class="navbar-collapse collapse" id="navbar-collapse-1">
+	
+	    <div class="navbar-collapse collapse" id="navbar-collapse-1" ">
 	      <ul class="nav navbar-nav" >
-	      <li > <a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true" style="float: right;">Home</span></a></li>
-		<li><a href="<%=cp%>/"><span class="glyphicon glyphicon-tent" aria-hidden="true" style="float: right">캠핑장</span></a></li>
-		<li><a href="<%=cp%>/cooks/cook.do"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="float: right">캠핑요리</span></a></li>
-		<li><a href="<%=cp%>/tools/tool.do"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="float: right">캠핑용품</span></a></li>
-		<li><a href="<%=cp%>/camping/HowtoCamp.do"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="float: right">캠핑노하우</span></a></li>
-		<li><a href="#"><span class="glyphicon glyphicon-send" aria-hidden="true" style="float: right">자유게시판</span></a></li>
-		<li><a href="#"><span class="glyphicon glyphicon-transfer" aria-hidden="true" style="float: right">거래게시판</span></a></li>
-		<li><a href="#"><span class="glyphicon glyphicon-camera" aria-hidden="true" style="float: right">갤러리</span></a></li>
+	      <li  > <a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true" style="float: right; color: white; font-size: 12pt; font-style: sans-serif;" >Home</span></a></li>
+		<li ><a href="<%=cp%>/"><span class="glyphicon glyphicon-tree-conifer" aria-hidden="true" style="float: right; color: white; font-size: 12pt; font-style: sans-serif;">Camp-Site</span></a></li>
+		<li ><a href="<%=cp%>/cooks/cook.do"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="float: right; color: white; font-size: 12pt; font-style: sans-serif;">Camp-Food</span></a></li>
+		<li ><a href="<%=cp%>/tools/tool.do"><span class="glyphicon glyphicon-tent"  aria-hidden="true" style="float: right; color: white; font-size: 12pt; font-style: sans-serif">Camp-Equipment</span></a></li>
+		<li ><a href="<%=cp%>/camping/HowtoCamp.do"><span class="glyphicon glyphicon-list-alt"  aria-hidden="true" style="float: right; color: white; font-size: 12pt; font-style: sans-serif;">Camp know-how</span></a></li>
+		<li ><a href="#"><span class="glyphicon glyphicon-bullhorn"  aria-hidden="true" style="float: right; color: white; font-size: 12pt; font-style: sans-serif;">FreeBoard</span></a></li>
+		<li ><a href="#"><span class="glyphicon glyphicon-transfer"  aria-hidden="true" style="float: right; color: white; font-size: 12pt; font-style: sans-serif;">TradBoard</span></a></li>
+		<li ><a href="#"><span class="glyphicon glyphicon-camera"  aria-hidden="true" style="float: right; color: white; font-size: 12pt; font-style: sans-serif;">Gallery</span></a></li>
 	
 		
 	      </ul>
@@ -163,10 +174,11 @@ $(function(){
 	      
 	     
 	    </div><!-- /.navbar-collapse -->
+	 
 	  </div><!-- /.container-fluid -->
 	</nav>
-	
-	
-</div>
+	</div>
+	</div>
+
 
 <br>
