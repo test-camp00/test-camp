@@ -114,22 +114,11 @@
 	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">
 								<select class="form-control" style="width: 180px;" name="areaname">
 									<option value="">지역선택</option>
-									<option value="서울">서울</option>
-									<option value="인천">인천</option>
-									<option value="경기도">경기도</option>
+									<option value="수도권">서울 인천 경기권</option>
 									<option value="강원도">강원도</option>
-									<option value="충청북도">충청북도</option>
-									<option value="세종">세종</option>
-									<option value="대전">대전</option>
-									<option value="충청남도">충청남도</option>
-									<option value="전라북도">전라북도</option>
-									<option value="광주">광주</option>
-									<option value="전라남도">전라남도</option>
-									<option value="경상북도">경상북도</option>
-									<option value="대구">대구</option>
-									<option value="울산">울산</option>
-									<option value="경상남도">경상남도</option>
-									<option value="부산">부산</option>
+									<option value="충청도">충청도</option>
+									<option value="전라도">전라도</option>
+									<option value="경상도">경상도</option>
 									<option value="제주도">제주도</option>
 								</select>
 							</td> 

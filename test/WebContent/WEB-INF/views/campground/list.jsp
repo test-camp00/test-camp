@@ -38,6 +38,10 @@
 	.map_list{
 		border : 1px solid #000;
 	}
+	
+	.area_name:HOVER {
+		
+	}
 </style>
 </head>
 <body>
@@ -66,22 +70,11 @@
 					<label class="schlbl">지역</label>
 					<select class="form-control" style="width: 180px;" name="searchArea">
 					<option value="">지역선택</option>
-					<option value="서울">서울</option>
-					<option value="인천">인천</option>
-					<option value="경기도">경기도</option>
+					<option value="수도권">서울 인천 경기권</option>
 					<option value="강원도">강원도</option>
-					<option value="충청북도">충청북도</option>
-					<option value="세종">세종</option>
-					<option value="대전">대전</option>
-					<option value="충청남도">충청남도</option>
-					<option value="전라북도">전라북도</option>
-					<option value="광주">광주</option>
-					<option value="전라남도">전라남도</option>
-					<option value="경상북도">경상북도</option>
-					<option value="대구">대구</option>
-					<option value="울산">울산</option>
-					<option value="경상남도">경상남도</option>
-					<option value="부산">부산</option>
+					<option value="충청도">충청도</option>
+					<option value="전라도">전라도</option>
+					<option value="경상도">경상도</option>
 					<option value="제주도">제주도</option>
 					</select><br>
 				</div>
@@ -96,17 +89,18 @@
 			</form>
 		</div>
 		<div style="text-align: center; margin: 0; padding: 0; float: right;">	
-			<div style="width: 296.4px; height: 487.2px;">
-				<div style="background: url('<%=cp%>/res/images/map_default.png');">
-				<a href="<%=cp%>/campground/list.do?searchArea=서울">서울</a>
-				<a href="<%=cp%>/campground/list.do?searchArea=인천">인천</a>
-				<a href="<%=cp%>/campground/list.do?searchArea=경기도">경기도</a>
-				<a href="<%=cp%>/campground/list.do?searchArea=강원도">강원도</a>
-				<a href="<%=cp%>/campground/list.do?searchArea=충청북도">충청북도</a>
-				<a href="<%=cp%>/campground/list.do?searchArea=인천">인천</a>
-				<a href="<%=cp%>/campground/list.do?searchArea=인천">인천</a>
-				<a href="<%=cp%>/campground/list.do?searchArea=인천">인천</a>
-				</div>
+			<div style="width: 280px; height: 420px;">
+				<img src="<%=cp%>/res/images/map_default.png"
+				 style="margin: 0 auto; display: block !important;">
+			</div>
+			<!--  <div style="background: url('<%=cp%>/res/images/map_default.png');"> -->
+			<div>
+			<a class="area_Name" href="<%=cp%>/campground/list.do?searchArea=수도권">서울 인천 경기권</a>
+			<a class="area_Name" href="<%=cp%>/campground/list.do?searchArea=강원도">강원도</a>
+			<a class="area_Name" href="<%=cp%>/campground/list.do?searchArea=충청도">충청도</a>
+			<a class="area_Name" href="<%=cp%>/campground/list.do?searchArea=전라도">전라도</a>
+			<a class="area_Name" href="<%=cp%>/campground/list.do?searchArea=경상도">경상도</a>
+			<a class="area_Name" href="<%=cp%>/campground/list.do?searchArea=제주도">제주도</a>
 			</div>
 		</div>
 	</div>
