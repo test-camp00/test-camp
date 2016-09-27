@@ -34,12 +34,12 @@
 
 <div class="container">
 	<div style="border-bottom: 1px solid #ccc; margin-bottom: 30px;">
-		<h3>회원 탈퇴 성공</h3>
+		<h3>개인정보 변경 성공</h3>
 	</div>
 	<form method="post" name="deleteOkForm">
 	<div class="confrimSelf">
-		<h4 style="text-align: center;">회원 탈퇴에 성공하였습니다.</h4>
-		<p style="padding: 20px 0; text-align: center;">그동안 아트캠핑을 이용하여주셔서 감사합니다.</p>
+		<h4 style="text-align: center;">개인정보 변경에 성공하였습니다.</h4>
+		<p style="padding: 20px 0; text-align: center;"></p>
 		<div
 			style="padding-top: 20px; border: 1px solid #e9e9e9; background-color: #fafafa; padding-bottom: 18px; text-align: center">
 			<button type="button" class="btn btn-primary btn-lg btn-block"

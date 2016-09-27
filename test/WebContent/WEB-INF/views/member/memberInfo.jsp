@@ -26,17 +26,32 @@
 </style>
 <script type="text/javascript">
 function infoChange() {
-        var f = document.infoForm;
+     var f = document.infoForm;
 
-        str = f.userPwd1.value;
-        if(!str) {
-            f.userPwd1.focus();
-            return false;
-        }
+     str = f.userPwd1.value;
+     if(!str) {
+        f.userPwd1.focus();
+        return false;
+     }
         
-        f.action = "<%=cp%>/member/infoChange.do";
-        f.submit();
+     f.action = "<%=cp%>/member/infoChange.do";
+     f.submit();
 }
+
+function changePwd() {
+	var f = document.infoForm;
+
+    str = f.userPwd2.value;
+    if(!str) {
+        f.userPwd2.focus();
+        return false;
+    }
+    
+    f.action = "<%=cp%>/member/changePwd.do";
+    f.submit();
+	
+}
+
 
 function deleteMember() {
     var f = document.infoForm;
@@ -72,13 +87,13 @@ function deleteMember() {
 
 	<div class="col-sm-3">
 		<ul id="myTab6" class="nav nav-pills nav-stacked" role="tablist">
-			<li role="presentation" class="active"><a href="#home6" id="home-tab6"
+			<li role="presentation" ${active=="active1" ? "class='active'" : "class=''"} ><a href="#home6" id="home-tab6"
 				role="tab" data-toggle="tab" aria-controls="home6"
 				aria-expanded="false">개인정보 변경</a></li>
-			<li role="presentation" class=""><a href="#profile6"
+			<li role="presentation" ${active=="active2" ? "class='active'" : "class=''"}><a href="#profile6"
 				role="tab" id="profile-tab6" data-toggle="tab"
 				aria-controls="profile6" aria-expanded="true">비밀번호 변경</a></li>
-			<li role="presentation" class=""><a href="#home7" id="home-tab7"
+			<li role="presentation" ${active=="active3" ? "class='active'" : "class=''"}><a href="#home7" id="home-tab7"
 				role="tab" data-toggle="tab" aria-controls="home7"
 				aria-expanded="false">회원탈퇴</a></li>
 				
@@ -89,10 +104,10 @@ function deleteMember() {
 	<form method="post" name="infoForm">
 	<div class="col-md-9">
 		<div id="myTabContent6" class="tab-content">
-			<div role="tabpanel" class="tab-pane fade active in" id="home6"
+			<div role="tabpanel" ${active=="active1" ? "class='tab-pane fade active in'" : "class='tab-pane fade'"} id="home6"
 				aria-labelledby="home-tab6">
 				<div class="confrimSelf">
-					<h4 style="text-align: center;">본인 확인</h4>
+					<h4 style="text-align: center;">개인정보 변경</h4>
 					<p style="padding: 20px 0; text-align: center;">고객님의 소중한 개인정보보호를 위해서 본인확인을 진행합니다.</p>
 					<div style="padding-top: 20px; border: 1px solid #e9e9e9; background-color: #fafafa; padding-bottom: 18px;">
 						 <span style="margin-left: 150px;">비밀번호 입력</span>
@@ -102,23 +117,23 @@ function deleteMember() {
 				</div>
 			</div>
 			
-			<div role="tabpanel" class="tab-pane fade" id="profile6"
+			<div role="tabpanel" ${active=="active2" ? "class='tab-pane fade active in'" : "class='tab-pane fade'"} id="profile6"
 				aria-labelledby="profile-tab6">
 				<div class="confrimSelf">
-					<h4 style="text-align: center;">본인 확인</h4>
+					<h4 style="text-align: center;">비밀번호 변경</h4>
 					<p style="padding: 20px 0; text-align: center;">고객님의 소중한 개인정보보호를 위해서 본인확인을 진행합니다.</p>
 					<div style="padding-top: 20px; border: 1px solid #e9e9e9; background-color: #fafafa; padding-bottom: 18px;">
 						 <span style="margin-left: 150px;">비밀번호 입력</span>
 						 <input type="password" name="userPwd2" style="margin-left: 60px; border: 2px solid #ccc; padding: 3px 0 1px; font-weight: bold; font-size: 15px;">
-						 <button type="button" class="btn btn-success btn-sm" style="margin-left: 60px; width: 100px;">확 인</button>
+						 <button type="button" class="btn btn-success btn-sm" onclick="changePwd();" style="margin-left: 60px; width: 100px;">확 인</button>
 					</div>
 				</div>
 			</div>
 			
-			<div role="tabpanel" class="tab-pane fade" id="home7"
+			<div role="tabpanel" ${active=="active3" ? "class='tab-pane fade active in'" : "class='tab-pane fade'"} id="home7"
 				aria-labelledby="home-tab7">
 				<div class="confrimSelf">
-					<h4 style="text-align: center;">본인 확인</h4>
+					<h4 style="text-align: center;">회원탈퇴</h4>
 					<p style="padding: 20px 0; text-align: center;">고객님의 소중한 개인정보보호를 위해서 본인확인을 진행합니다.</p>
 					<div style="padding-top: 20px; border: 1px solid #e9e9e9; background-color: #fafafa; padding-bottom: 18px;">
 						 <span style="margin-left: 150px;">비밀번호 입력</span>

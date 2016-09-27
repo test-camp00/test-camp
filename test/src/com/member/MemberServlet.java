@@ -92,6 +92,9 @@ public class MemberServlet extends MyServlet {
 
 			forward(req, resp, "/WEB-INF/views/member/complete.jsp");
 		} else if (uri.indexOf("memberInfo.do") != -1) {
+			
+			String act="active1";
+			req.setAttribute("active", act);
 			forward(req, resp, "/WEB-INF/views/member/memberInfo.jsp");
 		} else if (uri.indexOf("infoChange.do") != -1) {
 			String userId = req.getParameter("userId");
@@ -108,9 +111,10 @@ public class MemberServlet extends MyServlet {
 					return;
 				}
 			}
-			String msg = "패스워드가 일치하지 않습니다.";
-			req.setAttribute("message", msg);
-
+			
+			String act="active1";
+			req.setAttribute("active", act);
+			
 			String path = "/WEB-INF/views/member/memberInfo.jsp";
 			forward(req, resp, path);
 			
@@ -123,7 +127,8 @@ public class MemberServlet extends MyServlet {
 			dto.setUserId(req.getParameter("userId"));
 			
 			dao.updateMember(dto);
-			resp.sendRedirect(cp);
+			String path = "/WEB-INF/views/member/update_complete.jsp";
+			forward(req, resp, path);
 
 		} else if (uri.indexOf("delete.do")!=-1) {
 			String userId = req.getParameter("userId");
@@ -136,7 +141,9 @@ public class MemberServlet extends MyServlet {
 					return;
 				}
 			}
-
+			
+			String act="active3";
+			req.setAttribute("active", act);
 			String path = "/WEB-INF/views/member/memberInfo.jsp";
 			forward(req, resp, path);
 			
@@ -147,6 +154,8 @@ public class MemberServlet extends MyServlet {
 			MemberDTO dto = dao.readMember(userId);
 			if (dto != null) {
 				if (userPwd.equals(dto.getUserPwd()) && dto.getEnabled() == 1) {
+					session.removeAttribute("member");
+					session.invalidate();
 					dao.deleteMember(dto);
 					forward(req, resp, "/WEB-INF/views/member/delete_completed.jsp");
 					return;
@@ -156,7 +165,46 @@ public class MemberServlet extends MyServlet {
 			String path = "/WEB-INF/views/member/delete.jsp";
 			forward(req, resp, path);
 			
+		} else if (uri.indexOf("changePwd.do")!=-1) {
+			String userId = req.getParameter("userId");
+			String userPwd = req.getParameter("userPwd2");
+
+			MemberDTO dto = dao.readMember(userId);
+			if (dto != null) {
+				if (userPwd.equals(dto.getUserPwd()) && dto.getEnabled() == 1) {
+					forward(req, resp, "/WEB-INF/views/member/changePwd.jsp");
+					return;
+				}
+			}
+			
+			String act="active2";
+			req.setAttribute("active", act);
+			
+			String path = "/WEB-INF/views/member/memberInfo.jsp";
+			forward(req, resp, path);
+			
+		} else if (uri.indexOf("change_ok.do")!=-1) {
+			String userId = req.getParameter("userId");
+			MemberDTO dto = dao.readMember(userId);
+			if (dto != null) {
+				dto.setUserPwd(req.getParameter("userPwd"));
+				if (dto.getEnabled() == 1) {
+					dao.changePwd(dto);
+					forward(req, resp, "/WEB-INF/views/member/changePwd_completed.jsp");
+					return;
+				}
+			}
+			String path = "/WEB-INF/views/member/changePwd.jsp";
+			forward(req, resp, path);
+		} else if (uri.indexOf("searchId.do")!=-1) {
+			forward(req, resp, "/WEB-INF/views/member/searchId.jsp");
+		} else if (uri.indexOf("searchId_ok.do")!=-1) {
+			String userName = req.getParameter("userName");
+			String tel = req.getParameter("tel");
+			MemberDTO dto = new MemberDTO();
+			
 		}
+			
 
 	}
 
