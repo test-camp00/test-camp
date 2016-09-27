@@ -3,6 +3,7 @@ package com.campground;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -309,4 +310,199 @@ public class CampgroundDAO {
   		
   		return result;
   	}
+  	
+  	// 덧글 쓰기
+  	public int insertReply(ReplyDTO dto) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		StringBuffer sb=new StringBuffer();
+		
+		try {
+			sb.append("INSERT INTO placeReply(replyNum, num, userId, content) ");
+			sb.append(" VALUES (placeReply_seq.NEXTVAL, ?, ?, ?)");
+			
+			pstmt=conn.prepareStatement(sb.toString());
+			pstmt.setInt(1, dto.getNum());
+			pstmt.setString(2, dto.getUserId());
+			pstmt.setString(3, dto.getContent());
+			
+			result=pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		} finally {
+			if(pstmt!=null)
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					
+				}
+		}
+		
+		return result;
+	}
+  	
+  	// 덧글 개수 세기
+  	public int dataCountReply(int num) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql;
+		
+		try {
+			sql="SELECT NVL(COUNT(*), 0) FROM placeReply WHERE num=?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			rs=pstmt.executeQuery();
+			if(rs.next())
+				result=rs.getInt(1);
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+				}
+			}
+				
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+		
+		return result;
+	}
+    
+  	// 덧글 목록 나열하기
+    public List<ReplyDTO> listReply(int num, int start, int end) {
+		List<ReplyDTO> list=new ArrayList<>();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		StringBuffer sb=new StringBuffer();
+		
+		try {
+			sb.append("SELECT * FROM (");
+			sb.append("    SELECT ROWNUM rnum, tb.* FROM (");
+			sb.append("        SELECT replyNum, num, i.userId, userName, content");
+			sb.append("            ,TO_CHAR(created, 'YYYY-MM-DD') created");
+			sb.append("            FROM placeReply i JOIN member m ON i.userId=m.userId  ");
+			sb.append("            WHERE num=?");
+			sb.append("	       ORDER BY replyNum DESC");
+			sb.append("    ) tb WHERE ROWNUM <= ? ");
+			sb.append(") WHERE rnum >= ? ");
+
+			pstmt = conn.prepareStatement(sb.toString());
+			pstmt.setInt(1, num);
+			pstmt.setInt(2, end);
+			pstmt.setInt(3, start);
+
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ReplyDTO dto=new ReplyDTO();
+				
+				dto.setReplyNum(rs.getInt("replyNum"));
+				dto.setNum(rs.getInt("num"));
+				dto.setUserId(rs.getString("userId"));
+				dto.setContent(rs.getString("content"));
+				dto.setCreated(rs.getString("created"));
+				
+				list.add(dto);
+			}
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		} finally {
+			if(rs!=null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+				}
+			}
+				
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+		return list;
+	}
+    
+    // 덧글 삭제하기
+    public int deleteReply(int replyNum) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql;
+		
+		sql="DELETE FROM placeReply WHERE replyNum=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, replyNum);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		} finally {
+			if(pstmt!=null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+				}
+			}
+		}		
+		return result;
+	}
+    
+    // 좋아요 입력
+    public int wanted(WantedDTO dto) {
+    	int result=0;
+    	PreparedStatement pstmt=null;
+    	String sql;
+    	
+    	try {
+    		sql="INSERT INTO placewanted(num, userId) VALUES(?, ?)";
+    		pstmt = conn.prepareStatement(sql);
+    		pstmt.setInt(1, dto.getNum());
+    		pstmt.setString(2, dto.getUserId());
+    		result=pstmt.executeUpdate();
+    		pstmt.close();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+    	
+    	
+    	return result;
+    }
+    
+    // 좋아요 카운트
+    public int wantedCount(int num) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql;
+		
+		try {
+			sql="SELECT NVL(COUNT(*), 0) FROM placewanted WHERE num = ?";
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs=pstmt.executeQuery();
+
+			if(rs.next())
+				result=rs.getInt(1);
+			rs.close();
+			pstmt.close();
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return result;
+	}
 }

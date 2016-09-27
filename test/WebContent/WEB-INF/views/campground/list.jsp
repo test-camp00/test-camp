@@ -35,12 +35,41 @@
 		padding-left:60px;
 	}
 	
-	.map_list{
-		border : 1px solid #000;
+	#sudo{
+		position:relative;
+		z-index:2;
+		top: 86px;
+	    left: 74px;
 	}
-	
-	.area_name:HOVER {
-		
+	#gangwon{
+		position:relative;
+		z-index:2;
+		top: 69px;
+   		left: 110px;
+	}
+	#chungcheong{
+		position:relative;
+		z-index:2;
+		top: 170px;
+	    left: -7px;
+	}	
+	#jeonra{
+		position:relative;
+		z-index:2;
+	    top: 270px;
+	    left: -66px;
+	}
+	#gyeongsang{
+		position:relative;
+		z-index:2;
+    	top: 215px;	
+   		left: -5px;
+	}
+	#jeju{
+		position:relative;
+		z-index:2;
+	    top: 384px;
+    	left: -146px;
 	}
 </style>
 </head>
@@ -70,7 +99,7 @@
 					<label class="schlbl">지역</label>
 					<select class="form-control" style="width: 180px;" name="searchArea">
 					<option value="">지역선택</option>
-					<option value="수도권">서울 인천 경기권</option>
+					<option value="수도권">수도권</option>
 					<option value="강원도">강원도</option>
 					<option value="충청도">충청도</option>
 					<option value="전라도">전라도</option>
@@ -88,19 +117,28 @@
 			</div>
 			</form>
 		</div>
-		<div style="text-align: center; margin: 0; padding: 0; float: right;">	
-			<div style="width: 280px; height: 420px;">
-				<img src="<%=cp%>/res/images/map_default.png"
-				 style="margin: 0 auto; display: block !important;">
-			</div>
-			<!--  <div style="background: url('<%=cp%>/res/images/map_default.png');"> -->
-			<div>
-			<a class="area_Name" href="<%=cp%>/campground/list.do?searchArea=수도권">서울 인천 경기권</a>
-			<a class="area_Name" href="<%=cp%>/campground/list.do?searchArea=강원도">강원도</a>
-			<a class="area_Name" href="<%=cp%>/campground/list.do?searchArea=충청도">충청도</a>
-			<a class="area_Name" href="<%=cp%>/campground/list.do?searchArea=전라도">전라도</a>
-			<a class="area_Name" href="<%=cp%>/campground/list.do?searchArea=경상도">경상도</a>
-			<a class="area_Name" href="<%=cp%>/campground/list.do?searchArea=제주도">제주도</a>
+		<div style="text-align: center; margin: 0; padding: 0;">	
+			<div >
+				<c:if test="${empty param.map}">
+					<img id="img" src="<%=cp%>/res/images/map_default.png"
+					 style="position:absolute; fixed; z-index:1;">
+				</c:if>
+				<c:if test="${not empty param.map}">
+					<img id="img" src="<%=cp%>/res/images/map_${param.map}.png"
+					 style="position:absolute; z-index:1;">
+				</c:if>
+			<a id="sudo"
+			 href="<%=cp%>/campground/list.do?searchArea=수도권&map=sudo">수도권</a>
+			<a id="gangwon"
+			 href="<%=cp%>/campground/list.do?searchArea=강원도&map=gangwon">강원도</a>
+			<a id="chungcheong"
+			 href="<%=cp%>/campground/list.do?searchArea=충청도&map=chungcheong">충청도</a>
+			<a id="jeonra"
+			 href="<%=cp%>/campground/list.do?searchArea=전라도&map=jeonra">전라도</a>
+			<a id="gyeongsang"
+			 href="<%=cp%>/campground/list.do?searchArea=경상도&map=gyeongsang">경상도</a>
+			<a id="jeju"
+			 href="<%=cp%>/campground/list.do?searchArea=제주도&map=jeju">제주도</a>
 			</div>
 		</div>
 	</div>

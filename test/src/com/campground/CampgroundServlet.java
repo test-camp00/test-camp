@@ -2,8 +2,10 @@ package com.campground;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -101,6 +103,7 @@ public class CampgroundServlet extends MyServlet{
 				articleUrl+="&"+params;
 			}
 			
+			
 			String paging=util.paging(current_page, total_page, listUrl);
 			req.setAttribute("list", list);
 			req.setAttribute("page", current_page);
@@ -178,12 +181,14 @@ public class CampgroundServlet extends MyServlet{
 						"&searchValue="+URLEncoder.encode(
 								searchValue, "utf-8");
 			}
-			
+
+			int wanted=dao.wantedCount(num);
 			// 포워딩 jsp에 넘길 데이터
 			req.setAttribute("dto", dto);
 			req.setAttribute("page", page);
 			// param은 el 예약어로 사용하면 안됨
 			req.setAttribute("params", params);
+			req.setAttribute("wanted", wanted);
 			
 			forward(req,resp,"/WEB-INF/views/campground/article.jsp");
 		
@@ -243,6 +248,7 @@ public class CampgroundServlet extends MyServlet{
 			
 			resp.sendRedirect(cp+"/campground/article.do?num="+num+"&page="+page);
 		} else if(uri.indexOf("delete.do")!=-1){
+			// 글삭제
 			if(info==null||!info.getUserId().equals("admin")){
 				resp.sendRedirect(cp+"/campground/list.do");
 				return;
@@ -253,7 +259,118 @@ public class CampgroundServlet extends MyServlet{
 			String page=req.getParameter("page");
 			
 			resp.sendRedirect(cp+"/campground/list.do?page="+page);
+		} else if(uri.indexOf("insertReply.do")!=-1) {
+			// 덧글 입력
+			String state="true";
+			if (info == null) { // 로그인되지 않은 경우
+				state="loginFail";
+			} else {
+				int num = Integer.parseInt(req.getParameter("num"));
+				ReplyDTO rdto = new ReplyDTO();
+				rdto.setNum(num);
+				rdto.setUserId(info.getUserId());
+				rdto.setContent(req.getParameter("content"));
+
+				int result=dao.insertReply(rdto);
+				if(result==0)
+					state="false";
+			}
+
+			StringBuffer sb=new StringBuffer();
+			sb.append("{");
+			sb.append("\"state\":"+"\""+state+"\"");
+			sb.append("}");
+			
+			resp.setContentType("text/html;charset=utf-8");
+			PrintWriter out=resp.getWriter();
+			out.println(sb.toString());
+		} else if (uri.indexOf("listReply.do") != -1) {
+			// 덧글 띄우기
+			int num = Integer.parseInt(req.getParameter("num"));
+			String pageNo = req.getParameter("pageNo");
+			int current_page = 1;
+			if (pageNo != null)
+				current_page = Integer.parseInt(pageNo);
+
+			int numPerPage = 5;
+			int total_page = 0;
+			int dataCount = 0;
+
+			dataCount = dao.dataCountReply(num);
+			total_page = util.pageCount(numPerPage, dataCount);
+			if (current_page > total_page)
+				current_page = total_page;
+
+			int start = (current_page - 1) * numPerPage + 1;
+			int end = current_page * numPerPage;
+
+			List<ReplyDTO> list = dao.listReply(num, start, end);
+
+			Iterator<ReplyDTO> it = list.iterator();
+			while (it.hasNext()) {
+				ReplyDTO dto = it.next();
+				dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
+			}
+
+			String paging = util.paging(current_page, total_page);
+
+			req.setAttribute("list", list);
+			req.setAttribute("pageNo", current_page);
+			req.setAttribute("dataCount", dataCount);
+			req.setAttribute("total_page", total_page);
+			req.setAttribute("paging", paging);
+
+			String path = "/WEB-INF/views/campground/listReply.jsp";
+			forward(req, resp, path);
+		} else if (uri.indexOf("deleteReply.do") != -1) {
+			// 덧글 삭제
+			int replyNum = Integer.parseInt(req.getParameter("replyNum"));
+			String userId=req.getParameter("userId");
+			
+			String state="false";
+			if (info == null) { // 로그인되지 않은 경우
+				state="loginFail";
+			} else if(info.getUserId().equals("admin") || info.getUserId().equals(userId)) {
+				dao.deleteReply(replyNum);
+				state="true";
+			}
+			StringBuffer sb=new StringBuffer();
+			sb.append("{");
+			sb.append("\"state\":"+"\""+state+"\"");
+			sb.append("}");
+			
+			resp.setContentType("text/html;charset=utf-8");
+			PrintWriter out=resp.getWriter();
+			out.println(sb.toString());
+		}  else if (uri.indexOf("campground_wanted.do")!=-1) {
+			// 좋아요
+			int num=Integer.parseInt(req.getParameter("num"));
+			String userId=info.getUserId();
+			String page = req.getParameter("page");
+			String searchArea = req.getParameter("searchArea");
+			String searchValue = req.getParameter("searchValue");
+			
+			if(searchArea==null){
+				searchArea="";
+			}
+			if(searchValue==null){
+				searchValue="";
+			}
+			
+			searchValue = URLDecoder.decode(searchValue, "UTF-8");
+
+			String params = "page=" + page;
+			if (searchValue.length() != 0) {
+				params += "&searchArea=" + searchArea + "&searchValue=" + URLEncoder.encode(searchValue, "utf-8");
+			}
+			
+			WantedDTO dto=new WantedDTO();
+			dto.setNum(num);
+			dto.setUserId(userId);
+			dao.wanted(dto);
+			resp.sendRedirect(cp+"/campground/article.do?"+params+"&num="+num); 
+			
 		}
-	}
+	} 
 }
 

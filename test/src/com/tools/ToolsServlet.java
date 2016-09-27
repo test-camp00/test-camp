@@ -360,7 +360,7 @@ public class ToolsServlet extends MyServlet {
 			btnKey = URLDecoder.decode(btnKey, "UTF-8");
 
 
-			String params = "page=" + page + "&btnKey=" + URLEncoder.encode(btnKey, "utf-8");
+			String params = "page=" + page;
 			if (searchValue.length() != 0) {
 				params += "&searchKey=" + searchKey + "&searchValue=" + URLEncoder.encode(searchValue, "utf-8");
 			}

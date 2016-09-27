@@ -35,10 +35,121 @@
 		padding-left:60px;
 	}
 	
-	.map_list{
-		border : 1px solid #000;
+	.replyView {
+		margin: 20px;
+	}
+	
+	.replyShow {
+		border: 2px solid #82D580;
+		margin: 10px;
+	}
+	
+	.comment {
+		border-bottom: 1px solid #eaeaea;
+		margin: 10px;
+	}
+	
+	.replyWrite {
+		margin: 10px;
+	}
+	
+	.replymemo {
+		float: left;
+	}
+	
+	.replyWrite>textarea {
+		width: 100%;
 	}
 </style>
+<script type="text/javascript">
+
+//댓글 리스트
+$(function(){
+	listPage(1);
+});
+
+function listPage(page) {
+	var url="<%=cp%>/campground/listReply.do";
+	var num="${dto.num}";
+	$.post(url, {num:num, pageNo:page}, function(data){
+		$("#listReply").html(data);
+	});
+}
+
+function sendReply() {
+	var uid="${sessionScope.member.userId}";
+	if(! uid) {
+		login();
+		return false;
+	}
+
+	var num="${dto.num}"; // 해당 게시물 번호
+	var content=$.trim($("#content").val());
+	if(! content ) {
+		alert("내용을 입력하세요 !!! ");
+		$("#content").focus();
+		return false;
+	}
+	
+	var params="num="+num;
+	params+="&content="+content;
+	
+	$.ajax({
+		type:"POST"
+		,url:"<%=cp%>/campground/insertReply.do"
+		,data:params
+		,dataType:"json"
+		,success:function(data) {
+			$("#content").val("");
+			
+			var state=data.state;
+			if(state=="true") {
+				listPage(1);
+			} else if(state=="false") {
+				alert("댓글을 등록하지 못했습니다. !!!");
+			} else if(state=="loginFail") {
+				login();
+			}
+		}
+		,error:function(e) {
+			alert(e.responseText);
+		}
+	});
+}
+
+function deleteReply(replyNum, pageNo, userId) {
+	var uid="${sessionScope.member.userId}";
+	if(! uid) {
+		login();
+		return false;
+	}
+	
+	if(confirm("게시물을 삭제하시겠습니까 ? ")) {	
+		var url="<%=cp%>/campground/deleteReply.do";
+		$.post(url, {replyNum:replyNum, userId:userId}, function(data){
+		        var state=data.state;
+				if(state=="loginFail") {
+					login();
+				} else {
+					listPage(pageNo);
+				}
+		}, "json");
+	}
+}
+
+function wanted() {
+	var uid="${sessionScope.member.userId}";
+	if(! uid) {
+		login();
+		return false;
+	}
+	
+	var url="<%=cp%>/campground/campground_wanted.do?${params}&num=${dto.num}";
+	location.href=url;
+	
+}
+
+</script>
 </head>
 <body>
 
@@ -67,8 +178,8 @@
 			</div>
 		</div>
 	</div>
-	<div style="width:1000px; height: 500px; margin:0px auto;">
-			<div class="table-responsive" style="clear: both;"> <!-- 테이블 반응형 -->
+	<div style="width:1000px; height: 350px; margin:0px auto;">
+			<div>
 	            <table class="table table-hover">
 				<colgroup>
 					<col style="width:15%">
@@ -78,7 +189,7 @@
 				</colgroup>
 	                <thead>
 	                	<tr>
-	                        <th class="text-center">캠핑장명</th>
+                        	<th class="text-center">캠핑장명</th>
 	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">
 								${dto.placeName}
 							</td> 
@@ -111,19 +222,33 @@
 							</td>
 						</tr>
 	                </tbody>
-	                <tfoot>
-	                	<tr height="45"> 
-						<td colspan="5" align="center">
-						<a class="btn btn-default"
-						href="javascript:location.href='<%=cp%>/campground/list.do?page=${page}';"
-						style="float: right;">목록</a>
-						</td>
-						</tr>
-				  </tfoot>
 	            </table>
 	        </div>
-		</div>
+        <div style="margin-left: 450px">
+        <strong>추천수</strong> <span>${wanted}</span>
+		<button type="button" class="btn btn-danger btn lg" onclick="wanted();">좋아요</button>
+		</div>	        
 	</div>
+	<div class="replyView">
+					<div class="replyShow">
+						<div id="listReply"></div>
+					</div>
+					<div style="border: 2px solid #82D580; margin: 10px;">
+						<div style="margin: 10px;">
+						<span style="color: #008100; font-weight: bold;">코멘트 입력</span>			
+						</div>
+						<div class="replyWrite">
+							<textarea id="content" required="required" rows="4"></textarea>
+						</div>
+						<div style="margin: 5px; text-align: right;">
+							<button type="button" class="btn btn-success" onclick="sendReply();">덧글쓰기</button>
+						</div>
+					</div>
+				</div>
+				<a class="btn btn-default"
+				href="javascript:location.href='<%=cp%>/campground/list.do?page=${page}';"
+				style="float: right;">목록으로</a>
+		</div>
 <div>
     <jsp:include page="/WEB-INF/views/layout/footer.jsp"></jsp:include>
 </div>

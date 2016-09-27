@@ -114,7 +114,7 @@
 	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">
 								<select class="form-control" style="width: 180px;" name="areaname">
 									<option value="">지역선택</option>
-									<option value="수도권">서울 인천 경기권</option>
+									<option value="수도권">수도권</option>
 									<option value="강원도">강원도</option>
 									<option value="충청도">충청도</option>
 									<option value="전라도">전라도</option>
