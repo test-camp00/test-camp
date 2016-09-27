@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="<%=cp%>/css/layout/layout.css"
 	type="text/css">
 
-<<<<<<< HEAD
+
 <script type="text/javascript">
 	function searchList() {
 		var f=document.searchForm;
@@ -30,17 +30,17 @@
 	}
 </script>
 	
-=======
->>>>>>> branch 'master' of https://github.com/test-camp00/test-camp.git
 
-<div>
-	<jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
+<div style="height: 205px">
+<div style=" height: 10px;  border-bottom: 50px solid #3cb371; margin-top: 0px">
+  <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
+</div>
 </div>
 
 <div class="container">
 	<div style="border-bottom: 1px solid #ccc; margin-bottom: 30px;">
 		<c:if test="${sessionScope.member.userId=='admin'}">
-			<a href="<%=cp%>/tools/tool_created.do"><button type="button"
+			<a href="<%=cp%>/tools/tool_created.do?"><button type="button"
 					class="btn btn-success" style="float: right;">등록하기</button></a>
 		</c:if>
 
@@ -104,7 +104,7 @@
 				<th>제품번호</th>
 				<th>제품명</th>
 				<th>제조사</th>
-				<th>이미지</th>
+				<th>추천수</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -114,6 +114,7 @@
 					<td class="text-center">${dto.itemCode}</td>
 					<td><a href='${articleUrl}&num=${dto.num}'>${dto.name}</a></td>
 					<td class="text-center">${dto.makesa}</td>
+					<td class="text-center">${dto.wanted}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
