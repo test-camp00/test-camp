@@ -159,8 +159,8 @@ $(function(){
 	
 	    <div class="navbar-collapse collapse" id="navbar-collapse-1" ">
 	      <ul class="nav navbar-nav" >
-	      <li  > <a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true" style="float: right; color: white; font-size: 12pt; font-style: sans-serif;" >Home</span></a></li>
-		<li ><a href="<%=cp%>/"><span class="glyphicon glyphicon-tree-conifer" aria-hidden="true" style="float: right; color: white; font-size: 12pt; font-style: sans-serif;">Camp-Site</span></a></li>
+	      <li  > <a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true" style="float: right; font-size: 12pt; font-style: sans-serif;" >Home</span></a></li>
+		<li ><a href="<%=cp%>/"><span class="glyphicon glyphicon-tree-conifer" aria-hidden="true" style="float: right;  font-size: 12pt; font-style: sans-serif;">Camp-Site</span></a></li>
 		<li ><a href="<%=cp%>/cooks/cook.do"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="float: right; color: white; font-size: 12pt; font-style: sans-serif;">Camp-Food</span></a></li>
 		<li ><a href="<%=cp%>/tools/tool.do"><span class="glyphicon glyphicon-tent"  aria-hidden="true" style="float: right; color: white; font-size: 12pt; font-style: sans-serif">Camp-Equipment</span></a></li>
 		<li ><a href="<%=cp%>/camping/HowtoCamp.do"><span class="glyphicon glyphicon-list-alt"  aria-hidden="true" style="float: right; color: white; font-size: 12pt; font-style: sans-serif;">Camp know-how</span></a></li>

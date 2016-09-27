@@ -16,7 +16,7 @@
 	type="text/css">
 <script type="text/javascript"
 	src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>
-<<<<<<< HEAD
+
 <script type="text/javascript">
 	function searchList() {
 		var f=document.searchForm;
@@ -32,8 +32,7 @@
 	}
 </script>
 	
-=======
->>>>>>> branch 'master' of https://github.com/test-camp00/test-camp.git
+
 
 <div style="height: 205px">
 <div style=" height: 10px;  border-bottom: 50px solid #3cb371; margin-top: 0px">
