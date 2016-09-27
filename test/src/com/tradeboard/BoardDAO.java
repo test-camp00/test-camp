@@ -1,4 +1,4 @@
-package com.freeboard;
+package com.tradeboard;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,10 +20,10 @@ public class BoardDAO {
 		
 		try {
 
-			sb.append("INSERT INTO freeboard(");
+			sb.append("INSERT INTO tradeboard(");
 			sb.append("  NUM, USERID, SUBJECT, CONTENT, ");
 			sb.append("  HITCOUNT, SAVEFILENAME, ORIGINALFILENAME,FILESIZE) ");
-			sb.append("  VALUES (freeboard_seq.nextval,?,?,?,?,?,?,?)");
+			sb.append("  VALUES (tradeboard_seq.nextval,?,?,?,?,?,?,?)");
 			
 			pstmt=conn.prepareStatement(sb.toString());
 			pstmt.setString(1, dto.getUserId());
@@ -52,7 +52,7 @@ public class BoardDAO {
 		ResultSet rs=null;
 		String sql;
 		try {
-			sql="SELECT NVL(COUNT(*),0) FROM FREEBOARD";
+			sql="SELECT NVL(COUNT(*),0) FROM tradeboard";
 			pstmt=conn.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			
@@ -74,11 +74,11 @@ public class BoardDAO {
 		
 		try {
 			if(searchKey.equals("created"))
-        		sql="SELECT NVL(COUNT(*), 0) FROM FREEBOARD f JOIN MEMBER m ON f.userId=m.userId WHERE TO_CHAR(created, 'YYYY-MM-DD') = ?  ";
+        		sql="SELECT NVL(COUNT(*), 0) FROM tradeboard t JOIN MEMBER m ON t.userId=m.userId WHERE TO_CHAR(created, 'YYYY-MM-DD') = ?  ";
         	else if(searchKey.equals("userName"))
-        		sql="SELECT NVL(COUNT(*), 0) FROM FREEBOARD f JOIN MEMBER m ON f.userId=m.userId WHERE INSTR(userName, ?) = 1 ";
+        		sql="SELECT NVL(COUNT(*), 0) FROM tradeboard t JOIN MEMBER m ON t.userId=m.userId WHERE INSTR(userName, ?) = 1 ";
         	else
-        		sql="SELECT NVL(COUNT(*), 0) FROM FREEBOARD f JOIN MEMBER m ON f.userId=m.userId WHERE INSTR(" + searchKey + ", ?) >= 1 ";
+        		sql="SELECT NVL(COUNT(*), 0) FROM tradeboard t JOIN MEMBER m ON t.userId=m.userId WHERE INSTR(" + searchKey + ", ?) >= 1 ";
 
             pstmt=conn.prepareStatement(sql);
             pstmt.setString(1, searchValue);
@@ -104,11 +104,11 @@ public class BoardDAO {
 		try {
 			sb.append("SELECT * FROM (");
 			sb.append("    SELECT ROWNUM rnum, tb.* FROM (");
-			sb.append("         SELECT num, f.userId, userName,");
+			sb.append("         SELECT num, t.userId, userName,");
 			sb.append("               subject, TO_CHAR(created,'yyyy-mm-dd') created,hitCount,");
 			sb.append("               saveFilename");
-			sb.append("               FROM FREEBOARD f");
-			sb.append("               JOIN MEMBER m ON f.userId=m.userId");
+			sb.append("               FROM tradeboard t");
+			sb.append("               JOIN MEMBER m ON t.userId=m.userId");
 			sb.append("               ORDER BY num DESC ");
 			sb.append("    ) tb WHERE ROWNUM <= ? ");
 			sb.append(") WHERE rnum >= ? ");
@@ -148,11 +148,11 @@ public class BoardDAO {
 		try {
 			sb.append("SELECT * FROM (");
 			sb.append("    SELECT ROWNUM rnum, tb.* FROM (");
-			sb.append("         SELECT num, f.userId, userName,");
+			sb.append("         SELECT num, t.userId, userName,");
 			sb.append("               subject, TO_CHAR(created,'yyyy-mm-dd') created,hitCount,");
 			sb.append("               saveFilename");
-			sb.append("               FROM FREEBOARD f");
-			sb.append("               JOIN MEMBER m ON f.userId=m.userId");
+			sb.append("               FROM tradeboard t");
+			sb.append("               JOIN MEMBER m ON t.userId=m.userId");
 			if(searchKey.equals("created"))
 				sb.append("           WHERE TO_CHAR(created, 'YYYY-MM-DD') = ? ");
 			else if(searchKey.equals("userName"))
@@ -201,10 +201,10 @@ public class BoardDAO {
 		StringBuffer sb=new StringBuffer();
 		
 		try {
-			sb.append("SELECT num, f.userId, userName, subject, ");
+			sb.append("SELECT num, t.userId, userName, subject, ");
 			sb.append("    content, created, hitCount,saveFilename,originalFilename,filesize ");
-			sb.append("    FROM freeboard f");
-			sb.append("    JOIN member m ON f.userId=m.userId");
+			sb.append("    FROM tradeboard t");
+			sb.append("    JOIN member m ON t.userId=m.userId");
 			sb.append("    WHERE num=?");
 			
 			pstmt=conn.prepareStatement(sb.toString());
@@ -246,8 +246,8 @@ public class BoardDAO {
             if(searchValue!=null && searchValue.length() != 0) {
                 sb.append("SELECT ROWNUM, tb.* FROM ( ");
                 sb.append("  SELECT num, subject  ");
-    			sb.append("               FROM freeboard f");
-    			sb.append("               JOIN member m ON f.userId=m.userId");
+    			sb.append("               FROM tradeboard t");
+    			sb.append("               JOIN member m ON t.userId=m.userId");
     			if(searchKey.equals("created"))
     				sb.append("           WHERE (TO_CHAR(created, 'YYYY-MM-DD') = ? ) AND ");
     			else if(searchKey.equals("userName"))
@@ -265,7 +265,7 @@ public class BoardDAO {
 			} else {
 				
 				sb.append("SELECT ROWNUM, tb.* FROM ( ");
-                sb.append("     SELECT num, subject FROM freeboard f JOIN member m ON f.userId=m.userId ");                
+                sb.append("     SELECT num, subject FROM tradeboard t JOIN member m ON t.userId=m.userId ");                
                 sb.append("     WHERE num > ? ");
                 sb.append("         ORDER BY num ASC ");
                 sb.append("      ) tb WHERE ROWNUM=1 ");            
@@ -302,7 +302,7 @@ public class BoardDAO {
             if(searchValue!=null && searchValue.length() != 0) {
                 sb.append("SELECT ROWNUM, tb.* FROM ( ");
                 sb.append("  SELECT num, subject  ");
-    			sb.append("               FROM freeboard f");
+    			sb.append("               FROM tradeboard t");
     			sb.append("               JOIN member m ON f.userId=m.userId");
     			if(searchKey.equals("created"))
     				sb.append("           WHERE (TO_CHAR(created, 'YYYY-MM-DD') = ? ) AND ");
@@ -323,7 +323,7 @@ public class BoardDAO {
 			} else {
 				
 				sb.append("SELECT ROWNUM, tb.* FROM ( ");
-                sb.append("     SELECT num, subject FROM freeboard f JOIN member m ON f.userId=m.userId ");                
+                sb.append("     SELECT num, subject FROM tradeboard t JOIN member m ON t.userId=m.userId ");                
                 sb.append("     WHERE num < ? ");
                 sb.append("         ORDER BY num DESC ");
                 sb.append("      ) tb WHERE ROWNUM=1 ");            
@@ -355,7 +355,7 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		String sql;
 		
-		sql = "UPDATE freeboard SET hitCount=hitCount+1 WHERE num=?";
+		sql = "UPDATE tradeboard SET hitCount=hitCount+1 WHERE num=?";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -375,7 +375,7 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		String sql;
 		
-		sql="DELETE FROM freeboard WHERE num=?";
+		sql="DELETE FROM tradeboard WHERE num=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, num);
@@ -400,7 +400,7 @@ public class BoardDAO {
 		String sql;
 		
 		try {
-			sql="UPDATE freeboard SET subject=?, content=?, saveFilename=?, originalFilename=?, filesize=? ";
+			sql="UPDATE tradeboard SET subject=?, content=?, saveFilename=?, originalFilename=?, filesize=? ";
 			sql+= " WHERE num=?";
 			
 			pstmt = conn.prepareStatement(sql);
@@ -435,9 +435,9 @@ public class BoardDAO {
 		
 		try {
 
-			sb.append("INSERT INTO FREEREPLY(");
+			sb.append("INSERT INTO TRADEREPLY(");
 			sb.append("  REPLYNUM, NUM, USERID, CONTENT)");
-			sb.append("  VALUES (FREEREPLY_SEQ.NEXTVAL,?,?,?)");
+			sb.append("  VALUES (TRADEREPLY_SEQ.NEXTVAL,?,?,?)");
 			
 			pstmt=conn.prepareStatement(sb.toString());
 			pstmt.setInt(1, dto.getNum());
@@ -468,7 +468,7 @@ public class BoardDAO {
 		
 		try {
 			sb.append(" SELECT REPLYNUM, NUM, USERID, CONTENT, CREATED");
-			sb.append("    FROM FREEREPLY");
+			sb.append("    FROM TRADEREPLY");
 			sb.append("    WHERE num=?");
 			sb.append("    ORDER BY CREATED ");
 			
@@ -501,7 +501,7 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		String sql;
 		
-		sql="DELETE FROM freeReply WHERE replyNum=?";
+		sql="DELETE FROM TRADEREPLY WHERE replyNum=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, replyNum);

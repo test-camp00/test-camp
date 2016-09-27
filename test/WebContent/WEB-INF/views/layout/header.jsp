@@ -5,6 +5,22 @@
 <%
    String cp = request.getContextPath();
 %>
+<script type="text/javascript">
+//엔터 처리
+$(function(){
+	   $("input").not($(":button")).keypress(function (evt) {
+	        if (evt.keyCode == 13) {
+	            var fields = $(this).parents('form:eq(0),body').find('button,input,textarea,select');
+	            var index = fields.index(this);
+	            if ( index > -1 && ( index + 1 ) < fields.length ) {
+	                fields.eq( index + 1 ).focus();
+	            }
+	            return false;
+	        }
+	     });
+});
+</script>
+
 <br>
 <div style="border-top:2px solid black; height: 100px; background-color: black; border-bottom: 4px solid #82D580;">
 <a href="<%=cp%>/" style="text-decoration: none;">
@@ -58,7 +74,7 @@
 		<li><a href="<%=cp%>/tools/tool.do"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="float: right">캠핑용품</span></a></li>
 		<li><a href="#"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="float: right">캠핑방법</span></a></li>
 		<li><a href="<%=cp%>/free_board/board_free.do"><span class="glyphicon glyphicon-send" aria-hidden="true" style="float: right">자유게시판</span></a></li>
-		<li><a href="<%=cp%>/board/board_trade.do"><span class="glyphicon glyphicon-transfer" aria-hidden="true" style="float: right">거래게시판</span></a></li>
+		<li><a href="<%=cp%>/trade_board/board_trade.do"><span class="glyphicon glyphicon-transfer" aria-hidden="true" style="float: right">거래게시판</span></a></li>
 		<li><a href="<%=cp%>/gallery/gallery_list.do"><span class="glyphicon glyphicon-camera" aria-hidden="true" style="float: right">갤러리</span></a></li>
 	
 

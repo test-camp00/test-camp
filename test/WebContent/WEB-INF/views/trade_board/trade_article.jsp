@@ -2,6 +2,7 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%
 	String cp=request.getContextPath();
 	request.setCharacterEncoding("UTF-8");
@@ -21,7 +22,9 @@
 <link rel="stylesheet" href="<%=cp%>/bootstrap/css/bootstrap-theme.min.css" type="text/css"/>
 <link rel="stylesheet" href="<%=cp%>/css/layout/layout.css" type="text/css">
 <link rel="stylesheet" href="<%=cp%>/jquery/css/smoothness/jquery-ui.min.css" type="text/css"/>
+
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 <style type="text/css">
 .table th, .table td {
     font-weight: normal;
@@ -47,12 +50,11 @@ function deleteBoard(num) {
 	
 	    var page = "${page}";
 	    var params = "num="+num+"&page="+page;
-	    var url = "<%=cp%>/free_board/delete.do?" + params;
+	    var url = "<%=cp%>/trade_board/delete.do?" + params;
 
 	    if(confirm("위 자료를 삭제 하시 겠습니까 ? "))
 	    	location.href=url;
 	</c:if>    
-	
 	<c:if test="${sessionScope.member.userId!='admin' && sessionScope.member.userId!=dto.userId}">
 	    alert("게시물을 삭제할 수  없습니다.");
 	</c:if>
@@ -69,16 +71,18 @@ function sendReply(){
 		return;
 	}
 		
-	var url = "<%=cp%>/free_board/createReply.do";
+	var url = "<%=cp%>/trade_board/createReply.do";
 	f.action=url;
 	f.submit();
 }	
 
 function deleteReply(rNum) {
-	
-	var url = "<%=cp%>/free_board/deleteReply.do?replyNum="+rNum+"&num=${dto.num}&${params}";
-	if(confirm("위 자료를 삭제 하시 겠습니까 ? "))
-    	location.href=url;
+	<c:if test="${sessionScope.member.userId=='admin' || sessionScope.member.userId==dto.userId}">
+
+		var url = "<%=cp%>/trade_board/deleteReply.do?replyNum="+rNum+"&num=${dto.num}&${params}";
+		if(confirm("위 자료를 삭제 하시 겠습니까 ? "))
+	    	location.href=url;
+	</c:if> 
 }
 </script>
 </head>
@@ -92,11 +96,11 @@ function deleteReply(rNum) {
 	 <div class="bodyFrame col-sm-10"  style="float:none;margin:0px; padding:0px;width:1140px">
 
 	    <div class="body-title">
-	          <h3><span class="glyphicon glyphicon-book"></span> 자유게시판 </h3>
+	          <h3><span class="glyphicon glyphicon-book"></span> 거래게시판 </h3>
 	    </div>
 	    
 	    <div class="alert alert-info">
-	        <i class="glyphicon glyphicon-info-sign"></i> 유저분들께서 마음껏 소통하세요 ^^
+	        <i class="glyphicon glyphicon-info-sign"></i> 유저분들이 가지고 있는 물품을 서로 판매하는 공간입니다.
 	    </div>
 	    
 	    <div class="table-responsive" style="clear: both;">
@@ -118,6 +122,18 @@ function deleteReply(rNum) {
 	                          ${dto.created} <i></i>조회 : ${dto.hitCount}
 	                         </td>
 	                     </tr>
+	                   
+	                   <c:if test="${not empty dto.saveFilename}">
+	                     <c:if test="${dto.saveFilename.lastIndexOf('.JPG')!=-1 || dto.saveFilename.lastIndexOf('.jpg')!=-1 || dto.saveFilename.lastIndexOf('.PNG')!=-1 || dto.saveFilename.lastIndexOf('.png')!=-1}">
+		                     <tr style="border-bottom:none;">
+	                             <td colspan="2">
+	                                    <img src="<%=cp%>/uploads/trade/${dto.saveFilename}" style="max-width:100%; height:auto; resize:both;">
+	                             </td>
+	                         </tr>
+	                      </c:if>
+	                   </c:if>
+	                   	 
+                         
 	                     <tr>
 	                         <td colspan="2" style="height: 230px;">
 	                              ${dto.content}
@@ -127,7 +143,7 @@ function deleteReply(rNum) {
 	                      <td colspan="2">
 		                        <span style="display: inline-block; min-width: 45px;">첨부</span> :
 		                        <c:if test="${not empty dto.saveFilename}">
-		                            <a href="<%=cp%>/free_board/download.do?num=${dto.num}">${dto.originalFilename}</a>
+		                            <a href="<%=cp%>/trade_board/download.do?num=${dto.num}">${dto.originalFilename}</a>
 		                            (<fmt:formatNumber value="${dto.filesize/1024}" pattern="0.00"/> KByte)
 		                        </c:if>
 		                  </td>
@@ -136,7 +152,7 @@ function deleteReply(rNum) {
 	                         <td colspan="2">
 	                              <span style="display: inline-block; min-width: 45px;">이전글</span> :
 							      <c:if test="${not empty preReadDto }">
-								      <a href="<%=cp%>/free_board/article.do?${params}&num=${preReadDto.num}">${preReadDto.subject}</a>
+								      <a href="<%=cp%>/trade_board/article.do?${params}&num=${preReadDto.num}">${preReadDto.subject}</a>
 							       </c:if>
 	                         </td>
 	                     </tr>
@@ -144,7 +160,7 @@ function deleteReply(rNum) {
 	                         <td colspan="2" style="border-bottom: #d5d5d5 solid 1px;">
 	                              <span style="display: inline-block; min-width: 45px;">다음글</span> :
 							      <c:if test="${not empty nextReadDto }">
-								      <a href="<%=cp%>/free_board/article.do?${params}&num=${nextReadDto.num}">${nextReadDto.subject}</a>
+								      <a href="<%=cp%>/trade_board/article.do?${params}&num=${nextReadDto.num}">${nextReadDto.subject}</a>
 							       </c:if>
 	                         </td>
 	                     </tr>                                          
@@ -154,7 +170,7 @@ function deleteReply(rNum) {
 	                		<td>
 		                        <c:if test="${sessionScope.member.userId==dto.userId}">		                		
 	                		        <button type="button" class="btn btn-default btn-sm wbtn"
-	                		                    onclick="javascript:location.href='<%=cp%>/free_board/update.do?num=${dto.num}&page=${page}';">수정</button>
+	                		                    onclick="javascript:location.href='<%=cp%>/trade_board/update.do?num=${dto.num}&page=${page}';">수정</button>
 	                		    </c:if>
 		                        <c:if test="${sessionScope.member.userId==dto.userId || sessionScope.member.userId=='admin'}">    
 	                		        <button type="button" class="btn btn-default btn-sm wbtn" onclick="deleteBoard('${dto.num}');">삭제</button>
@@ -162,7 +178,7 @@ function deleteReply(rNum) {
 	                		</td>
 	                		<td align="right">
 	                		    <button type="button" class="btn btn-default btn-sm wbtn"
-	                		                 onclick="javascript:location.href='<%=cp%>/free_board/board_free.do?${params}';"> 목록으로 </button>
+	                		                 onclick="javascript:location.href='<%=cp%>/trade_board/board_trade.do?${params}';"> 목록으로 </button>
 	                		</td>
 	                	</tr>
 	                </tfoot>

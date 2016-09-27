@@ -17,7 +17,6 @@
     text-decoration: none;
 }
 
-<<<<<<< HEAD
 #page-header .logo{
     color: #2984ff;
     filter: mask(color=red) shadow(direction=135) chroma(color=red);
@@ -105,9 +104,7 @@
 }
 
 .adminBodyFrame{
-=======
 .adminBodyFrame {
->>>>>>> branch 'master' of https://github.com/test-camp00/test-camp
 	min-height: 600px;
 	padding-top: 80px;
 }

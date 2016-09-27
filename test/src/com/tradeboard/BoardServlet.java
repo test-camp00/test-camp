@@ -1,4 +1,4 @@
-package com.freeboard;
+package com.tradeboard;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,7 +21,7 @@ import com.util.FileManager;
 import com.util.MyServlet;
 import com.util.MyUtil;
 
-@WebServlet("/free_board/*")
+@WebServlet("/trade_board/*")
 public class BoardServlet  extends MyServlet{
 	private static final long serialVersionUID = 1L;
 
@@ -36,7 +36,7 @@ public class BoardServlet  extends MyServlet{
 		SessionInfo info=(SessionInfo)session.getAttribute("member");
 		
 		String root=session.getServletContext().getRealPath("/");
-		String pathname=root+File.separator+"uploads"+File.separator+"free";
+		String pathname=root+File.separator+"uploads"+File.separator+"trade";
 		File f=new File(pathname);
 		if(! f.exists())
 			f.mkdirs();
@@ -50,7 +50,7 @@ public class BoardServlet  extends MyServlet{
 		MyUtil util=new MyUtil();
 				
 		
-		if(uri.indexOf("board_free.do")!=-1) {//리스트
+		if(uri.indexOf("board_trade.do")!=-1) {//리스트
 			// 글 리스트
             String page=req.getParameter("page");
             int current_page=1;
@@ -112,8 +112,8 @@ public class BoardServlet  extends MyServlet{
             }
             
             // 페이징 처리
-            String listUrl=cp+"/free_board/board_free.do";
-            String articleUrl=cp+"/free_board/article.do?page="+current_page;
+            String listUrl=cp+"/trade_board/board_trade.do";
+            String articleUrl=cp+"/trade_board/article.do?page="+current_page;
             if(params.length()!=0) {
                listUrl+="?"+params;
                articleUrl+="&"+params;
@@ -129,16 +129,14 @@ public class BoardServlet  extends MyServlet{
             req.setAttribute("paging", paging);
             req.setAttribute("articleUrl", articleUrl);	
             
-        
-            
-			forward(req, resp, "/WEB-INF/views/free_board/free_list.jsp");
+			forward(req, resp, "/WEB-INF/views/trade_board/trade_list.jsp");
 			
-		}else if(uri.indexOf("board_free_create.do")!=-1){
+		}else if(uri.indexOf("board_trade_created.do")!=-1){
 			
 			req.setAttribute("mode", "created");
-			forward(req, resp, "/WEB-INF/views/free_board/free_create.jsp");
+			forward(req, resp, "/WEB-INF/views/trade_board/trade_create.jsp");
 			
-		}else if(uri.indexOf("board_free_created_ok")!=-1){
+		}else if(uri.indexOf("board_trade_created_ok")!=-1){
 			
 			String encType="UTF-8";
 			int maxFilesize=5*1024*1024;
@@ -159,8 +157,7 @@ public class BoardServlet  extends MyServlet{
 				dto.setOriginalFilename(mreq.getOriginalFileName("upload"));
 				dto.setFilesize(file.length());
 			}
-			
-			req.setAttribute("mode2", "created");
+						
 			
 			int result = dao.insertBoard(dto);
 			if (result != 1) {
@@ -174,9 +171,9 @@ public class BoardServlet  extends MyServlet{
 			sb.append("<b>" + dto.getUserId() + "</b>님 게시글 등록이 성공 하셨습니다.<br>");
 
 			req.setAttribute("message", sb.toString());
+			req.setAttribute("mode2", "created");
 			
-			forward(req, resp, "/WEB-INF/views/free_board/complete.jsp");
-			
+			forward(req, resp, "/WEB-INF/views/trade_board/complete.jsp");
 			
 		}else if(uri.indexOf("article.do")!=-1){
 			int num=Integer.parseInt(req.getParameter("num"));
@@ -198,7 +195,7 @@ public class BoardServlet  extends MyServlet{
 			BoardDTO dto=dao.readBoard(num);
 			
 			if(dto==null) { // 게시물이 없으면 다시 리스트로
-					resp.sendRedirect(cp+"/free_board/board_free.do?page="+page);
+					resp.sendRedirect(cp+"/board_board/board_free.do?page="+page);
 					return;
 			}
 			
@@ -231,7 +228,7 @@ public class BoardServlet  extends MyServlet{
 			req.setAttribute("preReadDto", preReadDto);
 			req.setAttribute("nextReadDto", nextReadDto);
 						
-			forward(req, resp, "/WEB-INF/views/free_board/free_article.jsp");
+			forward(req, resp, "/WEB-INF/views/trade_board/trade_article.jsp");
 
 		}else if(uri.indexOf("download.do")!=-1){
 			
@@ -260,16 +257,16 @@ public class BoardServlet  extends MyServlet{
 			BoardDTO dto=dao.readBoard(num);
 			
 			if(dto==null){
-				resp.sendRedirect(cp+"/free_board/board_free.do?page="+page);
+				resp.sendRedirect(cp+"/trade_board/board_trade.do?page="+page);
 				return;
 			}
 			
 			if (!dto.getUserId().equals(info.getUserId()) && !info.getUserId().equals("admin")) {
-				resp.sendRedirect(cp+"/free_board/board_free.do?page="+page);
+				resp.sendRedirect(cp+"/trade_board/board_trade.do?page="+page);
 				return;
 			}
 			dao.deleteBoard(num);
-			resp.sendRedirect(cp+"/free_board/board_free.do?page="+page);
+			resp.sendRedirect(cp+"/trade_board/board_trade.do?page="+page);
 			
 		}else if(uri.indexOf("update.do") != -1){//수정폼
 			String page=req.getParameter("page");
@@ -277,12 +274,12 @@ public class BoardServlet  extends MyServlet{
 			BoardDTO dto = dao.readBoard(num);
 			
 			if(dto==null){
-				resp.sendRedirect(cp+"/free_board/board_free.do?page="+page);
+				resp.sendRedirect(cp+"/trade_board/board_trade.do?page="+page);
 				return;
 			}
 			
-			if (!dto.getUserId().equals(info.getUserId())) {
-				resp.sendRedirect(cp+"/free_board/board_free.do?page="+page);
+			if (!dto.getUserId().equals(info.getUserId()) && !info.getUserId().equals("admin")) {
+				resp.sendRedirect(cp+"/trade_board/board_trade.do?page="+page);
 				return;
 			}
 			
@@ -290,7 +287,7 @@ public class BoardServlet  extends MyServlet{
 			req.setAttribute("page", page);
 			req.setAttribute("mode", "update");
 
-			String path = "/WEB-INF/views/free_board/free_create.jsp";
+			String path = "/WEB-INF/views/trade_board/trade_create.jsp";
 			forward(req, resp, path);
 		}else if (uri.indexOf("update_ok.do") != -1) {
 			// 수정 완료
@@ -325,7 +322,6 @@ public class BoardServlet  extends MyServlet{
 		    	dto.setOriginalFilename(mreq.getOriginalFileName("upload"));
 			    dto.setFilesize(mreq.getFile("upload").length());
 			}
-			
 			req.setAttribute("mode2", "update");
 			req.setAttribute("page", page);
 			
@@ -333,7 +329,7 @@ public class BoardServlet  extends MyServlet{
 			if (result != 1) {
 				String message = "게시글 수정이 실패 했습니다.";
 				req.setAttribute("message", message);
-				forward(req, resp, "/WEB-INF/views/free_board/complete.jsp");
+				forward(req, resp, "/WEB-INF/views/trade_board/complete.jsp");
 				return;
 			}
 
@@ -342,7 +338,7 @@ public class BoardServlet  extends MyServlet{
 
 			req.setAttribute("message", sb.toString());
 			
-			forward(req, resp, "/WEB-INF/views/free_board/complete.jsp");
+			forward(req, resp, "/WEB-INF/views/trade_board/complete.jsp");
 			
 		}else if(uri.indexOf("deleteFile.do")!=-1) {
 			int num=Integer.parseInt(req.getParameter("num"));
@@ -350,12 +346,12 @@ public class BoardServlet  extends MyServlet{
 			
 			BoardDTO dto=dao.readBoard(num);
 			if(dto==null) {
-				resp.sendRedirect(cp+"/free_board/board_free.do?page="+page);
+				resp.sendRedirect(cp+"/trade_board/list.do?page="+page);
 				return;
 			}
 			
 			if(info==null || ! info.getUserId().equals(dto.getUserId())) {
-				resp.sendRedirect(cp+"/free_board/board_free.do?page="+page);
+				resp.sendRedirect(cp+"/trade_board/list.do?page="+page);
 				return;
 			}
 			
@@ -370,7 +366,7 @@ public class BoardServlet  extends MyServlet{
 			req.setAttribute("page", page);
 			
 			req.setAttribute("mode", "update");
-			String path="/WEB-INF/views/free_board/free_create.jsp";
+			String path="/WEB-INF/views/trade_board/trade_create.jsp";
 			forward(req, resp, path);			
 			
 		}else if(uri.indexOf("createReply.do")!=-1){
@@ -406,7 +402,7 @@ public class BoardServlet  extends MyServlet{
 			
 		
 						
-			resp.sendRedirect(cp+"/free_board/article.do?"+params+"&num="+num);
+			resp.sendRedirect(cp+"/trade_board/article.do?"+params+"&num="+num);
 			
 		}else if(uri.indexOf("deleteReply.do")!=-1){
 			int replyNum=Integer.parseInt(req.getParameter("replyNum"));
@@ -434,7 +430,7 @@ public class BoardServlet  extends MyServlet{
 			
 			// JSP로 전달할 속성
 						
-			resp.sendRedirect(cp+"/free_board/article.do?"+params+"&num="+num);	
+			resp.sendRedirect(cp+"/trade_board/article.do?"+params+"&num="+num);
 		}
 	}
 }
