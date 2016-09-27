@@ -1,5 +1,7 @@
 @CHARSET "UTF-8";
-
+@import url(http://fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
 * {
 	margin:0px;
 	padding:0px;

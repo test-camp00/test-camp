@@ -103,8 +103,8 @@ function replyOnetoone(num) {
 </head>
 <body>
 
-<div style="height: 205px">
-<div style=" height: 10px;  border-bottom: 50px solid #3cb371; margin-top: 0px">
+<div style="height: 215px">
+<div style=" height: 10px;  border-bottom: 60px solid #3cb371; margin-top: 0px">
   <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
 </div>
 </div>
@@ -113,18 +113,18 @@ function replyOnetoone(num) {
     <div class="bodyFrame col-sm-10"  style="float:none; margin-left: auto; margin-right: auto;">
         
 	    <div class="body-title">
-	          <h3><span class="glyphicon glyphicon-pencil"></span> 질문과 답변<small>Guest Book</small></h3>
+	          <h3><span class="glyphicon glyphicon-pencil"></span><font style="font-family: 'Hanna'"> 질문과 답변</font></h3>
 	    </div>
 	    
 	    <div class="alert alert-info" style="background-color: #515151; border-color: #515151;">
-	         <font color="white" size="3pt"><i class="glyphicon glyphicon-info-sign" ></i> 질문을 남겨주세요.</font>
+	         <font color="white" size="3pt"style="font-family: 'Hanna'" ><i class="glyphicon glyphicon-info-sign" ></i> 질문을 남겨주세요.</font>
 	    </div>
 	
 	    <div class="guest">
 	    <c:if test="${sessionScope.member.userId!='admin'}">
 	            <div class="guest-write">
 	               <div style="clear: both;">
-	           	       <div style="float: left;"><span style="font-weight: bold;">질문하기</span><span> - 타인을 비방하거나 개인정보를 유출하는 글의 게시를 삼가 주세요.</span></div>
+	           	       <div style="float: left;"><span style="font-weight: bold; font-family: 'Hanna'; font-size: 15pt">질문하기</span><span> - 타인을 비방하거나 개인정보를 유출하는 글의 게시를 삼가 주세요.</span></div>
 	           	       <div style="float: right; text-align: right;"></div>
 	               </div>
 	             
@@ -133,14 +133,14 @@ function replyOnetoone(num) {
 	                   <textarea name="subject" id="subject"  rows="3" required="required" style="height: 30px; width: 900px" placeholder="제목을 입력해주세요."></textarea><br>
 	                       <textarea name="content" id="content" rows="3" required="required"style="height: 70px; width: 900px"placeholder="내용을 입력해주세요." ></textarea><br>
 	                      
-					        <input type="checkbox" name="secret" value="1" ${dto.secret==1 ? "checked='checked' ":"" }> 비밀글
+					        <input type="checkbox" name="secret" value="1" ${dto.secret==1 ? "checked='checked' ":"" }><font style="font-family: 'Hanna'" size="3pt"> 비밀글</font>
 					     
 	      
 	                      
 	                    </form>
 	               </div>
 	               <div style="text-align: right; padding-top: 10px;">
-	                   <button type="button" class="btn btn-primary btn-sm" onclick="sendOnetoone();"> 등록하기 <span class="glyphicon glyphicon-ok"></span></button>
+	                   <button type="button" class="btn btn-primary btn-sm" onclick="sendOnetoone();"><font style="font-family: 'Hanna'" size="3pt">등록하기 </font><span class="glyphicon glyphicon-ok"></span></button>
 	               </div>           
 	           </div>
 	       </c:if>

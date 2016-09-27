@@ -25,8 +25,8 @@
 </head>
 <body>
 
-<div style="height: 205px">
-<div style=" height: 10px;  border-bottom: 50px solid #3cb371; margin-top: 0px">
+<div style="height: 215px">
+<div style=" height: 10px;  border-bottom: 60px solid #3cb371; margin-top: 0px">
   <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
 </div>
 </div>
