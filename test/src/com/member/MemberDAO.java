@@ -92,5 +92,53 @@ public class MemberDAO {
 		return result;
 	}
 	
+	public int updateMember(MemberDTO dto) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		StringBuffer sb=new StringBuffer();
+		
+		try {
+			sb.append("UPDATE MEMBERDETAIL SET birth=?, tel=?, addr=?, email=? ");
+			sb.append("   WHERE userId=?");
+			pstmt=conn.prepareStatement(sb.toString());
+			
+			pstmt.setString(1, dto.getBirth());
+			pstmt.setString(2, dto.getTel());
+			pstmt.setString(3, dto.getAddr());
+			pstmt.setString(4, dto.getEmail());
+			pstmt.setString(5, dto.getUserId());
+			
+			result=pstmt.executeUpdate();
+			pstmt.close();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return result;
+	}
+	
+	public int deleteMember(MemberDTO dto) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		StringBuffer sb=new StringBuffer();
+		
+		try {
+			sb.append("UPDATE MEMBER SET enabled=0 ");
+			sb.append("   WHERE userId=?");
+			pstmt=conn.prepareStatement(sb.toString());
+			
+			pstmt.setString(1, dto.getUserId());
+			
+			result=pstmt.executeUpdate();
+			pstmt.close();
+			
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return result;
+	}
+	
 
 }

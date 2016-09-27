@@ -91,6 +91,71 @@ public class MemberServlet extends MyServlet {
 			req.setAttribute("message", sb.toString());
 
 			forward(req, resp, "/WEB-INF/views/member/complete.jsp");
+		} else if (uri.indexOf("memberInfo.do") != -1) {
+			forward(req, resp, "/WEB-INF/views/member/memberInfo.jsp");
+		} else if (uri.indexOf("infoChange.do") != -1) {
+			String userId = req.getParameter("userId");
+			String userPwd = req.getParameter("userPwd1");
+
+			MemberDTO dto = dao.readMember(userId);
+			if (dto != null) {
+				if (userPwd.equals(dto.getUserPwd()) && dto.getEnabled() == 1) {
+					
+					req.setAttribute("mode", "update");
+					req.setAttribute("dto", dto);
+					String path = "/WEB-INF/views/member/member.jsp";
+					forward(req, resp, path);
+					return;
+				}
+			}
+			String msg = "패스워드가 일치하지 않습니다.";
+			req.setAttribute("message", msg);
+
+			String path = "/WEB-INF/views/member/memberInfo.jsp";
+			forward(req, resp, path);
+			
+		} else if (uri.indexOf("update_ok.do")!=-1) {
+			MemberDTO dto = new MemberDTO();
+			dto.setBirth(req.getParameter("birth"));
+			dto.setEmail(req.getParameter("email"));
+			dto.setAddr(req.getParameter("addr"));
+			dto.setTel(req.getParameter("tel"));
+			dto.setUserId(req.getParameter("userId"));
+			
+			dao.updateMember(dto);
+			resp.sendRedirect(cp);
+
+		} else if (uri.indexOf("delete.do")!=-1) {
+			String userId = req.getParameter("userId");
+			String userPwd = req.getParameter("userPwd3");
+
+			MemberDTO dto = dao.readMember(userId);
+			if (dto != null) {
+				if (userPwd.equals(dto.getUserPwd()) && dto.getEnabled() == 1) {
+					forward(req, resp, "/WEB-INF/views/member/delete.jsp");
+					return;
+				}
+			}
+
+			String path = "/WEB-INF/views/member/memberInfo.jsp";
+			forward(req, resp, path);
+			
+		} else if (uri.indexOf("delete_ok.do")!=-1) {
+			String userId = req.getParameter("userId");
+			String userPwd = req.getParameter("userPwd");
+			
+			MemberDTO dto = dao.readMember(userId);
+			if (dto != null) {
+				if (userPwd.equals(dto.getUserPwd()) && dto.getEnabled() == 1) {
+					dao.deleteMember(dto);
+					forward(req, resp, "/WEB-INF/views/member/delete_completed.jsp");
+					return;
+				}
+			}
+
+			String path = "/WEB-INF/views/member/delete.jsp";
+			forward(req, resp, path);
+			
 		}
 
 	}
