@@ -14,8 +14,7 @@
 	href="<%=cp%>/bootstrap/css/bootstrap-theme.min.css" type="text/css" />
 <link rel="stylesheet" href="<%=cp%>/css/layout/layout.css"
 	type="text/css">
-<script type="text/javascript"
-	src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>
+
 
 <script type="text/javascript">
 	function searchList() {
@@ -31,7 +30,6 @@
 		
 	}
 </script>
-	
 
 
 <div style="height: 205px">
@@ -43,7 +41,7 @@
 <div class="container">
 	<div style="border-bottom: 1px solid #ccc; margin-bottom: 30px;">
 		<c:if test="${sessionScope.member.userId=='admin'}">
-			<a href="<%=cp%>/tools/tool_created.do"><button type="button"
+			<a href="<%=cp%>/tools/tool_created.do?"><button type="button"
 					class="btn btn-success" style="float: right;">등록하기</button></a>
 		</c:if>
 
@@ -107,7 +105,7 @@
 				<th>제품번호</th>
 				<th>제품명</th>
 				<th>제조사</th>
-				<th>이미지</th>
+				<th>추천수</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -117,6 +115,7 @@
 					<td class="text-center">${dto.itemCode}</td>
 					<td><a href='${articleUrl}&num=${dto.num}'>${dto.name}</a></td>
 					<td class="text-center">${dto.makesa}</td>
+					<td class="text-center">${dto.wanted}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

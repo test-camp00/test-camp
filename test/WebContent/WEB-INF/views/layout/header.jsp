@@ -7,7 +7,7 @@
 %>
 
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
@@ -159,15 +159,16 @@ $(function(){
 	
 	    <div class="navbar-collapse collapse" id="navbar-collapse-1" ">
 	      <ul class="nav navbar-nav" >
+
 	      <li  > <a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true" style="float: right; font-size: 12pt; font-style: sans-serif;" >Home</span></a></li>
-		<li ><a href="<%=cp%>/"><span class="glyphicon glyphicon-tree-conifer" aria-hidden="true" style="float: right;  font-size: 12pt; font-style: sans-serif;">Camp-Site</span></a></li>
+		<li ><a href="<%=cp%>/campground/list.do"><span class="glyphicon glyphicon-tree-conifer" aria-hidden="true" style="float: right;  font-size: 12pt; font-style: sans-serif;">Camp-Site</span></a></li>
 		<li ><a href="<%=cp%>/cooks/cook.do"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="float: right; color: white; font-size: 12pt; font-style: sans-serif;">Camp-Food</span></a></li>
 		<li ><a href="<%=cp%>/tools/tool.do"><span class="glyphicon glyphicon-tent"  aria-hidden="true" style="float: right; color: white; font-size: 12pt; font-style: sans-serif">Camp-Equipment</span></a></li>
 		<li ><a href="<%=cp%>/camping/HowtoCamp.do"><span class="glyphicon glyphicon-list-alt"  aria-hidden="true" style="float: right; color: white; font-size: 12pt; font-style: sans-serif;">Camp know-how</span></a></li>
 		<li ><a href="#"><span class="glyphicon glyphicon-bullhorn"  aria-hidden="true" style="float: right; color: white; font-size: 12pt; font-style: sans-serif;">FreeBoard</span></a></li>
 		<li ><a href="#"><span class="glyphicon glyphicon-transfer"  aria-hidden="true" style="float: right; color: white; font-size: 12pt; font-style: sans-serif;">TradBoard</span></a></li>
 		<li ><a href="#"><span class="glyphicon glyphicon-camera"  aria-hidden="true" style="float: right; color: white; font-size: 12pt; font-style: sans-serif;">Gallery</span></a></li>
-	
+
 		
 	      </ul>
 	     
