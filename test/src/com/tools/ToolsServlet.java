@@ -176,7 +176,7 @@ public class ToolsServlet extends MyServlet {
 				return;
 			}
 
-			dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
+			// dto.setContent(dto.getContent().replaceAll("\n", "<br>"));
 
 			int wanted = dao.wantedCount(num);
 			
