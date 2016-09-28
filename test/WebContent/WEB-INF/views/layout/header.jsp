@@ -173,8 +173,13 @@ $(function(){
 </div>
 
   
-      <div class="container" ><div style=" position: absolute; top: 100px; left: 390px">
-      <a href="<%=cp%>/" style="text-decoration: none;" >
+     
+     
+        <div class="container" >
+         <img src="<%=cp%>/images/cam1.JPG" width="90" height="85;" style="position: absolute; top:70px; left:400px ">
+        <div style=" position: absolute; top: 100px; left: 500px">
+      <a href="<%=cp%>/" style="text-decoration: none; float: left" >
+    
     <!--   <span style="vertical-align: middle; height: 70; position: relative; top:20px; color: #3cb371; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 36px; font-weight: bold;">GREEN CAMPING</span> -->
 <span style="vertical-align: middle; height: 70; position: relative; top:20px; color: #3cb371; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 39px; font-weight: bold;">G</span>
 <span style="vertical-align: middle; height: 70; position: relative; top:20px; color: #515151; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 39px; font-weight: bold;">R</span>
