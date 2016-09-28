@@ -271,66 +271,9 @@ function wanted() {
 			<div class="contentBox">${dto.memo2}</div>
 		</div>
 	<div style="width:1000px; height: 500px; margin:20px auto;">
-		<div id="map" style="width:100%;height:100%;"></div>
-		<script>
-		// 주소에 따른 좌표 정보 가져오기 
-			function getNaverGeocode($addr, $cId, $cSecret) {
-			 //$addr = urlencode($addr);
-			 $addr=encodeURI($addr);
-			 $url = "https://openapi.naver.com/v1/map/geocode?encoding=utf-8&coord=latlng&output=json&query=".$addr;
-	
-			 $headers = new Array();
-			 $headers[0] = "GET https://openapi.naver.com/v1/map/geocode?".$addr;
-			 $headers[1] ="Host: openapi.naver.com";
-			 $headers[2] ="Accept: */*";
-			 $headers[3] ="Content-Type: application/json";
-			 $headers[4] ="X-Naver-Client-Id: ".$cId;
-			 $headers[5] ="X-Naver-Client-Secret: ".$cSecret;
-			 $headers[6] ="Connection: Close";
-	
-			 $result = getHttp($url, $headers);
-	
-			 return $result;
-			}
-
-			
-			// curl 통신 하기
-			function getHttp($url, $headers=null){
-				 $ch = curl_init();
-		
-				 curl_setopt($ch, CURLOPT_URL, $url);
-				 curl_setopt($ch, CURLOPT_HEADER, false);
-				 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-				 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-				 $result = curl_exec($ch);
-				 curl_close($ch);
-		
-				 return $result;
-			}
-			
-			// $addr="${dto.addr}";
-			$addr="제주특별자치도 제주시 광양9길 10 제주시청";
-			$cId="NOmF6r8jcAzGunBfUNAa";
-			$cSecret="Ie8Ng5aUgW";
-			
-			$geo = getNaverGeocode($addr, $cId, $cSecret);
-			$data = json_decode($geo,1);
-	
-			$map_x_point = $data['result']['items'][0]['point']['x'];
-			$map_y_point = $data['result']['items'][0]['point']['y'];
-	
-			
-		
-			var map = new naver.maps.Map('map', {
-			    center: new naver.maps.LatLng(37.3595704, 127.105399),
-			    zoom: 11
-			});
-			
-			var marker = new naver.maps.Marker({
-			    position: new naver.maps.LatLng(37.3595704, 127.105399),
-			    map: map
-			});		
-		</script>
+		<iframe width="100%" height="100%" style="border:0"
+		 src="https://www.google.com/maps/embed/v1/place?q=${dto.addr}
+		 &key=AIzaSyD7gpmswTDxSDJmW7xlH0gUHJxhSTi46Sg"></iframe>
 	</div>
 	<div class="replyView">
 		<div class="replyShow">
