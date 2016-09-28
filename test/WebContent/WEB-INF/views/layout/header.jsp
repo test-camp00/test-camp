@@ -24,7 +24,7 @@
 .collapse>ul.nav >li> a{
 color : #BDBDBD;
 float: right;
- font-size: 14pt;
+ font-size: 12pt;
  text-decoration: none;
 
 }
@@ -69,7 +69,7 @@ text-align:center;
     display: block;
    
     line-height: 10px;
-    background: #515151;
+    background: #4C4C4C;
  
     font-weight: bold;
 
@@ -84,14 +84,13 @@ text-align:center;
     filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
     background-repeat: repeat-x;
     border-radius: 8px;
+  
     -webkit-box-shadow: inset 0 8px 8px #4C4C4C,0 8px 8px #4C4C4C;
     box-shadow: inset 20px 20px 10px #4C4C4C;
 }
 .navbar-default{
     background-color: #515151;
     border:none;
-
-
 }
 
     </style>  
@@ -138,7 +137,7 @@ $(function(){
         
         <ul class="menu"style="float:right" >
            <li>
-              <a href="<%=cp%>/onetoone/onetoone.do"><font style="color:white; font-weight:bold; font-size: 18pt;font-family:'Nanum Pen Script' " >고객센터&nbsp;&nbsp;</font></a>
+              <a href="<%=cp%>/onetoone/onetoone.do" style="text-decoration: none"><font style="color:white; font-weight:bold; font-size: 18pt;font-family:'Nanum Pen Script' " >고객센터&nbsp;&nbsp;</font></a>
  
                 <ul class="sub">
                     <li><a href="<%=cp%>/onetoone/onetoone.do"><font style="font-family:'Nanum Pen Script'; font-size: 17pt;">질문과 답변</font></a></li>
@@ -153,36 +152,41 @@ $(function(){
   
 </div>
 </div>
-        <br>
-      <div class="container">
-      <a href="<%=cp%>/" style="text-decoration: none;">
+
+  
+      <div class="container" ><div style=" position: absolute; top: 100px; left: 390px">
+      <a href="<%=cp%>/" style="text-decoration: none;" >
     <!--   <span style="vertical-align: middle; height: 70; position: relative; top:20px; color: #3cb371; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 36px; font-weight: bold;">GREEN CAMPING</span> -->
-<span style="vertical-align: middle; height: 70; position: relative; top:20px; color: #3cb371; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 36px; font-weight: bold;">G</span>
-<span style="vertical-align: middle; height: 70; position: relative; top:20px; color: ##515151; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 36px; font-weight: bold;">R</span>
-<span style="vertical-align: middle; height: 70; position: relative; top:20px; color: #3cb371; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 36px; font-weight: bold;">E</span>
-<span style="vertical-align: middle; height: 70; position: relative; top:20px;  color: ##515151; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 36px; font-weight: bold;">E</span>
-<span style="vertical-align: middle; height: 70; position: relative; top:20px; color: #3cb371; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 36px; font-weight: bold;">N</span>
+<span style="vertical-align: middle; height: 70; position: relative; top:20px; color: #3cb371; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 39px; font-weight: bold;">G</span>
+<span style="vertical-align: middle; height: 70; position: relative; top:20px; color: #515151; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 39px; font-weight: bold;">R</span>
+<span style="vertical-align: middle; height: 70; position: relative; top:20px; color: #3cb371; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 39px; font-weight: bold;">E</span>
+<span style="vertical-align: middle; height: 70; position: relative; top:20px;  color: #515151; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 39px; font-weight: bold;">E</span>
+<span style="vertical-align: middle; height: 70; position: relative; top:20px; color: #3cb371; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 39px; font-weight: bold;">N</span>
 &nbsp;&nbsp;&nbsp;
-<span style="vertical-align: middle; height: 70; position: relative; top:20px; color: ##515151; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 36px; font-weight: bold;">C</span>
-<span style="vertical-align: middle; height: 70; position: relative; top:20px; color: #3cb371; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 36px; font-weight: bold;">A</span>
-<span style="vertical-align: middle; height: 70; position: relative; top:20px;  color: ##515151; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 36px; font-weight: bold;">M</span>
-<span style="vertical-align: middle; height: 70; position: relative; top:20px; color: #3cb371; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 36px; font-weight: bold;">P</span>
-<span style="vertical-align: middle; height: 70; position: relative; top:20px;  color: ##515151; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 36px; font-weight: bold;">I</span>
-<span style="vertical-align: middle; height: 70; position: relative; top:20px; color: #3cb371; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 36px; font-weight: bold;">N</span>
-<span style="vertical-align: middle; height: 70; position: relative; top:20px;  color: ##515151; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 36px; font-weight: bold;">G</span>
+<span style="vertical-align: middle; height: 70; position: relative; top:20px; color: #515151; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 39px; font-weight: bold;">C</span>
+<span style="vertical-align: middle; height: 70; position: relative; top:20px; color: #3cb371; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 39px; font-weight: bold;">A</span>
+<span style="vertical-align: middle; height: 70; position: relative; top:20px;  color:#515151; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 39px; font-weight: bold;">M</span>
+<span style="vertical-align: middle; height: 70; position: relative; top:20px; color: #3cb371; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 39px; font-weight: bold;">P</span>
+<span style="vertical-align: middle; height: 70; position: relative; top:20px;  color:#515151; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 39px; font-weight: bold;">I</span>
+<span style="vertical-align: middle; height: 70; position: relative; top:20px; color: #3cb371; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 39px; font-weight: bold;">N</span>
+<span style="vertical-align: middle; height: 70; position: relative; top:20px;  color: #515151; filter: mask(color=red) shadow(direction=135) chroma(color=red);font-style: italic; font-family: 'Hanna'; font-size: 39px; font-weight: bold;">G</span>
 
 </a>
+</div>
  <form class="navbar-form navbar-right" role="search">
 		<div class="form-group">
 <br>
-		  <input type="text" class="form-control" placeholder="Search" >
+		  <input type="text" class="form-control" placeholder="Search" style="border: 3px solid #3cb371; position: absolute; top:110px;left: 1300px">
 	
-		<button type="submit" class="btn btn-default" >검색</button>
+		<button type="submit" class="btn btn-default" style="background-color:#3cb371; height: 33px; border: none; position: absolute; top: 110px; left: 1500px"><font style="color:white; font-family: 'Hanna'; font-size: 10pt" >검색</font></button>
 		</div>
 	      </form>  
 	      </div>
 
- <div style="background-color:#515151; height: 55px;   box-shadow: inset 20px 20px 10px #4C4C4C;  ">
+
+
+  <div style="border-bottom:4px solid #3cb371 ;width:100%;position: absolute; top: 156px;"></div>
+ <div style="position: absolute;background-color:#515151; height: 55px;   box-shadow: inset 20px 20px 10px #4C4C4C; top: 160px; width: 100%">
 <div class="container">
 	<nav class="navbar navbar-default" role="navigation">
 	  <div class="container-fluid">
@@ -201,16 +205,19 @@ $(function(){
 	    <div class="navbar-collapse collapse" id="navbar-collapse-1" ">
 	      <ul class="nav navbar-nav" >
 
-	      <li> <a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true" ><font style="font-family:'Jeju Hallasan';">Home</font></span></a></li>
-		<li ><a href="<%=cp%>/campground/list.do"><span class="glyphicon glyphicon-tree-conifer" aria-hidden="true"><font style="font-family:'Jeju Hallasan';">캠핑장</font></span></a></li>
-		<li ><a href="<%=cp%>/cooks/cook.do"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" ><font style="font-family:'Jeju Hallasan';">캠핑 요리</font></span></a></li>
-		<li ><a href="<%=cp%>/tools/tool.do"><span class="glyphicon glyphicon-tent"  aria-hidden="true"><font style="font-family:'Jeju Hallasan';">캠핑 장비</font></span></a></li>
-		<li ><a href="<%=cp%>/camping/HowtoCamp.do"><span class="glyphicon glyphicon-list-alt"  aria-hidden="true" ><font style="font-family:'Jeju Hallasan';">캠핑 노하우</font></span></a></li>
-		<li ><a href="#"><span class="glyphicon glyphicon-bullhorn"  aria-hidden="true" ><font style="font-family:'Jeju Hallasan';">자유게시판</font></span></a></li>
-		<li ><a href="#"><span class="glyphicon glyphicon-transfer"  aria-hidden="true"><font style="font-family:'Jeju Hallasan';">거래게시판</font></span></a></li>
-		<li ><a href="#"><span class="glyphicon glyphicon-camera"  aria-hidden="true" ><font style="font-family:'Jeju Hallasan';">갤러리</font></span></a></li>
 
-		
+	
+		   <li >  <a href="<%=cp%>/" style="font-family:'Hanna'; width: 130px"><span class="glyphicon glyphicon-home" aria-hidden="true" style="float: left; " ></span>Home</a></li>
+		<li><a href="<%=cp%>/campground/list.do"style="font-family:'Hanna'; width: 130px"><span class="glyphicon glyphicon-tree-conifer" aria-hidden="true" style="float: left"></span>캠핑장</a></li>
+		<li><a href="<%=cp%>/cooks/cook.do"style="font-family:'Hanna'; width: 130px"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="float: left"></span>캠핑요리</a></li>
+		<li><a href="<%=cp%>/tools/tool.do"style="font-family:'Hanna'; width: 130px"><span class="glyphicon glyphicon-wrench" aria-hidden="true" style="float: left"></span>캠핑용품</a></li>
+		<li><a href="<%=cp%>/camping/HowtoCamp.do"style="font-family:'Hanna'; width: 130px"><span class="glyphicon glyphicon-leaf" aria-hidden="true" style="float: left"></span>캠핑노하우</a></li>
+		<li><a href="#"style="font-family:'Hanna'; width: 130px"><span class="glyphicon glyphicon-send" aria-hidden="true" style="float: left"></span>자유게시판</a></li>
+		<li><a href="#"style="font-family:'Hanna'; width: 130px"><span class="glyphicon glyphicon-transfer" aria-hidden="true" style="float: left"></span>거래게시판</a></li>
+		<li><a href="#"style="font-family:'Hanna'; width: 130px"><span class="glyphicon glyphicon-camera" aria-hidden="true" style="float: left"></span>갤러리</a></li>
+	
+	 
+	  
 	      </ul>
 	     
 	      

@@ -21,7 +21,7 @@
 <style type="text/css">
 .line_bottom {border-bottom:2px solid black; text-align: center; }
 .line_bottom2 {border-bottom:1px solid #ccc; text-align: center;}
-.div_width {width:830px;}
+
 </style>
 
 </head>
@@ -31,8 +31,6 @@
   <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
 </div>
 </div>
-
-
   
 <div class="container">
 

@@ -111,6 +111,7 @@ public class FAQServlet  extends MyServlet{
 						req.setAttribute("articleUrl", articleUrl);
 						
 			forward(req, resp, "/WEB-INF/views/FAQ/list.jsp");
+			
 		} else if (uri.indexOf("created.do") != -1) {
 			// 글쓰기 폼
 			if (info == null) { // 로그인되지 않은 경우

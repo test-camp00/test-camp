@@ -92,23 +92,25 @@ function searchList() {
      <div style="border-bottom: 1px solid #ccc; margin-bottom: 30px;">
 		<h3>캠핑요리</h3>
 	</div>
-	 <div>
+
+	  <br>
 	<div class="row">
-		<div class="col-md-12 col-md-4"><input type="image" src="<%=cp%>/images/food1.jpg" onMouseOver="this.style.opacity='.6'; this.style.filter='alpha(opacity=60)'" onMouseOut="this.style.opacity='1.0'; this.style.filter='alpha(opacity=100)'" style="width: 100%; height: 200px;"
+		<div class="col-md-12 col-md-4"  >
+<input type="image" src="<%=cp%>/images/food1.jpg" onMouseOver="this.style.opacity='.6'; this.style.filter='alpha(opacity=60)'" onMouseOut="this.style.opacity='1.0'; this.style.filter='alpha(opacity=100)'" style="width: 100%; height: 200px;border-radius:10px 20px 5px;border:5px solid #4C4C4C "alt="..."></div>
+		<div class="col-md-12 col-md-4" ><input type="image" src="<%=cp%>/images/food2.jpg" onMouseOver="this.style.opacity='.6'; this.style.filter='alpha(opacity=60)'" onMouseOut="this.style.opacity='1.0'; this.style.filter='alpha(opacity=100)'"  style="width: 100%; height: 200px;border-radius:10px 20px 5px; border:5px solid #4C4C4C "
 					alt="..."></div>
-		<div class="col-md-12 col-md-4"><input type="image" src="<%=cp%>/images/food2.jpg" onMouseOver="this.style.opacity='.6'; this.style.filter='alpha(opacity=60)'" onMouseOut="this.style.opacity='1.0'; this.style.filter='alpha(opacity=100)'"  style="width: 100%; height: 200px;"
-					alt="..."></div>
-		<div class="col-md-12 col-md-4"><input type="image" src="<%=cp%>/images/food3.jpg" onMouseOver="this.style.opacity='.6'; this.style.filter='alpha(opacity=60)'" onMouseOut="this.style.opacity='1.0'; this.style.filter='alpha(opacity=100)'" style="width: 100%; height: 200px;"
+		<div class="col-md-12 col-md-4"><input type="image" src="<%=cp%>/images/food3.jpg" onMouseOver="this.style.opacity='.6'; this.style.filter='alpha(opacity=60)'" onMouseOut="this.style.opacity='1.0'; this.style.filter='alpha(opacity=100)'" style="width: 100%; height: 200px;border-radius:10px 20px 5px;border:5px solid #4C4C4C"
 					alt="..."></div></div>
-	<div class="row" style="margin-top: 15px;">
-		<div class="col-md-12 col-md-4"><input type="image" src="<%=cp%>/images/food4.jpg" onMouseOver="this.style.opacity='.6'; this.style.filter='alpha(opacity=60)'" onMouseOut="this.style.opacity='1.0'; this.style.filter='alpha(opacity=100)'" style="width: 100%; height: 200px;"
+					<br>
+	<div class="row">
+		<div class="col-md-12 col-md-4"><input type="image" src="<%=cp%>/images/food4.jpg" onMouseOver="this.style.opacity='.6'; this.style.filter='alpha(opacity=60)'" onMouseOut="this.style.opacity='1.0'; this.style.filter='alpha(opacity=100)'" style="width: 100%; height: 200px;border-radius:10px 20px 5px;border:5px solid #4C4C4C"
 					alt="..."></div>
-		<div class="col-md-12 col-md-4"><input type="image" src="<%=cp%>/images/food5.jpg" onMouseOver="this.style.opacity='.6'; this.style.filter='alpha(opacity=60)'" onMouseOut="this.style.opacity='1.0'; this.style.filter='alpha(opacity=100)'" style="width: 100%; height: 200px;"
+		<div class="col-md-12 col-md-4"><input type="image" src="<%=cp%>/images/food5.jpg" onMouseOver="this.style.opacity='.6'; this.style.filter='alpha(opacity=60)'" onMouseOut="this.style.opacity='1.0'; this.style.filter='alpha(opacity=100)'" style="width: 100%; height: 200px;border-radius:10px 20px 5px;border:5px solid #4C4C4C"
 					alt="..."></div>
-		<div class="col-md-12 col-md-4"><input type="image" src="<%=cp%>/images/food6.jpg" onMouseOver="this.style.opacity='.6'; this.style.filter='alpha(opacity=60)'" onMouseOut="this.style.opacity='1.0'; this.style.filter='alpha(opacity=100)'" style="width: 100%; height: 200px;"
+		<div class="col-md-12 col-md-4"><input type="image" src="<%=cp%>/images/food6.jpg" onMouseOver="this.style.opacity='.6'; this.style.filter='alpha(opacity=60)'" onMouseOut="this.style.opacity='1.0'; this.style.filter='alpha(opacity=100)'" style="width: 100%; height: 200px;border-radius:10px 20px 5px;border:5px solid #4C4C4C"
 					alt="..."></div></div>			
 					
-	</div>
+
 	
 <table style="width: 100%; margin: 0px auto; margin-top: 30px; border-spacing: 0px; padding-bottom: 30px;">
    <tr height="35">
