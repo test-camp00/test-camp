@@ -147,6 +147,7 @@
 					onclick="searchList();">
 					<span class="glyphicon glyphicon-search"></span> 검색
 				</button>
+				<input type="hidden" name="itembtn" value="${btnKey}">
 			</form>
 		</div>
 	</div>

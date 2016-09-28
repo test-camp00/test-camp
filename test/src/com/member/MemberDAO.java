@@ -162,4 +162,72 @@ public class MemberDAO {
 		return result;
 		
 	} 
+	
+	public MemberDTO searchId(String userName, String tel) {
+		MemberDTO dto=null;
+		PreparedStatement pstmt=null;
+		StringBuffer sb=new StringBuffer();
+		ResultSet rs=null;
+		
+		try {
+			sb.append("SELECT m.userid, enabled");
+			sb.append(" FROM member m");
+			sb.append(" JOIN memberdetail md ON m.userId=md.userId");
+			sb.append(" WHERE userName=? AND tel=?");
+			pstmt=conn.prepareStatement(sb.toString());
+			
+			pstmt.setString(1, userName);
+			pstmt.setString(2, tel);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				dto=new MemberDTO();
+				dto.setUserId(rs.getString("userId"));
+				dto.setEnabled(rs.getInt("enabled"));
+			}
+			rs.close();
+			pstmt.close();
+			pstmt=null;
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return dto;
+		
+	}
+	
+	public MemberDTO searchPwd(String userId, String userName, String tel) {
+		MemberDTO dto=null;
+		PreparedStatement pstmt=null;
+		StringBuffer sb=new StringBuffer();
+		ResultSet rs=null;
+		
+		try {
+			sb.append("SELECT m.userid, enabled");
+			sb.append(" FROM member m");
+			sb.append(" JOIN memberdetail md ON m.userId=md.userId");
+			sb.append(" WHERE m.userId=? AND userName=? AND tel=?");
+			pstmt=conn.prepareStatement(sb.toString());
+			
+			pstmt.setString(1, userId);
+			pstmt.setString(2, userName);
+			pstmt.setString(3, tel);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				dto=new MemberDTO();
+				dto.setUserId(rs.getString("userId"));
+				dto.setEnabled(rs.getInt("enabled"));
+			}
+			rs.close();
+			pstmt.close();
+			pstmt=null;
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		return dto;
+		
+	}
+	
+	
+	
 }

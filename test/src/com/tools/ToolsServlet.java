@@ -52,7 +52,7 @@ public class ToolsServlet extends MyServlet {
 				current_page = Integer.parseInt(page);
 
 			String btnKey = req.getParameter("itembtn");
-			if (btnKey == null) {
+			if (btnKey == null || btnKey.equals("")) {
 				btnKey = "ลูฦฎ";
 			}
 
@@ -360,7 +360,7 @@ public class ToolsServlet extends MyServlet {
 			btnKey = URLDecoder.decode(btnKey, "UTF-8");
 
 
-			String params = "page=" + page;
+			String params = "page=" + page + "&btnKey=" + URLEncoder.encode(btnKey, "utf-8");
 			if (searchValue.length() != 0) {
 				params += "&searchKey=" + searchKey + "&searchValue=" + URLEncoder.encode(searchValue, "utf-8");
 			}

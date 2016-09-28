@@ -201,9 +201,63 @@ public class MemberServlet extends MyServlet {
 		} else if (uri.indexOf("searchId_ok.do")!=-1) {
 			String userName = req.getParameter("userName");
 			String tel = req.getParameter("tel");
-			MemberDTO dto = new MemberDTO();
+			MemberDTO dto=dao.searchId(userName, tel);
+			String message=null;
+			if(dto!=null) {
+				if(dto.getEnabled()==0) {
+					message="입력하신 정보에 따른 아이디는 탈퇴한 계정입니다.";
+				} else {
+					message="입력하신 정보에 따른 아이디는 " + dto.getUserId()+" 입니다.";
+				}
+				req.setAttribute("message", message);
+				forward(req, resp, "/WEB-INF/views/member/searchId_completed.jsp");
+			}
+			message="입력하신 정보에 따른 아이디가 존재하지 않습니다.";
+			req.setAttribute("message", message);
+			forward(req, resp, "/WEB-INF/views/member/searchId_completed.jsp");
+		} else if(uri.indexOf("searchPwd.do")!=-1) {
+			forward(req, resp, "/WEB-INF/views/member/searchPwd.jsp");
+		} else if(uri.indexOf("searchPwd_ok.do")!=-1) {
+			String userId = req.getParameter("userId");
+			String userName = req.getParameter("userName");
+			String tel = req.getParameter("tel");
+			
+			MemberDTO dto=dao.searchPwd(userId, userName, tel);
+			String message=null;
+			String state="nochange";
+			if(dto!=null) {
+				if(dto.getEnabled()==0) {
+					message="입력하신 정보에 따른 아이디는 탈퇴한 계정입니다.";
+				} else {
+					message="비밀번호 보호를 위하여 " + dto.getUserId()+"님의 비밀번호를 재설정합니다.";
+					state="change";
+				}
+				req.setAttribute("message", message);
+				req.setAttribute("state", state);
+				req.setAttribute("userId", userId);
+				forward(req, resp, "/WEB-INF/views/member/searchPwd_completed.jsp");
+			}
+			message="입력하신 정보에 따른 아이디가 존재하지 않습니다.";
+			req.setAttribute("message", message);
+			req.setAttribute("state", state);
+			forward(req, resp, "/WEB-INF/views/member/searchPwd_completed.jsp");
+			
+		} else if(uri.indexOf("serachPwd_change.do")!=-1) {
+			String userId = req.getParameter("userId");
+			MemberDTO dto = dao.readMember(userId);
+			if (dto != null) {
+				dto.setUserPwd(req.getParameter("userPwd"));
+				if (dto.getEnabled() == 1) {
+					dao.changePwd(dto);
+					forward(req, resp, "/WEB-INF/views/member/changePwd_completed.jsp");
+					return;
+				}
+			}
+			String path = "/WEB-INF/views/member/searchPwd.jsp";
+			forward(req, resp, path);
 			
 		}
+		
 			
 
 	}
