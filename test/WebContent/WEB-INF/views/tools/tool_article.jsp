@@ -283,7 +283,6 @@ function wanted() {
 					</li>
 					<li><strong>제품번호</strong> <span>${dto.itemCode}</span></li>
 					<li><strong>제조사</strong> <span>${dto.makesa}</span></li>
-					<li><strong>가격대</strong> <span>30,000</span></li>
 					<li><strong>추천수</strong> <span>${wanted}</span></li>
 				</ul>
 			</div>

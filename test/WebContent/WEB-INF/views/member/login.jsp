@@ -65,8 +65,9 @@ function sendLogin() {
 								type="button" onclick="sendLogin();"> 로그인 </button>
 							
 						</form>
-						<a href="javascript:;" class="forget" data-toggle="modal"
-							data-target=".forget-modal">비밀번호를 잊어버리셨나요?</a>
+						<div style="text-align: center"><a href="<%=cp%>/member/searchId.do">아이디를 잊어버리셨나요?</a></div>
+						<div style="text-align: center"><a href="<%=cp%>/member/searchPwd.do">비밀번호를 잊어버리셨나요?</a></div>
+						
 						<hr>
 						<div style="margin-top:10px; text-align: center;">${message}</div>
 					</div>

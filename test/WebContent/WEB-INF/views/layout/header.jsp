@@ -19,18 +19,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script type="text/javascript">
 //엔터 처리
-$(function(){
-	   $("input").not($(":button")).keypress(function (evt) {
-	        if (evt.keyCode == 13) {
-	            var fields = $(this).parents('form:eq(0),body').find('button,input,textarea,select');
-	            var index = fields.index(this);
-	            if ( index > -1 && ( index + 1 ) < fields.length ) {
-	                fields.eq( index + 1 ).focus();
-	            }
-	            return false;
-	        }
-	     });
-});
+
 </script>
   
  <style media="screen">
@@ -146,10 +135,13 @@ $(function(){
                 <a href="<%=cp%>/member/member.do"><font style="color: white; font-weight:bold; font-size: 18pt;font-family:'Nanum Pen Script' " >회원가입&nbsp;&nbsp;</font></a>
             </c:if>
             <c:if test="${not empty sessionScope.member}">
-            <c:if test="${sessionScope.member.userId=='admin'}">
-                    <a href="<%=cp%>/admin/main.do"><font style="color: #515151; font-weight:bold; font-size: 18pt;font-family:'Nanum Pen Script' " >관리자</font></a> <i></i>
+
+                <a href="<%=cp%>/member/memberInfo.do"><span style="color:white;">${sessionScope.member.userName}</span>님 <i></i></a>
+                <c:if test="${sessionScope.member.userId=='admin'}">
+                    <a href="<%=cp%>/admin/main.do"><font style="color: orange; font-weight:bold; font-size: 12pt; " >관리자</font></a> <i></i>
+
                 </c:if>
-                <span style="color:white;">${sessionScope.member.userName}</span>님&nbsp;&nbsp;&nbsp;&nbsp; 
+            
                 
                 <a href="<%=cp%>/member/logout.do"><font style="color: white; font-weight:bold; font-size: 18pt; font-family:'Nanum Pen Script'" >로그아웃&nbsp;&nbsp;</font></a>
             </c:if>

@@ -152,8 +152,12 @@
 					onclick="searchList();">
 					<span class="glyphicon glyphicon-search"></span> 검색
 				</button>
+
 				<button type="button" class="btn btn-default btn-sm wbtn"
 				onclick="javascript:location.href='<%=cp%>/tools/tool.do';">새로고침</button>
+
+				<input type="hidden" name="itembtn" value="${btnKey}">
+
 			</form>
 		</div>
 

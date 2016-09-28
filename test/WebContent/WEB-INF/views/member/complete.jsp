@@ -1,9 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%
-	String cp = request.getContextPath();
+	String cp=request.getContextPath();
 	request.setCharacterEncoding("utf-8");
 %>
 
@@ -16,20 +16,39 @@
 <link rel="stylesheet" href="<%=cp%>/css/layout/login.css"
 	type="text/css">
 
+
+
+
+<style type="text/css">
+
+.confrimSelf {
+	border: 1px solid #e9e9e9;
+    padding: 19px 9px 9px;
+}
+
+</style>
+
 <div style="height: 215px">
 <div style=" height: 10px;  border-bottom: 60px solid #3cb371; margin-top: 0px">
   <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
 </div>
 </div>
 <div class="container">
-	<div class="well well-lg">
-		<p class="lead text-center">${message}</p>
-		<p style="max-width: 400px; margin: 0 auto;">
+	<div style="border-bottom: 1px solid #ccc; margin-bottom: 30px;">
+		<h3>회원가입 성공</h3>
+	</div>
+	<form method="post" name="deleteOkForm">
+	<div class="confrimSelf">
+		<h4 style="text-align: center;">회원가입에 성공하였습니다.</h4>
+		<p style="padding: 20px 0; text-align: center;">${message}</p>
+		<div
+			style="padding-top: 20px; border: 1px solid #e9e9e9; background-color: #fafafa; padding-bottom: 18px; text-align: center">
 			<button type="button" class="btn btn-primary btn-lg btn-block"
 				onclick="javascript:location.href='<%=cp%>/';">메인화면으로 이동
 				&raquo;</button>
-		</p>
+		</div>
 	</div>
+	</form>
 </div>
 
 
