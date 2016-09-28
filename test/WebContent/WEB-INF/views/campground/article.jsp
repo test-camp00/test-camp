@@ -20,19 +20,91 @@
 <link rel="stylesheet" href="<%=cp%>/bootstrap/css/bootstrap-theme.min.css" type="text/css"/>
 <link rel="stylesheet" href="<%=cp%>/css/layout/layout.css" type="text/css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=NOmF6r8jcAzGunBfUNAa"></script>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <style type="text/css">
-	 .schlbl {
-	 	width: 150px;
-	 	line-height : 30px;
-	 	font-size: 20px;
-	 	float: left;
+	.topView {
+		width: 1170px;
+		height: 400px;
+		border-bottom: 2px solid #f0f0f0;
 	}
-	.schcase {
+	
+	.imgView {
 		width: 500px;
-		height: 220px;
-		border:1px solid #666666;
-		padding-top: 60px;
-		padding-left:60px;
+		float: left;
+		margin-right: 30px;
+	}
+	
+	.infoView {
+		width: 500px;
+		float: left;
+	}
+	
+	.imgView img {
+		width: 500px;
+		height: 370px;
+	}
+	
+	.Largeimg {
+		width: 500px;
+		height: 370px;
+	}
+	
+	.infoView>ul {
+		list-style: none;
+	}
+	
+	.infoView>ul>li {
+		margin-top: 30px;
+		width: 100%;
+		border-bottom: 1px solid #f0f0f0;
+		padding-bottom: 16px;
+	}
+	
+	.infoView>ul>li>strong {
+		margin-right: 50px;
+		width: 100px;
+		display: block;
+		float: left;
+		padding: 3px 0;
+		line-height: 25px;
+	}
+	
+	.infobtnView {
+		margin-top : 230px;
+		width: 200px;
+		float: left;
+	}
+	
+	.infobtnView>ul {
+		list-style: none;
+	}
+	
+	.infobtnView>ul>li {
+		margin: 10px;
+		width: 100%;
+		padding-bottom: 16px;
+	}
+	
+	.infobtnView>ul>li>button {
+		width: 100%;
+	}
+	
+	.midleView {
+		width: 1170px;
+		min-height: 250px;
+		border-bottom: 2px solid #f0f0f0;
+	}
+	
+	.contentBox {
+		margin: 30px;
+	}
+	
+	.bottomView {
+		clear: both;
+		width: 1170px;
+		margin-top: 10px;
+		border-top: 2px solid #f0f0f0;
 	}
 	
 	.replyView {
@@ -146,8 +218,10 @@ function wanted() {
 	
 	var url="<%=cp%>/campground/campground_wanted.do?${params}&num=${dto.num}";
 	location.href=url;
-	
 }
+
+
+
 
 </script>
 </head>
@@ -169,86 +243,58 @@ function wanted() {
 			onclick="javascript:location.href='<%=cp%>/campground/update.do?num=${dto.num}';">
 			수정하기</button>
 	    </c:if>
-		<h3>캠핑장 상세 정보</h3>
+		<h3>${dto.placeName}</h3>
 	</div>
-	<div style="width:1000px; height: 500px; margin:0px auto;">
-		<div>
-			<div style="width: 1000px; height: 487px; border: 1px solid #ccc; ">
-				지도 자리
+			<div class="topView">
+			<div class="imgView">
+				<div class="Largeimg">
+					<c:if test="${dto.filename!=null}">
+						<img src="<%=cp%>/uploads/campground/${dto.filename}" alt="">
+					</c:if>
+				</div>
+			</div>
+			<div class="infoView">
+				<ul>
+					<li><strong>캠핑장명</strong> <span
+						style="color: #00968d; font-size: 16px; font-weight: bold;">${dto.placeName}</span>
+					</li>
+					<li><strong>지역명</strong> <span>${dto.areaName}</span></li>
+					<li><strong>주  소</strong> <span>${dto.addr}</span></li>
+					<li><strong>연락처</strong> <span>${dto.tel}</span></li>
+					<li><strong>추천수</strong> <span>${wanted}</span>&nbsp;&nbsp;&nbsp;
+					<button type="button" class="btn btn-danger btn lg" onclick="wanted();">좋아요</button></li>
+				</ul>
+			</div>
+
+		</div>
+		<div class="midleView">
+			<div class="contentBox">${dto.memo2}</div>
+		</div>
+	<div style="width:1000px; height: 500px; margin:20px auto;">
+		<iframe width="100%" height="100%" style="border:0"
+		 src="https://www.google.com/maps/embed/v1/place?q=${dto.addr}
+		 &key=AIzaSyD7gpmswTDxSDJmW7xlH0gUHJxhSTi46Sg"></iframe>
+	</div>
+	<div class="replyView">
+		<div class="replyShow">
+			<div id="listReply"></div>
+		</div>
+		<div style="border: 2px solid #82D580; margin: 10px;">
+			<div style="margin: 10px;">
+				<span style="color: #008100; font-weight: bold;">코멘트 입력</span>			
+			</div>
+			<div class="replyWrite">
+				<textarea id="content" required="required" rows="4"></textarea>
+			</div>
+			<div style="margin: 5px; text-align: right;">
+				<button type="button" class="btn btn-success" onclick="sendReply();">덧글쓰기</button>
 			</div>
 		</div>
 	</div>
-	<div style="width:1000px; height: 350px; margin:0px auto;">
-			<div>
-	            <table class="table table-hover">
-				<colgroup>
-					<col style="width:15%">
-					<col style="width:30%">
-					<col style="width:15%">
-					<col style="width:20%">
-				</colgroup>
-	                <thead>
-	                	<tr>
-                        	<th class="text-center">캠핑장명</th>
-	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">
-								${dto.placeName}
-							</td> 
-							<th class="text-center">지 역 명</th>
-	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">
-								${dto.areaName}
-							</td> 
-	                    </tr>
-	                    <tr>
-	                        <th class="text-center">주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소</th>
-	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">
-								${dto.addr}
-							</td>
-							<th class="text-center">연 락 처</th>
-	                        <td class="text-center" style="border-bottom: 2px solid #ddd; width: 700px;">
-								${dto.tel}
-							</td>  
-	                    </tr>
-	                </thead>
-	                <tbody>
-						<tr>
-							<th class="text-center">상세 정보</th>
-							<th>
-	                			<img src="<%=cp%>/uploads/campground/${dto.filename}" width="375px" height="207px">
-	                		</th>
-							<td colspan="2">
-								<div style="height: 190px;">
-									${dto.memo2}
-								</div>
-							</td>
-						</tr>
-	                </tbody>
-	            </table>
-	        </div>
-        <div style="margin-left: 450px">
-        <strong>추천수</strong> <span>${wanted}</span>
-		<button type="button" class="btn btn-danger btn lg" onclick="wanted();">좋아요</button>
-		</div>	        
-	</div>
-	<div class="replyView">
-					<div class="replyShow">
-						<div id="listReply"></div>
-					</div>
-					<div style="border: 2px solid #82D580; margin: 10px;">
-						<div style="margin: 10px;">
-						<span style="color: #008100; font-weight: bold;">코멘트 입력</span>			
-						</div>
-						<div class="replyWrite">
-							<textarea id="content" required="required" rows="4"></textarea>
-						</div>
-						<div style="margin: 5px; text-align: right;">
-							<button type="button" class="btn btn-success" onclick="sendReply();">덧글쓰기</button>
-						</div>
-					</div>
-				</div>
-				<a class="btn btn-default"
-				href="javascript:location.href='<%=cp%>/campground/list.do?page=${page}';"
-				style="float: right;">목록으로</a>
-		</div>
+	<a class="btn btn-default"
+	href="javascript:location.href='<%=cp%>/campground/list.do?page=${page}';"
+	style="float: right;">목록으로</a>
+</div>
 <div>
     <jsp:include page="/WEB-INF/views/layout/footer.jsp"></jsp:include>
 </div>

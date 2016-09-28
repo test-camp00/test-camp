@@ -5,6 +5,22 @@
 <%
    String cp = request.getContextPath();
 %>
+<script type="text/javascript">
+//엔터 처리
+$(function(){
+	   $("input").not($(":button")).keypress(function (evt) {
+	        if (evt.keyCode == 13) {
+	            var fields = $(this).parents('form:eq(0),body').find('button,input,textarea,select');
+	            var index = fields.index(this);
+	            if ( index > -1 && ( index + 1 ) < fields.length ) {
+	                fields.eq( index + 1 ).focus();
+	            }
+	            return false;
+	        }
+	     });
+});
+</script>
+
 <br>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -26,7 +42,7 @@
                 </c:if>
                 <a href="<%=cp%>/member/logout.do"><font style="color: white; font-weight:bold; font-size: 11pt; " >로그아웃&nbsp;&nbsp;</font></a>
             </c:if>
-              <a href="<%=cp%>/customer/list.do"><font style="color: white; font-weight:bold; font-size: 11pt; " >고객센터&nbsp;&nbsp;</font></a>
+              <a href="<%=cp%>"><font style="color: white; font-weight:bold; font-size: 11pt; " >고객센터&nbsp;&nbsp;</font></a>
     </div>
  
   
@@ -69,23 +85,24 @@
 
 	 
 	    <div class="navbar-collapse collapse" id="navbar-collapse-1">
+
+	      
 	      <ul class="nav navbar-nav" >
 	      <li > <a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true" style="float: right;">Home</span></a></li>
 		<li><a href="<%=cp%>/campground/list.do"><span class="glyphicon glyphicon-tent" aria-hidden="true" style="float: right">캠핑장</span></a></li>
+
 		<li><a href="<%=cp%>/cooks/cook.do"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="float: right">캠핑요리</span></a></li>
 		<li><a href="<%=cp%>/tools/tool.do"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="float: right">캠핑용품</span></a></li>
-		<li><a href="<%=cp%>/camping/HowtoCamp.do"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="float: right">캠핑노하우</span></a></li>
-		<li><a href="#"><span class="glyphicon glyphicon-send" aria-hidden="true" style="float: right">자유게시판</span></a></li>
-		<li><a href="#"><span class="glyphicon glyphicon-transfer" aria-hidden="true" style="float: right">거래게시판</span></a></li>
-		<li><a href="#"><span class="glyphicon glyphicon-camera" aria-hidden="true" style="float: right">갤러리</span></a></li>
-	
-		
+
+		<li><a href="#"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="float: right">캠핑방법</span></a></li>
+		<li><a href="<%=cp%>/free_board/board_free.do"><span class="glyphicon glyphicon-send" aria-hidden="true" style="float: right">자유게시판</span></a></li>
+		<li><a href="<%=cp%>/trade_board/board_trade.do"><span class="glyphicon glyphicon-transfer" aria-hidden="true" style="float: right">거래게시판</span></a></li>
+		<li><a href="<%=cp%>/gallery/gallery_list.do"><span class="glyphicon glyphicon-camera" aria-hidden="true" style="float: right">갤러리</span></a></li>
+
 	      </ul>
-	     
-	      
-	     
-	    </div><!-- /.navbar-collapse -->
-	  </div><!-- /.container-fluid -->
+
+	    </div>
+	  </div>
 	</nav>
 	
 	
