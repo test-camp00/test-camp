@@ -41,12 +41,7 @@
   
     <jsp:include page="/WEB-INF/views/layout/imgSlide.jsp"></jsp:include>
 </div>
-<div class="container" role="main">
 
-<jsp:include page="/WEB-INF/views/layout/board.jsp"></jsp:include> 
-
-
-</div>
 
 
 <div>
