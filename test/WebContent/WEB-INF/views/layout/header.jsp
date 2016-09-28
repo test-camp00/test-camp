@@ -13,6 +13,25 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="<%=cp%>/res/css/style.css" type="text/css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript">
+//엔터 처리
+$(function(){
+	   $("input").not($(":button")).keypress(function (evt) {
+	        if (evt.keyCode == 13) {
+	            var fields = $(this).parents('form:eq(0),body').find('button,input,textarea,select');
+	            var index = fields.index(this);
+	            if ( index > -1 && ( index + 1 ) < fields.length ) {
+	                fields.eq( index + 1 ).focus();
+	            }
+	            return false;
+	        }
+	     });
+});
+</script>
   
  <style media="screen">
 
@@ -207,15 +226,14 @@ $(function(){
 
 
 	
-		   <li >  <a href="<%=cp%>/" style="font-family:'Hanna'; width: 130px"><span class="glyphicon glyphicon-home" aria-hidden="true" style="float: left; " ></span>Home</a></li>
+		  <li >  <a href="<%=cp%>/" style="font-family:'Hanna'; width: 130px"><span class="glyphicon glyphicon-home" aria-hidden="true" style="float: left; " ></span>Home</a></li>
 		<li><a href="<%=cp%>/campground/list.do"style="font-family:'Hanna'; width: 130px"><span class="glyphicon glyphicon-tree-conifer" aria-hidden="true" style="float: left"></span>캠핑장</a></li>
 		<li><a href="<%=cp%>/cooks/cook.do"style="font-family:'Hanna'; width: 130px"><span class="glyphicon glyphicon-cutlery" aria-hidden="true" style="float: left"></span>캠핑요리</a></li>
 		<li><a href="<%=cp%>/tools/tool.do"style="font-family:'Hanna'; width: 130px"><span class="glyphicon glyphicon-wrench" aria-hidden="true" style="float: left"></span>캠핑용품</a></li>
 		<li><a href="<%=cp%>/camping/HowtoCamp.do"style="font-family:'Hanna'; width: 130px"><span class="glyphicon glyphicon-leaf" aria-hidden="true" style="float: left"></span>캠핑노하우</a></li>
-		<li><a href="#"style="font-family:'Hanna'; width: 130px"><span class="glyphicon glyphicon-send" aria-hidden="true" style="float: left"></span>자유게시판</a></li>
-		<li><a href="#"style="font-family:'Hanna'; width: 130px"><span class="glyphicon glyphicon-transfer" aria-hidden="true" style="float: left"></span>거래게시판</a></li>
-		<li><a href="#"style="font-family:'Hanna'; width: 130px"><span class="glyphicon glyphicon-camera" aria-hidden="true" style="float: left"></span>갤러리</a></li>
-	
+		<li><a href="<%=cp%>/free_board/board_free.do"style="font-family:'Hanna'; width: 130px"><span class="glyphicon glyphicon-send" aria-hidden="true" style="float: left"></span>자유게시판</a></li>
+		<li><a href="<%=cp%>/trade_board/board_trade.do"style="font-family:'Hanna'; width: 130px"><span class="glyphicon glyphicon-transfer" aria-hidden="true" style="float: left"></span>거래게시판</a></li>
+		<li><a href="<%=cp%>/gallery/gallery_list.do"style="font-family:'Hanna'; width: 130px"><span class="glyphicon glyphicon-camera" aria-hidden="true" style="float: left"></span>갤러리</a></li>
 	 
 	  
 	      </ul>
