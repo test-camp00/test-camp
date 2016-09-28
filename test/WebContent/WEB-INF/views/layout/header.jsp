@@ -42,7 +42,7 @@ $(function(){
                 </c:if>
                 <a href="<%=cp%>/member/logout.do"><font style="color: white; font-weight:bold; font-size: 11pt; " >로그아웃&nbsp;&nbsp;</font></a>
             </c:if>
-              <a href="<%=cp%>/customer/list.do"><font style="color: white; font-weight:bold; font-size: 11pt; " >고객센터&nbsp;&nbsp;</font></a>
+              <a href="<%=cp%>"><font style="color: white; font-weight:bold; font-size: 11pt; " >고객센터&nbsp;&nbsp;</font></a>
     </div>
  
   
