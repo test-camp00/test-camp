@@ -99,12 +99,12 @@
 					<label class="schlbl">지역</label>
 					<select class="form-control" style="width: 180px;" name="searchArea">
 					<option value="">지역선택</option>
-					<option value="수도권">수도권</option>
-					<option value="강원도">강원도</option>
-					<option value="충청도">충청도</option>
-					<option value="전라도">전라도</option>
-					<option value="경상도">경상도</option>
-					<option value="제주도">제주도</option>
+					<option value="수도권" ${param.searchArea=="수도권" ? "selected='selected'" : ""}>수도권</option>
+					<option value="강원도" ${param.searchArea=="강원도" ? "selected='selected'" : ""}>강원도</option>
+					<option value="충청도" ${param.searchArea=="충청도" ? "selected='selected'" : ""}>충청도</option>
+					<option value="전라도" ${param.searchArea=="전라도" ? "selected='selected'" : ""}>전라도</option>
+					<option value="경상도" ${param.searchArea=="경상도" ? "selected='selected'" : ""}>경상도</option>
+					<option value="제주도" ${param.searchArea=="제주도" ? "selected='selected'" : ""}>제주도</option>
 					</select><br>
 				</div>
 				<div>
