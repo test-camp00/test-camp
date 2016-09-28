@@ -103,7 +103,8 @@ function searchList() {
 					alt="..."></div></div>
 					<br>
 	<div class="row">
-		<div class="col-md-12 col-md-4"><input type="image" src="<%=cp%>/images/food4.jpg" onMouseOver="this.style.opacity='.6'; this.style.filter='alpha(opacity=60)'" onMouseOut="this.style.opacity='1.0'; this.style.filter='alpha(opacity=100)'" style="width: 100%; height: 200px;border-radius:10px 20px 5px;border:5px solid #4C4C4C"
+		<div class="col-md-12 col-md-4"><input type="image" src="<%=cp%>/images/food4.jpg" onMouseOver="this.style.opacity='.6'; this.style.filter='alpha(opacity=60)'" onMouseOut="this.style.opacity='1.0'; this.style.filter='alpha(opacity=100)'" style="width: 100%; height: 200px;border-radius:10px 20px 5px;border:5px solid #4C4C4C;
+		border-color: transparent;"
 					alt="..."></div>
 		<div class="col-md-12 col-md-4"><input type="image" src="<%=cp%>/images/food5.jpg" onMouseOver="this.style.opacity='.6'; this.style.filter='alpha(opacity=60)'" onMouseOut="this.style.opacity='1.0'; this.style.filter='alpha(opacity=100)'" style="width: 100%; height: 200px;border-radius:10px 20px 5px;border:5px solid #4C4C4C"
 					alt="..."></div>
