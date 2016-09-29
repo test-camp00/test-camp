@@ -66,29 +66,31 @@ function check() {
         return false;
     }
     
-    
-    f.action = "<%=cp%>/member/member_ok.do";
-    
-   <%--  var mode="${mode}";
+    var mode="${mode}";
     if(mode=="created") {
     	f.action = "<%=cp%>/member/member_ok.do";
     } else if(mode=="update") {
     	f.action = "<%=cp%>/member/update_ok.do";
-    } --%>
+    } 
     
     return true;
 }
 </script>
 
 
-<div style="height: 205px">
-<div style=" height: 10px;  border-bottom: 50px solid #3cb371; margin-top: 0px">
+<div style="height: 215px">
+<div style=" height: 10px;  border-bottom: 60px solid #3cb371; margin-top: 0px">
   <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
 </div>
 </div>
 <div class="container">
 	<div style="border-bottom: 1px solid #ccc; margin-bottom: 30px;">
-		<h3>회원가입</h3>
+		<c:if test="${mode=='update'}">
+			<h3>개인정보 변경</h3>
+		</c:if>
+		<c:if test="${mode=='created'}">
+			<h3>회원가입</h3>
+		</c:if>
 	</div>
 	<div>
 		<div class="row">
@@ -371,11 +373,12 @@ function check() {
 
 						<div class="panel-body">
 							<div style="padding: 50px;">
+								<c:if test="${mode=='created'}">
 								<div class="form-group row">
 									<label for="example-text-input" class="col-md-2 col-form-label">ID</label>
 									<div class="col-md-8">
 										<input class="form-control" type="text" name="userId"
-											placeholder="아이디">
+											 placeholder="아이디">
 										<p class="help-block">아이디는 5~10자 이내이며, 첫글자는 영문자로 시작해야 합니다.</p>
 									</div>
 								</div>
@@ -405,11 +408,48 @@ function check() {
 											placeholder="이름">
 									</div>
 								</div>
+								</c:if>
+								<c:if test="${mode=='update'}">
+								<div class="form-group row">
+									<label for="example-text-input" class="col-md-2 col-form-label">ID</label>
+									<div class="col-md-8">
+										<input class="form-control" type="text" name="userId"
+											 placeholder="아이디" value="${dto.userId}" readonly="readonly">
+										<p class="help-block">아이디는 5~10자 이내이며, 첫글자는 영문자로 시작해야 합니다.</p>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="example-password-input"
+										class="col-md-2 col-form-label">Password</label>
+									<div class="col-md-8">
+										<input class="form-control" type="password" name="userPwd"
+											placeholder="비밀번호" value="${dto.userPwd}" readonly="readonly">
+										<p class="help-block">패스워드는 5~10자이며 하나 이상의 숫자나 특수문자가 포함되어야
+											합니다.</p>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="example-password-input"
+										class="col-md-2 col-form-label">Password Check</label>
+									<div class="col-md-8">
+										<input class="form-control" type="password" name="userPwdCheck"
+											placeholder="비밀번호 확인" value="${dto.userPwd}" readonly="readonly">
+										<p class="help-block">패스워드를 한번 더 입력해주세요.</p>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="example-text-input" class="col-md-2 col-form-label">Name</label>
+									<div class="col-md-8">
+										<input class="form-control" type="text" name="userName"
+											value="${dto.userName}" placeholder="이름" readonly="readonly">
+									</div>
+								</div>
+								</c:if>
 								<div class="form-group row">
 									<label for="example-tel-input" class="col-md-2 col-form-label">Birth</label>
 									<div class="col-md-8">
 										<input class="form-control" type="text" name="birth"
-											placeholder="생년월일">
+											value="${dto.birth}" placeholder="생년월일">
 										<p class="help-block">생년월일은 2000-01-01 형식으로 입력 합니다.</p>
 									</div>
 								</div>
@@ -418,7 +458,7 @@ function check() {
 									<label class="col-md-2 col-form-label">Telephone</label>
 									<div class="col-md-8">
 										<input class="form-control" type="text" name="tel"
-											placeholder="연락처">
+											placeholder="연락처" value="${dto.tel}">
 										<p class="help-block">연락처는 010-0001-0001형식으로 입력합니다.</p>
 									</div>
 								</div>
@@ -427,7 +467,7 @@ function check() {
 									<label for="example-tel-input" class="col-md-2 col-form-label">Addr</label>
 									<div class="col-md-8">
 										<input class="form-control" type="text" name="addr"
-											placeholder="주소">
+											placeholder="주소" value="${dto.addr}">
 									</div>
 								</div>
 
@@ -435,7 +475,7 @@ function check() {
 									<label for="example-tel-input" class="col-md-2 col-form-label">Email</label>
 									<div class="col-md-8">
 										<input class="form-control" type="text" name="email"
-											placeholder="이메일">
+											placeholder="이메일" value="${dto.email}">
 										<p class="help-block">이메일은 abcd123@artcamping.com형식으로
 											입력합니다.</p>
 									</div>

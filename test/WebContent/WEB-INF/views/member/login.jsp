@@ -35,8 +35,8 @@ function sendLogin() {
         f.submit();
 }
 </script>
-<div style="height: 205px">
-<div style=" height: 10px;  border-bottom: 50px solid #3cb371; margin-top: 0px">
+<div style="height: 215px">
+<div style=" height: 10px;  border-bottom: 60px solid #3cb371; margin-top: 0px">
   <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
 </div>
 </div>
@@ -65,8 +65,9 @@ function sendLogin() {
 								type="button" onclick="sendLogin();"> 로그인 </button>
 							
 						</form>
-						<a href="javascript:;" class="forget" data-toggle="modal"
-							data-target=".forget-modal">비밀번호를 잊어버리셨나요?</a>
+						<div style="text-align: center"><a href="<%=cp%>/member/searchId.do">아이디를 잊어버리셨나요?</a></div>
+						<div style="text-align: center"><a href="<%=cp%>/member/searchPwd.do">비밀번호를 잊어버리셨나요?</a></div>
+						
 						<hr>
 						<div style="margin-top:10px; text-align: center;">${message}</div>
 					</div>

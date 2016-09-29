@@ -11,50 +11,47 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link href=”./css/bootstrap.vertical-tabs.css” rel=”stylesheet”>
 <link href=”./css/bootstrap.vertical-tabs.min.css” rel=”stylesheet”>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="<%=cp%>/css/dic/dic_tooltip.css" type="text/css">
-<link href="http://googledrive.com/host/0B-QKv6rUoIcGSXVoclk5aDh4RWM" rel="stylesheet"><!-- bootstrap.vertical-tabs.min.css -->
+
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 <style type="text/css">
 .line_bottom {border-bottom:2px solid black; text-align: center; }
 .line_bottom2 {border-bottom:1px solid #ccc; text-align: center;}
-.div_width {width:830px;}
+
 </style>
 
 </head>
 <body>
-<div style="height: 205px">
-<div style=" height: 10px;  border-bottom: 50px solid #3cb371; margin-top: 0px">
+<div style="height: 215px">
+<div style=" height: 10px;  border-bottom: 60px solid #3cb371; margin-top: 0px">
   <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
 </div>
 </div>
-
-
   
 <div class="container">
 
-	<h2>캠핑 노하우</h2>
-
+	<h3 style="font-family:'Nanum Pen Script'; font-size: 25pt "><font color="#FF007F">캠핑</font>을 최고로 즐길 수 있는<font color="#FF007F" size="30pt" > 방법</font></h3>
 	<div class="col-sm-3">
 	  <ul id="myTab2" class="nav nav-tabs tabs-left" role="tablist" >
 	    <li role="presentation" class="active"><a href="#home2" id="home-tab2" role="tab" data-toggle="tab" style="width: 200px;">
 	     
-	  필수 용품 </a></li>
+	  <font style="font-family:'Nanum Pen Script'; font-size: 17pt ">필수 용품 </font></a></li>
 	    <li role="presentation" class="">
 	    <a href="#profile2" role="tab" id="profile-tab2" data-toggle="tab" style="width: 200px;">
 	   
-	캠핑시 주의사항
+	<font style="font-family:'Nanum Pen Script'; font-size: 17pt ">캠핑시 주의사항</font>
 	    </a></li>
 	      <li role="presentation" class=""><a href="#profile3" role="tab" id="profile-tab3" data-toggle="tab" style="width: 200px;">
 
-	   계절에 맞는 캠핑
+	  <font style="font-family:'Nanum Pen Script'; font-size: 17pt "> 계절에 맞는 캠핑</font>
 	</a></li>
 	  <li role="presentation" class=""><a href="#profile4" role="tab" id="profile-tab4" data-toggle="tab"style="width: 200px;">
 	 
-	    개인정보 이용방침
+	   <font style="font-family:'Nanum Pen Script'; font-size: 17pt "> 개인정보 이용방침</font>
 	  </a></li>
 	  </ul>
 	</div>  
@@ -65,26 +62,28 @@
 	    <div role="tabpanel" class="tab-pane fade active in" id="home2" aria-labelledby="home-tab2">
 	    
 	      <div style="margin:0px auto 35px; padding-bottom: 5px; text-align: center">
-	<strong id="categoryNameForTitle">[월간 <span class="word_dic en">Camping</span>]</strong>
-	<p>ArtCampting의 캠핑 코디 </p>
-	<div class="line_bottom div_width"><h3>캠핑 용품</h3></div>
+	<font style="font-family: 'Hanna'" size="5">ArtCampting의 캠핑 코디</font> 
+	<div class="line_bottom div_width"><h3 style="font-family: 'Hanna'">캠핑 용품에 알아보자</h3></div>
 
 
 
 
 	</div>
 	<!-- ------------------------------------------------------------------------------------------ -->
-	<div class="t_lv_tit">
+	
+
+<div class="t_lv_tit">
+
 	<h4>
-	<div class="line_bottom2 div_width">Kitchen</div>
+
+	<div class="line_bottom2 div_width" style="font-family: 'Hanna';font-size: 20pt">KITCHEN</div>
 	</h4>
 	</div>
-	     <div class="t_ptype" style="width: 600px;">
-	
+	<br>
 	<img alt="캠핑용품 이미지 1" src="http://ncc.phinf.naver.net/ncc02/2012/6/12/194/01.jpg?type=w646">
 	
 	<p class="cap">	</p>
-	</div>
+	
 	<p class="t_txt">
 	키친 테이블에 취사도구를 정리해 놓으면 찾기도 편하고 요리하기도 쉽다. 
 캐비닛이 딸려 있으면 그릇과 냄비 등을 깔끔하게 수납할 수 있다. 가스스토브 옆 선반에 도마를 두고 재료를 다듬으면 동선도 줄일 수 있다. 
@@ -139,9 +138,11 @@
 <div class="line_bottom div_width"></div>
 	<h4>
 	<br><br>
-	<div class="line_bottom2 div_width">Bedroom</div>
+	<div class="line_bottom2 div_width" style="font-family: 'Hanna';font-size: 20pt">BEDROOM</div>
 	</h4>
 	</div>
+	
+
 	<div class="t_ptype" style="width: 600px;">
 	
 	<img alt="캠핑용품 이미지 2" src="http://ncc.phinf.naver.net/ncc02/2012/6/12/89/02.jpg?type=w646">
@@ -195,7 +196,7 @@
 <div class="line_bottom div_width"></div>
 	<h4>
 	<br><br>
-	<div class="line_bottom2 div_width">Hammock</div>
+	<div class="line_bottom2 div_width" style="font-family: 'Hanna';font-size: 20pt">HAMMOCK</div>
 	</h4>
 	</div>
 <div class="t_ptype" style="width: 600px;">
@@ -233,7 +234,7 @@
 <div class="line_bottom div_width"></div>
 	<h4>
 	<br><br>
-	<div class="line_bottom2 div_width">있으면 편한 용품들...</div>
+	<div class="line_bottom2 div_width" style="font-family: 'Hanna';font-size: 20pt">기타 추천 용품</div>
 	</h4>
 	</div>
 	<div class="t_ptype" style="width: 513px;">
@@ -325,6 +326,6 @@
     <jsp:include page="/WEB-INF/views/layout/footer.jsp"></jsp:include>
 
 
-          <script type="text/javascript" src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>
+          
 </body>
 </html>

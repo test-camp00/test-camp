@@ -14,13 +14,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>spring</title>
 
+<link rel="stylesheet" href="<%=cp%>/css/layout/layout.css"
+	type="text/css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 <link rel="stylesheet" href="<%=cp%>/bootstrap/css/bootstrap.min.css"
 	type="text/css" />
 <link rel="stylesheet"
 	href="<%=cp%>/bootstrap/css/bootstrap-theme.min.css" type="text/css" />
-<link rel="stylesheet" href="<%=cp%>/css/layout/layout.css"
-	type="text/css">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+	<script type="text/javascript"
+		src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>
 
 <style type="text/css">
 .topView {
@@ -134,6 +138,7 @@
 }
 </style>
 
+
 <script type="text/javascript">
 function updateTool(num) {
 	<c:if test="${sessionScope.member.userId=='admin'}">
@@ -246,9 +251,12 @@ function wanted() {
 </head>
 <body>
 
-	<div>
-		<jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
-	</div>
+<div style="height: 215px">
+<div style=" height: 10px;  border-bottom: 60px solid #3cb371; margin-top: 0px">
+  <jsp:include page="/WEB-INF/views/layout/header.jsp"></jsp:include>
+</div>
+</div>
+
 	<div class="container">
 		<div style="border-bottom: 1px solid #ccc; margin-bottom: 30px;">
 			<c:if test="${sessionScope.member.userId=='admin'}">
@@ -275,7 +283,6 @@ function wanted() {
 					</li>
 					<li><strong>제품번호</strong> <span>${dto.itemCode}</span></li>
 					<li><strong>제조사</strong> <span>${dto.makesa}</span></li>
-					<li><strong>가격대</strong> <span>30,000</span></li>
 					<li><strong>추천수</strong> <span>${wanted}</span></li>
 				</ul>
 			</div>
@@ -328,8 +335,6 @@ function wanted() {
 	</div>
 
 
-	<script type="text/javascript"
-		src="<%=cp%>/bootstrap/js/bootstrap.min.js"></script>
 
 
 </body>
