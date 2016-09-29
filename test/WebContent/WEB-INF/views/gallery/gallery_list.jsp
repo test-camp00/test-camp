@@ -18,7 +18,47 @@
 <link rel="stylesheet" href="<%=cp%>/bootstrap/css/bootstrap-theme.min.css" type="text/css"/>
 <link rel="stylesheet" href="<%=cp%>/css/layout/layout.css" type="text/css">
 <link rel="stylesheet" href="<%=cp%>/jquery/css/smoothness/jquery-ui.min.css" type="text/css"/>
+
+<style type="text/css">
+.imgLayout{
+	width: 200px;
+	height: 230px;
+	padding: 5px 5px 5px;
+	margin: 5px;
+	border: 1px solid #DAD9FF;
+	float: left;
+}
+
+.subject {
+     width:190px;
+     height:25px;
+     line-height:25px;
+     margin:5px auto 0px;
+     border-top: 1px solid #DAD9FF;
+     display: inline-block;
+     white-space:nowrap;
+     overflow:hidden;
+     text-overflow:ellipsis;
+     cursor: pointer;
+     text-align: center;
+     
+}
+.subject:HOVER {
+	font-style: italic;
+	font-weight: bold;
+	color:#65D35D;
+}
+</style>
+
+
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script type="text/javascript">
+function article(num) {
+	var url="${articleUrl}&num="+num;
+	location.href=url;
+}
+</script>
 
 </head>
 <body>
@@ -29,8 +69,10 @@
 
 <div class="container" role="main">
     <div class="bodyFrame col-sm-10"  style="float:none;margin:0px; padding:0px;width:1140px">
-        
+       
+       <div class="body-title"> 
 	  <h3><span class="glyphicon glyphicon-picture"></span> GALLERY </h3>
+	    </div>
 	    
 	    <div class="alert alert-info">
 	        <i class="glyphicon glyphicon-info-sign"></i> 캠핑장소를 회원과 공유할 수 있는 공간입니다.
@@ -52,7 +94,13 @@
 	                        <c:out value="</div><div style='clear: both; max-width:660px; margin: 0px auto;'>" escapeXml="false"/>
 	                 </c:if>
 				      <div class="imgLayout">
-		                     <img src="<%=cp%>/uploads/photo/${dto.imageFilename}" style="width: 190px; height: 190px;" border="0">
+				     		
+				     		 <c:if test="${not empty dto.filename}">		
+		                     	<img src="<%=cp%>/uploads/gallery/${dto.filename}" style="width: 190px; height: 190px;" border="0">
+					      	 </c:if>
+					      	 <c:if test="${empty dto.filename}">
+		                     	<img src="<%=cp%>/images/x.png" style="width: 190px; height: 190px;" border="0">
+					      	 </c:if>
 				             <span class="subject" onclick="javascript:article('${dto.num}');" >
 				                   ${dto.subject}
 				             </span>
@@ -89,7 +137,7 @@
 	        		    &nbsp;
 	        		</div>
 	        		<div style="float: left; width: 20%; min-width: 85px; text-align: right;">
-	        		    <button type="button" class="btn btn-primary btn-sm bbtn" onclick="javascript:location.href='<%=cp%>/photo/created.do';"><span class="glyphicon glyphicon glyphicon-pencil"></span> 등록하기</button>
+	        		    <button type="button" class="btn btn-primary btn-sm bbtn" onclick="javascript:location.href='<%=cp%>/gallery/created.do';"><span class="glyphicon glyphicon glyphicon-pencil"></span> 등록하기</button>
 	        		</div>
 	        </div>
 	        
